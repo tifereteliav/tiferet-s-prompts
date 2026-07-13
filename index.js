@@ -44,6 +44,10 @@ document.addEventListener("DOMContentLoaded", () => {
       userVariables[prompt.id]["step_4"] = "מעקב אחר רמות הסוכר בדם ורישום המדדים באפליקציה";
       userVariables[prompt.id]["step_5"] = "פנייה לצוות הרפואי בכל מקרה של אירוע חריג";
       userVariables[prompt.id]["step_6"] = "אחסון האינסולין במקרר בהתאם להנחיות";
+      userVariables[prompt.id]["step_7"] = "מעקב שבועי אחר מגמות הסוכר בדם";
+      userVariables[prompt.id]["step_8"] = "רישום המדדים ודיווח תקופתי לרופא המטפל";
+      userVariables[prompt.id]["step_9"] = "שמירה על תזונה נכונה ופעילות גופנית מותאמת";
+      userVariables[prompt.id]["step_10"] = "בדיקות תקופתיות קבועות של תפקודי הכליה והעיניים";
     }
   });
 
@@ -144,6 +148,10 @@ document.addEventListener("DOMContentLoaded", () => {
           <option value="4" ${currentCount === 4 ? 'selected' : ''}>4 שלבים</option>
           <option value="5" ${currentCount === 5 ? 'selected' : ''}>5 שלבים</option>
           <option value="6" ${currentCount === 6 ? 'selected' : ''}>6 שלבים</option>
+          <option value="7" ${currentCount === 7 ? 'selected' : ''}>7 שלבים</option>
+          <option value="8" ${currentCount === 8 ? 'selected' : ''}>8 שלבים</option>
+          <option value="9" ${currentCount === 9 ? 'selected' : ''}>9 שלבים</option>
+          <option value="10" ${currentCount === 10 ? 'selected' : ''}>10 שלבים</option>
         </select>
       `;
       variablesForm.appendChild(countGroup);
