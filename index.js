@@ -4,7 +4,6 @@
 
 document.addEventListener("DOMContentLoaded", () => {
   // Application State
-  // Application State
   let activePromptId = null;
   const userVariables = {}; // Stores user inputs for variables across prompts
 
@@ -36,6 +35,16 @@ document.addEventListener("DOMContentLoaded", () => {
     prompt.variables.forEach(v => {
       userVariables[prompt.id][v.id] = v.default;
     });
+
+    // Custom steps initialization for gpt_step_image
+    if (prompt.id === "gpt_step_image") {
+      userVariables[prompt.id]["step_1"] = "הכנת המזרק, חיטוי מקום ההזרקה ושטיפת ידיים יסודית";
+      userVariables[prompt.id]["step_2"] = "ביצוע ההזרקה בזווית נכונה ולחיצה איטית על הבוכנה";
+      userVariables[prompt.id]["step_3"] = "הוצאת המחט בבטחה, פינוי למכל ייעודי והדרכת המטופל למעקב";
+      userVariables[prompt.id]["step_4"] = "מעקב אחר רמות הסוכר בדם ורישום המדדים באפליקציה";
+      userVariables[prompt.id]["step_5"] = "פנייה לצוות הרפואי בכל מקרה של אירוע חריג";
+      userVariables[prompt.id]["step_6"] = "אחסון האינסולין במקרר בהתאם להנחיות";
+    }
   });
 
   // Render Prompt Cards (Minimalist elegant cards)
@@ -70,9 +79,10 @@ document.addEventListener("DOMContentLoaded", () => {
         <div class="prompt-icon">
           ${prompt.icon}
         </div>
-        <h3>${prompt.title}</h3>
         <div class="prompt-meta">
           <span class="prompt-category">${prompt.category}</span>
+          <h3 class="prompt-card-title">${prompt.title}</h3>
+          <p class="prompt-card-desc">${prompt.description}</p>
         </div>
       `;
       
@@ -84,7 +94,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Switch Selected Prompt Workspace
+  // Select Prompt and load into workspace
   function selectPrompt(promptId) {
     activePromptId = promptId;
     
@@ -112,7 +122,81 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Generate variables inputs
     variablesForm.innerHTML = "";
-    if (prompt.variables.length === 0) {
+    if (promptId === "gpt_step_image") {
+      // 1. Topic input
+      const topicGroup = document.createElement("div");
+      topicGroup.className = "var-input-group";
+      topicGroup.innerHTML = `
+        <label for="input-TOPIC">נושא כללי של ההדרכה</label>
+        <textarea id="input-TOPIC" rows="2">${userVariables[promptId]["TOPIC"] || ""}</textarea>
+      `;
+      variablesForm.appendChild(topicGroup);
+      
+      // 2. Steps Count select
+      const countGroup = document.createElement("div");
+      countGroup.className = "var-input-group";
+      const currentCount = parseInt(userVariables[promptId]["STEPS_COUNT"] || "3");
+      countGroup.innerHTML = `
+        <label for="input-STEPS_COUNT">מספר השלבים בהדרכה</label>
+        <select id="input-STEPS_COUNT" class="steps-count-select" style="width: 100%; background: var(--bg-dark); color: #fff; border: 1px solid var(--panel-border); padding: 0.6rem; border-radius: 8px; font-family: inherit;">
+          <option value="2" ${currentCount === 2 ? 'selected' : ''}>2 שלבים</option>
+          <option value="3" ${currentCount === 3 ? 'selected' : ''}>3 שלבים</option>
+          <option value="4" ${currentCount === 4 ? 'selected' : ''}>4 שלבים</option>
+          <option value="5" ${currentCount === 5 ? 'selected' : ''}>5 שלבים</option>
+          <option value="6" ${currentCount === 6 ? 'selected' : ''}>6 שלבים</option>
+        </select>
+      `;
+      variablesForm.appendChild(countGroup);
+
+      // 3. Dynamic steps container
+      const stepsContainer = document.createElement("div");
+      stepsContainer.id = "dynamic-steps-container";
+      variablesForm.appendChild(stepsContainer);
+
+      const renderStepInputs = (count) => {
+        stepsContainer.innerHTML = "";
+        for (let i = 1; i <= count; i++) {
+          const stepKey = `step_${i}`;
+          const defaultVal = userVariables[promptId][stepKey] || "";
+          
+          const stepGroup = document.createElement("div");
+          stepGroup.className = "var-input-group";
+          stepGroup.style.marginTop = "0.75rem";
+          stepGroup.innerHTML = `
+            <label for="input-${stepKey}">תיאור שלב ${i}</label>
+            <input type="text" id="input-${stepKey}" value="${defaultVal}" placeholder="הזן מה להציג בשלב ${i}..." />
+          `;
+          stepsContainer.appendChild(stepGroup);
+
+          // Bind event listener
+          const input = stepGroup.querySelector(`#input-${stepKey}`);
+          input.addEventListener("input", (e) => {
+            userVariables[promptId][stepKey] = e.target.value;
+            updateCodePreview();
+          });
+        }
+      };
+
+      // Initial render
+      renderStepInputs(currentCount);
+
+      // Bind topic event listener
+      const topicInput = topicGroup.querySelector("#input-TOPIC");
+      topicInput.addEventListener("input", (e) => {
+        userVariables[promptId]["TOPIC"] = e.target.value;
+        updateCodePreview();
+      });
+
+      // Bind select event listener
+      const countSelect = countGroup.querySelector("#input-STEPS_COUNT");
+      countSelect.addEventListener("change", (e) => {
+        const val = parseInt(e.target.value);
+        userVariables[promptId]["STEPS_COUNT"] = val.toString();
+        renderStepInputs(val);
+        updateCodePreview();
+      });
+      
+    } else if (prompt.variables.length === 0) {
       variablesForm.innerHTML = `
         <div style="text-align: center; padding: 2rem 1rem; color: var(--text-muted); border: 1px dashed var(--panel-border); border-radius: 10px; background: rgba(255, 255, 255, 0.01); margin-top: 0.5rem;">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8" style="width:36px;height:36px;margin: 0 auto 0.75rem auto;color: var(--primary-teal);display:block;"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
@@ -177,16 +261,44 @@ document.addEventListener("DOMContentLoaded", () => {
     // Replace all placeholders like {CLINICAL_TOPIC} and wrap them with <mark> tags in preview
     let htmlPreviewText = escapeHTML(prompt.template);
     
-    prompt.variables.forEach(v => {
-      const value = userVariables[activePromptId][v.id] || "";
-      const escapedValue = escapeHTML(value);
+    if (activePromptId === "gpt_step_image") {
+      const topicVal = userVariables["gpt_step_image"]["TOPIC"] || "";
+      const countVal = parseInt(userVariables["gpt_step_image"]["STEPS_COUNT"] || "3");
       
-      // Real plain text replacement
-      finalPromptText = finalPromptText.replaceAll(`{${v.id}}`, value);
+      let stepsListText = "";
+      let stepsListHtml = "";
       
-      // Highlighted HTML preview replacement
-      htmlPreviewText = htmlPreviewText.replaceAll(`{${v.id}}`, `<mark>${escapedValue}</mark>`);
-    });
+      for (let i = 1; i <= countVal; i++) {
+        const stepVal = userVariables["gpt_step_image"][`step_${i}`] || "";
+        stepsListText += `- Step ${i}: ${stepVal}\n`;
+        stepsListHtml += `- Step ${i}: <mark>${escapeHTML(stepVal)}</mark>\n`;
+      }
+      
+      // Trim ending newline
+      stepsListText = stepsListText.trim();
+      stepsListHtml = stepsListHtml.trim();
+
+      // Replace in final text
+      finalPromptText = finalPromptText.replaceAll("{TOPIC}", topicVal);
+      finalPromptText = finalPromptText.replaceAll("{STEPS_COUNT}", countVal.toString());
+      finalPromptText = finalPromptText.replaceAll("{STEPS_LIST}", stepsListText);
+
+      // Replace in HTML preview
+      htmlPreviewText = htmlPreviewText.replaceAll("{TOPIC}", `<mark>${escapeHTML(topicVal)}</mark>`);
+      htmlPreviewText = htmlPreviewText.replaceAll("{STEPS_COUNT}", `<mark>${countVal}</mark>`);
+      htmlPreviewText = htmlPreviewText.replaceAll("{STEPS_LIST}", stepsListHtml);
+    } else {
+      prompt.variables.forEach(v => {
+        const value = userVariables[activePromptId][v.id] || "";
+        const escapedValue = escapeHTML(value);
+        
+        // Real plain text replacement
+        finalPromptText = finalPromptText.replaceAll(`{${v.id}}`, value);
+        
+        // Highlighted HTML preview replacement
+        htmlPreviewText = htmlPreviewText.replaceAll(`{${v.id}}`, `<mark>${escapedValue}</mark>`);
+      });
+    }
 
     // Write to DOM preview
     promptPreview.innerHTML = htmlPreviewText;
@@ -248,21 +360,23 @@ document.addEventListener("DOMContentLoaded", () => {
     
     prompt.background.sections.forEach(section => {
       bodyHTML += `
-        <h4>${section.heading}</h4>
-        <div>${section.content}</div>
+        <div class="drawer-section" style="margin-top: 1.5rem; border-top: 1px solid var(--panel-border); padding-top: 1.5rem;">
+          <h4 style="color: var(--primary-teal); font-size: 1.1rem; margin-bottom: 0.75rem;">${section.heading}</h4>
+          <div>${section.content}</div>
+        </div>
       `;
     });
 
     if (prompt.background.sources && prompt.background.sources.length > 0) {
       bodyHTML += `
-        <div class="drawer-sources">
-          <h4>מקורות והשראה אקדמית</h4>
+        <div class="drawer-sources" style="margin-top: 1.5rem; border-top: 1px solid var(--panel-border); padding-top: 1.5rem;">
+          <h4 style="color: #fff; font-size: 1.1rem; margin-bottom: 0.75rem;">מקורות והשראה אקדמית</h4>
       `;
       prompt.background.sources.forEach(src => {
         bodyHTML += `
-          <div class="source-item">
+          <div class="source-item" style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4" style="width:16px;height:16px;color:var(--primary-teal);"><path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244" /></svg>
-            <a href="${src.url}" target="_blank" rel="noopener noreferrer">${src.name}</a>
+            <a href="${src.url}" target="_blank" rel="noopener noreferrer" style="color: var(--primary-teal); text-decoration: none; border-bottom: 1px dashed var(--primary-teal);">${src.name}</a>
           </div>
         `;
       });
