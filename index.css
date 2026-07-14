@@ -1021,7 +1021,8 @@ body.workspace-active .site-footer {
 .social-link-btn svg {
   width: 22px;
   height: 22px;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, filter 0.3s ease;
+  filter: drop-shadow(0 0 5px currentColor);
 }
 
 /* Hover basic scale */
@@ -1031,6 +1032,7 @@ body.workspace-active .site-footer {
 
 .social-link-btn:hover svg {
   transform: scale(1.05);
+  filter: drop-shadow(0 0 10px currentColor);
 }
 
 /* Specific button defaults and intense hover glows */
