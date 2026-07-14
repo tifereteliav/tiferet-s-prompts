@@ -950,9 +950,63 @@ body.workspace-active .site-footer {
   flex-wrap: wrap;
 }
 
+/* Circular Glowing Brand Logo */
+.footer-logo-circle {
+  position: relative;
+  width: 54px;
+  height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.logo-circle-glow {
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
+  background: linear-gradient(135deg, var(--primary-teal), #7c3aed);
+  border-radius: 50%;
+  filter: blur(8px);
+  opacity: 0.55;
+  z-index: -1;
+  transition: opacity var(--transition-medium), filter var(--transition-medium);
+}
+
+.footer-logo-circle:hover .logo-circle-glow {
+  opacity: 0.9;
+  filter: blur(12px);
+}
+
+.logo-circle-wrapper {
+  width: 100%;
+  height: 100%;
+  background: #ffffff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  border: 2px solid rgba(0, 203, 203, 0.4);
+  box-shadow: 0 0 15px rgba(0, 203, 203, 0.3);
+  transition: transform var(--transition-medium);
+}
+
+.footer-logo-circle:hover .logo-circle-wrapper {
+  transform: scale(1.08);
+}
+
+.logo-circle-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
 .social-link-btn {
   background: rgba(255, 255, 255, 0.02);
-  border: 1px solid var(--panel-border);
+  border: 1.5px solid rgba(255, 255, 255, 0.1);
   color: #94a3b8;
   width: 54px;
   height: 54px;
@@ -960,8 +1014,10 @@ body.workspace-active .site-footer {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all var(--transition-fast) ease;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: all var(--transition-medium) ease;
+  position: relative;
+  /* Glowing ring shadow in inactive state */
+  box-shadow: 0 0 10px rgba(0, 203, 203, 0.15);
 }
 
 .social-link-btn svg {
@@ -969,41 +1025,80 @@ body.workspace-active .site-footer {
   height: 22px;
 }
 
+/* Hover effects with brand specific glows! */
 .social-link-btn:hover {
+  transform: scale(1.08);
   color: #ffffff;
-  transform: scale(1.1);
-  box-shadow: 0 0 20px rgba(0, 203, 203, 0.4);
-  border-color: var(--primary-teal);
 }
 
+.social-link-btn.facebook {
+  box-shadow: 0 0 10px rgba(24, 119, 242, 0.2);
+  border-color: rgba(24, 119, 242, 0.25);
+}
 .social-link-btn.facebook:hover {
+  box-shadow: 0 0 20px rgba(24, 119, 242, 0.6);
+  border-color: #1877f2;
   background: rgba(24, 119, 242, 0.15);
-  border-color: rgba(24, 119, 242, 0.5);
-  color: #1877f2;
 }
 
+.social-link-btn.instagram {
+  box-shadow: 0 0 10px rgba(228, 64, 95, 0.2);
+  border-color: rgba(228, 64, 95, 0.25);
+}
 .social-link-btn.instagram:hover {
+  box-shadow: 0 0 20px rgba(228, 64, 95, 0.6);
+  border-color: #e4405f;
   background: rgba(228, 64, 95, 0.15);
-  border-color: rgba(228, 64, 95, 0.5);
-  color: #e4405f;
 }
 
+.social-link-btn.linkedin {
+  box-shadow: 0 0 10px rgba(10, 102, 194, 0.2);
+  border-color: rgba(10, 102, 194, 0.25);
+}
 .social-link-btn.linkedin:hover {
+  box-shadow: 0 0 20px rgba(10, 102, 194, 0.6);
+  border-color: #0a66c2;
   background: rgba(10, 102, 194, 0.15);
-  border-color: rgba(10, 102, 194, 0.5);
-  color: #0a66c2;
 }
 
+.social-link-btn.youtube {
+  box-shadow: 0 0 10px rgba(255, 0, 0, 0.2);
+  border-color: rgba(255, 0, 0, 0.25);
+}
 .social-link-btn.youtube:hover {
+  box-shadow: 0 0 20px rgba(255, 0, 0, 0.6);
+  border-color: #ff0000;
   background: rgba(255, 0, 0, 0.15);
-  border-color: rgba(255, 0, 0, 0.5);
-  color: #ff0000;
 }
 
+.social-link-btn.whatsapp {
+  box-shadow: 0 0 10px rgba(37, 211, 102, 0.2);
+  border-color: rgba(37, 211, 102, 0.25);
+}
 .social-link-btn.whatsapp:hover {
+  box-shadow: 0 0 20px rgba(37, 211, 102, 0.6);
+  border-color: #25d366;
   background: rgba(37, 211, 102, 0.15);
-  border-color: rgba(37, 211, 102, 0.5);
-  color: #25d366;
+}
+
+.social-link-btn.tiktok {
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+.social-link-btn.tiktok:hover {
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+  border-color: #ffffff;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.social-link-btn.website {
+  box-shadow: 0 0 10px rgba(0, 203, 203, 0.2);
+  border-color: rgba(0, 203, 203, 0.25);
+}
+.social-link-btn.website:hover {
+  box-shadow: 0 0 20px rgba(0, 203, 203, 0.6);
+  border-color: var(--primary-teal);
+  background: rgba(0, 203, 203, 0.15);
 }
 
 /* WhatsApp Group Action Button */
