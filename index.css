@@ -1006,99 +1006,116 @@ body.workspace-active .site-footer {
 
 .social-link-btn {
   background: rgba(255, 255, 255, 0.02);
-  border: 1.5px solid rgba(255, 255, 255, 0.1);
-  color: #94a3b8;
   width: 54px;
   height: 54px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all var(--transition-medium) ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
-  /* Glowing ring shadow in inactive state */
-  box-shadow: 0 0 10px rgba(0, 203, 203, 0.15);
+  border: 1.5px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
 }
 
 .social-link-btn svg {
   width: 22px;
   height: 22px;
+  transition: transform 0.3s ease;
 }
 
-/* Hover effects with brand specific glows! */
+/* Hover basic scale */
 .social-link-btn:hover {
-  transform: scale(1.08);
+  transform: scale(1.12);
+}
+
+.social-link-btn:hover svg {
+  transform: scale(1.05);
+}
+
+/* Specific button defaults and intense hover glows */
+.social-link-btn.facebook {
+  color: rgba(24, 119, 242, 0.8);
+  border-color: rgba(24, 119, 242, 0.45);
+  box-shadow: 0 0 15px rgba(24, 119, 242, 0.3);
+}
+.social-link-btn.facebook:hover {
+  box-shadow: 0 0 30px rgba(24, 119, 242, 0.8), 0 0 8px rgba(24, 119, 242, 0.4);
+  border-color: #1877f2;
+  background: rgba(24, 119, 242, 0.2);
   color: #ffffff;
 }
 
-.social-link-btn.facebook {
-  box-shadow: 0 0 10px rgba(24, 119, 242, 0.2);
-  border-color: rgba(24, 119, 242, 0.25);
-}
-.social-link-btn.facebook:hover {
-  box-shadow: 0 0 20px rgba(24, 119, 242, 0.6);
-  border-color: #1877f2;
-  background: rgba(24, 119, 242, 0.15);
-}
-
 .social-link-btn.instagram {
-  box-shadow: 0 0 10px rgba(228, 64, 95, 0.2);
-  border-color: rgba(228, 64, 95, 0.25);
+  color: rgba(228, 64, 95, 0.8);
+  border-color: rgba(228, 64, 95, 0.45);
+  box-shadow: 0 0 15px rgba(228, 64, 95, 0.3);
 }
 .social-link-btn.instagram:hover {
-  box-shadow: 0 0 20px rgba(228, 64, 95, 0.6);
+  box-shadow: 0 0 30px rgba(228, 64, 95, 0.8), 0 0 8px rgba(228, 64, 95, 0.4);
   border-color: #e4405f;
-  background: rgba(228, 64, 95, 0.15);
+  background: rgba(228, 64, 95, 0.2);
+  color: #ffffff;
 }
 
 .social-link-btn.linkedin {
-  box-shadow: 0 0 10px rgba(10, 102, 194, 0.2);
-  border-color: rgba(10, 102, 194, 0.25);
+  color: rgba(10, 102, 194, 0.8);
+  border-color: rgba(10, 102, 194, 0.45);
+  box-shadow: 0 0 15px rgba(10, 102, 194, 0.3);
 }
 .social-link-btn.linkedin:hover {
-  box-shadow: 0 0 20px rgba(10, 102, 194, 0.6);
+  box-shadow: 0 0 30px rgba(10, 102, 194, 0.8), 0 0 8px rgba(10, 102, 194, 0.4);
   border-color: #0a66c2;
-  background: rgba(10, 102, 194, 0.15);
+  background: rgba(10, 102, 194, 0.2);
+  color: #ffffff;
 }
 
 .social-link-btn.youtube {
-  box-shadow: 0 0 10px rgba(255, 0, 0, 0.2);
-  border-color: rgba(255, 0, 0, 0.25);
+  color: rgba(255, 0, 0, 0.8);
+  border-color: rgba(255, 0, 0, 0.45);
+  box-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
 }
 .social-link-btn.youtube:hover {
-  box-shadow: 0 0 20px rgba(255, 0, 0, 0.6);
+  box-shadow: 0 0 30px rgba(255, 0, 0, 0.8), 0 0 8px rgba(255, 0, 0, 0.4);
   border-color: #ff0000;
-  background: rgba(255, 0, 0, 0.15);
+  background: rgba(255, 0, 0, 0.2);
+  color: #ffffff;
 }
 
 .social-link-btn.whatsapp {
-  box-shadow: 0 0 10px rgba(37, 211, 102, 0.2);
-  border-color: rgba(37, 211, 102, 0.25);
+  color: rgba(37, 211, 102, 0.8);
+  border-color: rgba(37, 211, 102, 0.45);
+  box-shadow: 0 0 15px rgba(37, 211, 102, 0.3);
 }
 .social-link-btn.whatsapp:hover {
-  box-shadow: 0 0 20px rgba(37, 211, 102, 0.6);
+  box-shadow: 0 0 30px rgba(37, 211, 102, 0.8), 0 0 8px rgba(37, 211, 102, 0.4);
   border-color: #25d366;
-  background: rgba(37, 211, 102, 0.15);
+  background: rgba(37, 211, 102, 0.2);
+  color: #ffffff;
 }
 
 .social-link-btn.tiktok {
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.15);
+  color: rgba(243, 244, 246, 0.8);
+  border-color: rgba(243, 244, 246, 0.35);
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.25);
 }
 .social-link-btn.tiktok:hover {
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.6), 0 0 8px rgba(255, 255, 255, 0.3);
   border-color: #ffffff;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
 }
 
 .social-link-btn.website {
-  box-shadow: 0 0 10px rgba(0, 203, 203, 0.2);
-  border-color: rgba(0, 203, 203, 0.25);
+  color: rgba(0, 203, 203, 0.8);
+  border-color: rgba(0, 203, 203, 0.45);
+  box-shadow: 0 0 15px rgba(0, 203, 203, 0.3);
 }
 .social-link-btn.website:hover {
-  box-shadow: 0 0 20px rgba(0, 203, 203, 0.6);
+  box-shadow: 0 0 30px rgba(0, 203, 203, 0.8), 0 0 8px rgba(0, 203, 203, 0.4);
   border-color: var(--primary-teal);
-  background: rgba(0, 203, 203, 0.15);
+  background: rgba(0, 203, 203, 0.2);
+  color: #ffffff;
 }
 
 /* WhatsApp Group Action Button */
