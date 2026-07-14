@@ -143,7 +143,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const currentCount = parseInt(userVariables[promptId]["STEPS_COUNT"] || "3");
       countGroup.innerHTML = `
         <label for="input-STEPS_COUNT">מספר השלבים בהדרכה</label>
-        <select id="input-STEPS_COUNT" class="steps-count-select" style="width: 100%; background: var(--bg-dark); color: #fff; border: 1px solid var(--panel-border); padding: 0.6rem; border-radius: 8px; font-family: inherit;">
+        <select id="input-STEPS_COUNT" class="steps-count-select">
           <option value="2" ${currentCount === 2 ? 'selected' : ''}>2 שלבים</option>
           <option value="3" ${currentCount === 3 ? 'selected' : ''}>3 שלבים</option>
           <option value="4" ${currentCount === 4 ? 'selected' : ''}>4 שלבים</option>

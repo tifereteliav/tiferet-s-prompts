@@ -757,3 +757,29 @@ body.workspace-active #prompts-list {
 #btn-back-to-prompts:hover svg {
   transform: translateX(4px);
 }
+
+/* Steps Count Select Styling */
+.steps-count-select {
+  width: 100%;
+  background: var(--bg-dark);
+  color: #fff;
+  border: 1px solid var(--panel-border);
+  padding: 0.6rem;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 0.95rem;
+  outline: none;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: border-color var(--transition-fast);
+}
+
+.steps-count-select:focus {
+  border-color: var(--primary-teal);
+}
+
+.steps-count-select option {
+  background: #111827; /* Force dark background in dropdown list */
+  color: #ffffff;      /* Force white text in dropdown list */
+  padding: 0.5rem;
+}
