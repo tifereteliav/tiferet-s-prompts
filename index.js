@@ -105,6 +105,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Show and activate workspace with animation class
     const workspace = document.getElementById("workspace");
     workspace.classList.add("active");
+    document.body.classList.add("workspace-active");
     
     // Update active class on prompt cards
     document.querySelectorAll(".prompt-card").forEach(card => {
@@ -252,10 +253,10 @@ document.addEventListener("DOMContentLoaded", () => {
     // Update the live system prompt preview
     updateCodePreview();
 
-    // Scroll workspace into view smoothly
+    // Scroll smoothly to top since workspace is now the main view
     setTimeout(() => {
-      workspace.scrollIntoView({ behavior: "smooth", block: "start" });
-    }, 100);
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }, 50);
   }
 
   // Update System Prompt Code Block with highlighted tags
@@ -422,6 +423,25 @@ document.addEventListener("DOMContentLoaded", () => {
       closeDrawer();
     }
   });
+
+  // Back to prompts list click handler
+  const btnBackToPrompts = document.getElementById("btn-back-to-prompts");
+  if (btnBackToPrompts) {
+    btnBackToPrompts.addEventListener("click", () => {
+      document.body.classList.remove("workspace-active");
+      const workspace = document.getElementById("workspace");
+      workspace.classList.remove("active");
+      activePromptId = null;
+      
+      // Clear active cards
+      document.querySelectorAll(".prompt-card").forEach(card => {
+        card.classList.remove("prompt-card-active");
+      });
+      
+      // Scroll smoothly back to top
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  }
 
   // Launch initial render
   renderPromptCards();

@@ -731,3 +731,29 @@ tr:nth-child(even) {
   .bento-grid { padding: 0 1rem 2rem 1rem; gap: 1.25rem; }
   .bento-card { padding: 1.5rem; }
 }
+
+/* Workspace Active View Overrides */
+body.workspace-active .card-welcome,
+body.workspace-active #prompts-list {
+  display: none !important;
+}
+
+.workspace-nav {
+  grid-column: span 12;
+  margin-bottom: 0.5rem;
+}
+
+#btn-back-to-prompts {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-rubik);
+}
+
+#btn-back-to-prompts svg {
+  transition: transform 0.2s ease;
+}
+
+#btn-back-to-prompts:hover svg {
+  transform: translateX(4px);
+}

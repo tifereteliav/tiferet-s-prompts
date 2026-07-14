@@ -12,7 +12,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700&family=Inter:wght@300;400;600;700&family=Rubik:wght@300;400;600;700&display=swap" rel="stylesheet">
   
   <!-- CSS Stylesheet -->
-  <link rel="stylesheet" href="index.css?v=11">
+  <link rel="stylesheet" href="index.css?v=12">
 </head>
 <body>
 
@@ -58,6 +58,14 @@
 
     <!-- Active Workspace (Initially Hidden) -->
     <div id="workspace" class="workspace-container span-12">
+      
+      <!-- Back Navigation -->
+      <div class="workspace-nav">
+        <button type="button" class="btn-secondary" id="btn-back-to-prompts" style="cursor: pointer;">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-4 h-4" style="width:16px;height:16px;"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" /></svg>
+          חזור לרשימת הפרומפטים
+        </button>
+      </div>
       
       <!-- Left Card: Customization Form -->
       <section class="bento-card variables-panel">
@@ -139,7 +147,7 @@
   </div>
 
   <!-- Load script files -->
-  <script src="prompts_data.js?v=11"></script>
-  <script src="index.js?v=11"></script>
+  <script src="prompts_data.js?v=12"></script>
+  <script src="index.js?v=12"></script>
 </body>
 </html>
