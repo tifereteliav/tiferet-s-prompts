@@ -114,25 +114,25 @@ header {
 .user-profile {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 1rem;
   background: rgba(255, 255, 255, 0.02);
-  padding: 0.4rem 0.75rem;
-  border-radius: 12px;
+  padding: 0.5rem 1rem;
+  border-radius: 14px;
   border: 1px solid var(--panel-border);
 }
 
 .user-name {
-  font-weight: 600;
+  font-weight: 700;
   color: #fff;
-  font-size: 0.95rem;
+  font-size: 1.15rem;
 }
 
 .user-avatar {
-  width: 32px;
-  height: 32px;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
   object-fit: cover;
-  border: 1.5px solid rgba(0, 203, 203, 0.4);
+  border: 2px solid rgba(0, 203, 203, 0.4);
 }
 
 /* Main Container - Bento Grid */
