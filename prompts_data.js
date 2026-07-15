@@ -572,11 +572,11 @@ Do not generate placeholder text. Ensure all Hebrew translations are grammatical
   },
   {
     id: "gpt_step_image",
-    title: "פרומפט לתמונה בהדרכה בשלבים (GPT)",
+    title: "פרומפט לתמונה בהדרכה בשלבים (GEMINI)",
     subtitle: "Step-by-Step Training Image Prompt",
     icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" /></svg>`,
     category: "מחוללי תמונות וויזואליזציה",
-    description: "יצירת פרומפטים מורכבים ל-GPT/DALL-E 3 להפקת תמונות הדרכה קליניות בשלבים, מעוצבות מימין לשמאל.",
+    description: "יצירת פרומפטים מורכבים ל-GEMINI להפקת תמונות הדרכה קליניות בשלבים, מעוצבות מימין לשמאל.",
     variables: [
       {
         id: "TOPIC",
@@ -617,7 +617,7 @@ IMPORTANT LAYOUT RULE: The panels and step steps must be laid out in order from 
     background: {
       title: "מדריך לתמונות הדרכה קליניות",
       subtitle: "פישוט קוגניטיבי, בחירת אסתטיקה של מחוללי תמונות והנחיות סידור מימין לשמאל",
-      introduction: `הפקת תמונות הדרכה רפואיות ומדריכים חזותיים בשלבים באמצעות בינה מלאכותית (כגון DALL-E 3 או Midjourney) דורשת הגדרה מובנית המכוונת את המודל ליצירת היררכיה חזותית ברורה. הדרישה לשלב אסתטיקת תלת-ממד רכה (Claymation) יוצרת חיבור פסיכולוגי מרגיע ומפחיתה את החרדה הטבעית המלווה תהליכים רפואיים, בשילוב חוקי עיצוב קריטיים התומכים במטופלים.`,
+      introduction: `הפקת תמונות הדרכה רפואיות ומדריכים חזותיים בשלבים באמצעות בינה מלאכותית (כגון GEMINI או Midjourney) דורשת הגדרה מובנית המכוונת את המודל ליצירת היררכיה חזותית ברורה. הדרישה לשלב אסתטיקת תלת-ממד רכה (Claymation) יוצרת חיבור פסיכולוגי מרגיע ומפחיתה את החרדה הטבעית המלווה תהליכים רפואיים, בשילוב חוקי עיצוב קריטיים התומכים במטופלים.`,
       sections: [
         {
           heading: "חלק א: אסתטיקת Claymation ותלת-ממד רך",
@@ -629,12 +629,12 @@ IMPORTANT LAYOUT RULE: The panels and step steps must be laid out in order from 
         },
         {
           heading: "חלק ג: הנדסת הפרומפטים לבינה מלאכותית יוצרת",
-          content: `<p>בניית פרומפטים מורכבים מחייבת שילוב של פרמטרים מרחביים מדויקים והגדרת קצב חזותי. מנוע DALL-E 3 בתוך GPT מעבד את הפרמטרים הללו בצורה הטובה ביותר באנגלית, תוך חלוקת תפקידים ברורה (advanced medical visualization AI).</p>`
+          content: `<p>בניית פרומפטים מורכבים מחייבת שילוב של פרמטרים מרחביים מדויקים והגדרת קצב חזותי. מנוע GEMINI מעבד את הפרמטרים הללו בצורה הטובה ביותר באנגלית, תוך חלוקת תפקידים ברורה (advanced medical visualization AI).</p>`
         }
       ],
       sources: [
         { name: "Mayo Clinic - Medical Visualizations and Patient Education", url: "https://www.mayoclinic.org" },
-        { name: "Sora & DALL-E 3 Prompt Design Guides", url: "https://openai.com" }
+        { name: "Sora & GEMINI Prompt Design Guides", url: "https://google.com" }
       ]
     }
   }
