@@ -38,16 +38,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Custom steps initialization for gpt_step_image
     if (prompt.id === "gpt_step_image") {
-      userVariables[prompt.id]["step_1"] = "הכנת המזרק, חיטוי מקום ההזרקה ושטיפת ידיים יסודית";
-      userVariables[prompt.id]["step_2"] = "ביצוע ההזרקה בזווית נכונה ולחיצה איטית על הבוכנה";
-      userVariables[prompt.id]["step_3"] = "הוצאת המחט בבטחה, פינוי למכל ייעודי והדרכת המטופל למעקב";
-      userVariables[prompt.id]["step_4"] = "מעקב אחר רמות הסוכר בדם ורישום המדדים באפליקציה";
-      userVariables[prompt.id]["step_5"] = "פנייה לצוות הרפואי בכל מקרה של אירוע חריג";
-      userVariables[prompt.id]["step_6"] = "אחסון האינסולין במקרר בהתאם להנחיות";
-      userVariables[prompt.id]["step_7"] = "מעקב שבועי אחר מגמות הסוכר בדם";
-      userVariables[prompt.id]["step_8"] = "רישום המדדים ודיווח תקופתי לרופא המטפל";
-      userVariables[prompt.id]["step_9"] = "שמירה על תזונה נכונה ופעילות גופנית מותאמת";
-      userVariables[prompt.id]["step_10"] = "בדיקות תקופתיות קבועות של תפקודי הכליה והעיניים";
+      userVariables[prompt.id]["step_1"] = "";
+      userVariables[prompt.id]["step_2"] = "";
+      userVariables[prompt.id]["step_3"] = "";
+      userVariables[prompt.id]["step_4"] = "";
+      userVariables[prompt.id]["step_5"] = "";
+      userVariables[prompt.id]["step_6"] = "";
+      userVariables[prompt.id]["step_7"] = "";
+      userVariables[prompt.id]["step_8"] = "";
+      userVariables[prompt.id]["step_9"] = "";
+      userVariables[prompt.id]["step_10"] = "";
     }
   });
 
