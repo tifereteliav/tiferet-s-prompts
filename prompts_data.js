@@ -446,13 +446,23 @@ Verify all Hebrew translations for absolute grammatical correctness, ensuring a 
         label: "שפת פלט והגדרות כיוון",
         placeholder: "הזן שפה מבוקשת...",
         default: "Hebrew (עברית פשוטה, חמימה, ברורה במיוחד, בגובה העיניים, ומנוסחת ברמת קריאות של כיתה ה'), מעוצבת מימין לשמאל כמו שמקובל בעברית"
+      },
+      {
+        id: "COLOR_PALETTE",
+        label: "פלטת צבעים לאינפוגרפיקה",
+        placeholder: "בחר פלטת צבעים או הקלד גוונים מותאמים אישית...",
+        default: "Clinical Blue & Calm Teal - פלטת גוונים מבוססת כחול רופאים עמוק, טורקיז רפואי ותכלת מרגיע עם ניגודיות גבוהה לרקע לבן."
       }
     ],
     template: `You are an Elite Patient Experience (PX) Strategist, Senior Medical Illustrator, and High-End Marketing Information Designer. Your objective is to design a visually stunning, premium-grade, 1-page vertical educational infographic for patients. The infographic must balance the absolute scientific accuracy required in medicine with the warm, human-centric, and comforting aesthetic of a top-tier modern wellness brand.
 
 [CLINICAL TOPIC FOR PATIENT EDUCATION]: "{CLINICAL_TOPIC}"
 [TARGET AUDIENCE]: "{TARGET_AUDIENCE}"
-[OUTPUT LANGUAGE]: "{OUTPUT_LANGUAGE}"`,
+[OUTPUT LANGUAGE]: "{OUTPUT_LANGUAGE}"
+[COLOR PALETTE]: "{COLOR_PALETTE}"
+
+Visual Design Requirements:
+Apply the specified [COLOR PALETTE] as the primary visual scheme for the infographic, ensuring high-contrast text accessibility (minimum WCAG AAA ratio), using the dominant color for the backdrop or main panels, the secondary color for supporting structural grids, and the transformative accent color sparingly to highlight critical patient clinical insights or key metrics.`,
     background: {
       title: "מדריך לעיצוב אינפוגרפיקות בריאותיות",
       subtitle: "הנגשה חזותית של נתונים סטטיסטיים ופרוטוקולים רפואיים קליניים",
