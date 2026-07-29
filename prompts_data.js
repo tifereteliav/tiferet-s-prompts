@@ -36,13 +36,23 @@ const PROMPTS_DATA = [
         label: "שפת פלט והגדרות כיוון",
         placeholder: "למשל: עברית עם יישור מימין לשמאל...",
         default: "Hebrew (עברית בהירה, תקנית, מדויקת מבחינה רפואית ומנוסחת באמפתיה רבה) מעוצב מימין לשמאל כמו שמקובל בעברית"
+      },
+      {
+        id: "COLOR_PALETTE",
+        label: "פלטת צבעים למצגת",
+        placeholder: "בחר פלטת צבעים או הקלד גוונים מותאמים אישית...",
+        default: "Clinical Blue & Calm Teal - פלטת גוונים מבוססת כחול רופאים עמוק, טורקיז רפואי ותכלת מרגיע עם ניגודיות גבוהה לרקע לבן."
       }
     ],
     template: `You are a Senior Medical Communications Information Designer and an Elite HealthTech Brand Strategist. Your task is to generate a comprehensive, visually breathtaking, and scientifically rigorous {SLIDE_COUNT}-slide presentation based on the clinical topic provided below. The output must seamlessly synthesize the educational discipline of Cognitive Load Theory (CLT) with the modern, high-end visual aesthetic of a top-tier premium product launch.
 
 [CLINICAL TOPIC INPUT]: "{CLINICAL_TOPIC}"
 [TARGET AUDIENCE]: "{TARGET_AUDIENCE}"
-[OUTPUT LANGUAGE]: "{OUTPUT_LANGUAGE}"`,
+[OUTPUT LANGUAGE]: "{OUTPUT_LANGUAGE}"
+[COLOR PALETTE]: "{COLOR_PALETTE}"
+
+Visual Design Requirements:
+Apply the specified [COLOR PALETTE] as the primary visual scheme for the slides, ensuring high-contrast text accessibility (minimum WCAG AAA ratio), using the dominant color for the backdrop or main panels, the secondary color for supporting structural grids, and the transformative accent color sparingly to highlight critical patient clinical insights or key metrics.`,
     background: {
       title: "מדריך לארכיטקטורת מצגות רפואיות",
       subtitle: "המדריך המלא לשילוב אופטימיזציה קוגניטיבית ואסתטיקה שיווקית עילית",

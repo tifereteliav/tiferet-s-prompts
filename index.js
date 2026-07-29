@@ -222,8 +222,72 @@ document.addEventListener("DOMContentLoaded", () => {
         label.setAttribute("for", `input-${variable.id}`);
         label.innerText = variable.label;
         
+        const currentValue = userVariables[promptId][variable.id] || "";
+
+        if (variable.id === "COLOR_PALETTE") {
+          const selectElement = document.createElement("select");
+          selectElement.className = "steps-count-select";
+          selectElement.style.marginBottom = "0.5rem";
+          
+          const palettes = [
+            { name: "בחר פלטת צבעים למצגת...", value: "" },
+            { name: "כחול קליני ותכלת מרגיע (סמכותיות, שקט רפואי ואמינות)", value: "Clinical Blue & Calm Teal - פלטת גוונים מבוססת כחול רופאים עמוק, טורקיז רפואי ותכלת מרגיע עם ניגודיות גבוהה לרקע לבן." },
+            { name: "סגול עמוק וטורקיז רפואי (חדשנות בריאותית, דיגיטל וטכנולוגיה)", value: "Deep Purple & Medical Turquoise - פלטת גוונים בריאותית מודרנית המשלבת סגול עמוק סמכותי וטורקיז רפואי זוהר." },
+            { name: "ירוק מרווה וגווני אדמה (רפואה משלימה, חמימות ורוגע של טבע)", value: "Sage Green & Earth Warmth - פלטת גוונים המבוססת על ירוק מרווה מרגיע, גווני חול ואדמה חמימים המפחיתים חרדה." },
+            { name: "כחול כהה עם נגיעות אדום קליני (לנושאי חירום וקרדיולוגיה)", value: "Navy Blue & Accent Clinical Red - פלטה רפואית סמכותית של כחול כהה (Navy) עם צבע דגש של אדום קליני המיועד לסימוני אזהרה ומידע קריטי." },
+            { name: "מותאם אישית (הקלד מלל חופשי בשדה למטה)", value: "custom" }
+          ];
+          
+          let matched = false;
+          palettes.forEach(p => {
+            const opt = document.createElement("option");
+            opt.value = p.value;
+            opt.innerText = p.name;
+            if (currentValue === p.value && p.value !== "") {
+              opt.selected = true;
+              matched = true;
+            }
+            selectElement.appendChild(opt);
+          });
+          
+          if (!matched && currentValue !== "") {
+            selectElement.value = "custom";
+          }
+          
+          const textInput = document.createElement("input");
+          textInput.type = "text";
+          textInput.id = `input-${variable.id}`;
+          textInput.value = currentValue;
+          textInput.placeholder = "או הקלד כאן פלטת צבעים מותאמת אישית (למשל: ירוק בהיר וצהוב)...";
+          
+          selectElement.addEventListener("change", (e) => {
+            if (e.target.value === "custom") {
+              textInput.value = "";
+              textInput.focus();
+              userVariables[promptId][variable.id] = "";
+            } else {
+              textInput.value = e.target.value;
+              userVariables[promptId][variable.id] = e.target.value;
+            }
+            updateCodePreview();
+          });
+          
+          textInput.addEventListener("input", (e) => {
+            userVariables[promptId][variable.id] = e.target.value;
+            if (!palettes.some(p => p.value === e.target.value && p.value !== "custom")) {
+              selectElement.value = "custom";
+            }
+            updateCodePreview();
+          });
+          
+          inputGroup.appendChild(label);
+          inputGroup.appendChild(selectElement);
+          inputGroup.appendChild(textInput);
+          variablesForm.appendChild(inputGroup);
+          return;
+        }
+        
         let inputElement;
-        const currentValue = userVariables[promptId][variable.id];
         
         // Use textarea for long descriptions, input text for shorter items
         if (variable.id === "CLINICAL_TOPIC" || variable.id === "TECH_NAME" || variable.id === "CLINICAL_PROTOCOL") {
