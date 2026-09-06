@@ -29,6 +29,76 @@ document.addEventListener("DOMContentLoaded", () => {
   // Toast
   const toastCopy = document.getElementById("toast-copy");
 
+  // Unique Slash Commands Catalog (40 Commands across 5 Categories)
+  const UNIQUE_COMMAND_CATALOG = [
+    {
+      category: "1. לפרק ולראות בפנים – מה שהמעטפת מסתירה",
+      commands: [
+        { code: "/xray", desc: "רואים את המבנה הפנימי דרך המעטפת, שכבה אחרי שכבה", mode: "image_based" },
+        { code: "/explodedview", desc: "כל הרכיבים מרחפים בנפרד ומסודרים במרווחים", mode: "image_based" },
+        { code: "/cutaway", desc: "חלק מהמעטפת מוסר ומגלה מה יש מתחת", mode: "image_based" },
+        { code: "/crosssection", desc: "חיתוך ישר דרך האובייקט, כמו לתוך אותו בסכין", mode: "image_based" },
+        { code: "/anatomy", desc: "כל חלק מופרד ומקבל שם משלו", mode: "image_based" },
+        { code: "/inside", desc: "מבט אל המנגנון שמניע את הדבר", mode: "image_based" },
+        { code: "/layers", desc: "השכבות נפרשות מלמטה למעלה", mode: "image_based" }
+      ]
+    },
+    {
+      category: "2. להסביר תהליך וקשרים – איך דברים עובדים ומי מחובר למי",
+      commands: [
+        { code: "/diagram", desc: "מושג מצויר עם חצים ותוויות", mode: "text_based" },
+        { code: "/flowchart", desc: "צעד אחרי צעד, כולל נקודות החלטה", mode: "text_based" },
+        { code: "/mindmap", desc: "נושא מרכזי שמסתעף החוצה", mode: "text_based" },
+        { code: "/process", desc: "כל השלבים מהתחלה עד הסוף", mode: "text_based" },
+        { code: "/cycle", desc: "תהליך שחוזר על עצמו בלולאה", mode: "text_based" },
+        { code: "/journey", desc: "הדרך מנקודת המבט של האדם שעובר אותה", mode: "text_based" },
+        { code: "/timeline", desc: "אירועים לפי סדר כרונולוגי", mode: "text_based" },
+        { code: "/roadmap", desc: "תחנות בדרך אל יעד", mode: "text_based" },
+        { code: "/ecosystem", desc: "כל השחקנים בתחום ומי מחובר למי", mode: "text_based" },
+        { code: "/network", desc: "צמתים וקווים שמחברים ביניהם", mode: "text_based" }
+      ]
+    },
+    {
+      category: "3. להשוות ולהראות שינוי – זה מול זה, אז מול היום",
+      commands: [
+        { code: "/comparison", desc: "זה מול זה, לפי אותם קריטריונים", mode: "text_based" },
+        { code: "/versus", desc: "שני צדדים בעימות ויזואלי", mode: "text_based" },
+        { code: "/beforeafter", desc: "אותו דבר בדיוק, שני מצבים", mode: "image_based" },
+        { code: "/thenvsnow", desc: "עבר מול הווה באותו פריים", mode: "text_based" },
+        { code: "/evolution", desc: "התפתחות לאורך זמן, שלב אחרי שלב", mode: "text_based" },
+        { code: "/scale", desc: "השוואת גדלים זה לצד זה", mode: "image_based" },
+        { code: "/future", desc: "איך זה ייקרא בעוד כמה שנים", mode: "text_based" },
+        { code: "/heatmap", desc: "עוצמה שמוצגת בצבע", mode: "text_based" }
+      ]
+    },
+    {
+      category: "4. זווית מבט ושרטוט – מאיפה מסתכלים ובאיזה סגנון",
+      commands: [
+        { code: "/isometric", desc: "תלת-ממד בזווית 3/4, בלי עיוות פרספקטיבה", mode: "image_based" },
+        { code: "/birdseye", desc: "הכל מלמעלה, כמו מרחפן", mode: "image_based" },
+        { code: "/360view", desc: "אותו אובייקט מכמה כיוונים בפריים אחד", mode: "image_based" },
+        { code: "/microscopic", desc: "מבט מיקרוסקופי אל הפרטים הקטנים", mode: "image_based" },
+        { code: "/macroscopic", desc: "מתרחקים עד שרואים את כל המערכת", mode: "text_based" },
+        { code: "/map", desc: "גיאוגרפית או מפת מושגים", mode: "text_based" },
+        { code: "/blueprint", desc: "קווים לבנים על כחול, עם מידות", mode: "image_based" },
+        { code: "/schematic", desc: "שרטוט פשוט וסימפולי, בלי קישוט", mode: "image_based" }
+      ]
+    },
+    {
+      category: "5. מוצר, מסך וסיפור – דברים שעוד לא קיימים",
+      commands: [
+        { code: "/wireframe", desc: "מבנה אתר או אפליקציה בלי עיצוב", mode: "text_based" },
+        { code: "/mockup", desc: "המוצר כאילו הוא כבר קיים במציאות", mode: "image_based" },
+        { code: "/prototype", desc: "גרסה מוקדמת וגסה של מוצר", mode: "text_based" },
+        { code: "/architecture", desc: "מבנה מערכת והרכיבים שלה", mode: "text_based" },
+        { code: "/dashboard", desc: "מסך נתונים עם מדדים וגרפים", mode: "text_based" },
+        { code: "/storyboard", desc: "סצנה אחרי סצנה, כמו לפני צילומים", mode: "text_based" },
+        { code: "/comic", desc: "הסבר בפאנלים עם בועות דיבור", mode: "text_based" },
+        { code: "/visualize", desc: "רעיון מופשט שהופך לתמונה", mode: "text_based" }
+      ]
+    }
+  ];
+
   // Initialize variables state with default values
   PROMPTS_DATA.forEach(prompt => {
     userVariables[prompt.id] = {};
@@ -48,6 +118,14 @@ document.addEventListener("DOMContentLoaded", () => {
       userVariables[prompt.id]["step_8"] = "";
       userVariables[prompt.id]["step_9"] = "";
       userVariables[prompt.id]["step_10"] = "";
+    }
+
+    // Custom initialization for unique_images
+    if (prompt.id === "unique_images") {
+      userVariables[prompt.id]["MODE"] = "image_based";
+      userVariables[prompt.id]["AUDIENCE"] = "clinical";
+      userVariables[prompt.id]["TOPIC"] = "משאף אינסולין מתקדם בעל חיישן ניטור דיגיטלי";
+      userVariables[prompt.id]["SELECTED_COMMANDS"] = ["/explodedview", "/blueprint"];
     }
   });
 
@@ -205,6 +283,175 @@ document.addEventListener("DOMContentLoaded", () => {
         updateCodePreview();
       });
       
+    } else if (promptId === "unique_images") {
+      // 1. Mode selection (Image-to-Image vs Text-to-Image)
+      const modeGroup = document.createElement("div");
+      modeGroup.className = "var-input-group";
+      const currentMode = userVariables[promptId]["MODE"] || "image_based";
+      
+      modeGroup.innerHTML = `
+        <label>סוג יצירת התמונה (מקור)</label>
+        <div class="mode-toggle-group">
+          <button type="button" class="mode-btn ${currentMode === 'image_based' ? 'active' : ''}" data-mode="image_based">
+            📸 על בסיס תמונה שלכם (Refinement)
+          </button>
+          <button type="button" class="mode-btn ${currentMode === 'text_based' ? 'active' : ''}" data-mode="text_based">
+            ✨ מאפס, מנושא (Concept)
+          </button>
+        </div>
+      `;
+      variablesForm.appendChild(modeGroup);
+
+      modeGroup.querySelectorAll(".mode-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+          modeGroup.querySelectorAll(".mode-btn").forEach(b => b.classList.remove("active"));
+          btn.classList.add("active");
+          userVariables[promptId]["MODE"] = btn.dataset.mode;
+          updateCodePreview();
+        });
+      });
+
+      // 2. Medical Target Audience selection
+      const audienceGroup = document.createElement("div");
+      audienceGroup.className = "var-input-group";
+      const currentAudience = userVariables[promptId]["AUDIENCE"] || "clinical";
+      audienceGroup.innerHTML = `
+        <label for="input-AUDIENCE">קהל יעד רפואי (התאמת תוכן ואסתטיקה)</label>
+        <select id="input-AUDIENCE" class="steps-count-select">
+          <option value="clinical" ${currentAudience === 'clinical' ? 'selected' : ''}>🩺 צוותים קליניים ורופאים (דיוק אנטומי ושרטוט קליני)</option>
+          <option value="patient" ${currentAudience === 'patient' ? 'selected' : ''}>💚 מטופלים ומשפחות (הסבר בגובה העיניים, מרגיע, ללא דימומים)</option>
+          <option value="tech" ${currentAudience === 'tech' ? 'selected' : ''}>🚀 מיתוג וחדשנות HealthTech (דשבורדים, אקו-סיסטם רפואי)</option>
+        </select>
+      `;
+      variablesForm.appendChild(audienceGroup);
+
+      audienceGroup.querySelector("#input-AUDIENCE").addEventListener("change", (e) => {
+        userVariables[promptId]["AUDIENCE"] = e.target.value;
+        updateCodePreview();
+      });
+
+      // 3. Medical Topic / Subject input
+      const topicGroup = document.createElement("div");
+      topicGroup.className = "var-input-group";
+      topicGroup.innerHTML = `
+        <label for="input-TOPIC">נושא קליני / תיאור התמונה המבוקשת</label>
+        <textarea id="input-TOPIC" rows="2" placeholder="הזן את שם המכשיר, המושג או התהליך הרפואי...">${userVariables[promptId]["TOPIC"] || ""}</textarea>
+      `;
+      variablesForm.appendChild(topicGroup);
+
+      topicGroup.querySelector("#input-TOPIC").addEventListener("input", (e) => {
+        userVariables[promptId]["TOPIC"] = e.target.value;
+        updateCodePreview();
+      });
+
+      // 4. Selected commands display bar
+      const selectedBarGroup = document.createElement("div");
+      selectedBarGroup.className = "var-input-group";
+      selectedBarGroup.innerHTML = `
+        <label>פקודות סלאש שנבחרו לשילוב (לחצו על הפקודות למטה להוספה/הסרה)</label>
+        <div id="selected-commands-bar" class="selected-commands-bar"></div>
+      `;
+      variablesForm.appendChild(selectedBarGroup);
+
+      const selectedBar = selectedBarGroup.querySelector("#selected-commands-bar");
+
+      // Function to render selected commands tags
+      const renderSelectedBar = () => {
+        selectedBar.innerHTML = "";
+        const selectedArr = userVariables[promptId]["SELECTED_COMMANDS"] || [];
+        if (selectedArr.length === 0) {
+          selectedBar.innerHTML = `<span style="font-size: 0.8rem; color: var(--text-muted);">טרם נבחרו פקודות. לחצו על כרטיסיות הפקודות למטה.</span>`;
+          return;
+        }
+
+        selectedArr.forEach(cmdCode => {
+          const tag = document.createElement("span");
+          tag.className = "selected-cmd-tag";
+          tag.innerHTML = `
+            ${cmdCode}
+            <span class="remove-cmd" title="הסר פקודה">&times;</span>
+          `;
+          tag.querySelector(".remove-cmd").addEventListener("click", (e) => {
+            e.stopPropagation();
+            userVariables[promptId]["SELECTED_COMMANDS"] = userVariables[promptId]["SELECTED_COMMANDS"].filter(c => c !== cmdCode);
+            renderSelectedBar();
+            updateChipsState();
+            updateCodePreview();
+          });
+          selectedBar.appendChild(tag);
+        });
+      };
+
+      // 5. Render 5 command categories with 40 interactive chips
+      const catalogContainer = document.createElement("div");
+      catalogContainer.className = "command-catalog-container";
+
+      UNIQUE_COMMAND_CATALOG.forEach(cat => {
+        const catBlock = document.createElement("div");
+        catBlock.className = "command-category-block";
+
+        const catTitle = document.createElement("div");
+        catTitle.className = "command-category-title";
+        catTitle.innerText = cat.category;
+        catBlock.appendChild(catTitle);
+
+        const chipsGrid = document.createElement("div");
+        chipsGrid.className = "command-chips-grid";
+
+        cat.commands.forEach(cmd => {
+          const chip = document.createElement("div");
+          chip.className = "command-chip";
+          chip.dataset.code = cmd.code;
+
+          const isImageBased = cmd.mode === "image_based";
+          const badgeText = isImageBased ? "על תמונה שלכם" : "מאפס, מנושא";
+          const badgeClass = isImageBased ? "badge-image-based" : "badge-text-based";
+
+          chip.innerHTML = `
+            <div class="command-chip-header">
+              <span class="command-code">${cmd.code}</span>
+              <span class="command-target-badge ${badgeClass}">${badgeText}</span>
+            </div>
+            <p class="command-desc">${cmd.desc}</p>
+          `;
+
+          chip.addEventListener("click", () => {
+            let currentCmds = userVariables[promptId]["SELECTED_COMMANDS"] || [];
+            if (currentCmds.includes(cmd.code)) {
+              currentCmds = currentCmds.filter(c => c !== cmd.code);
+            } else {
+              currentCmds.push(cmd.code);
+            }
+            userVariables[promptId]["SELECTED_COMMANDS"] = currentCmds;
+            renderSelectedBar();
+            updateChipsState();
+            updateCodePreview();
+          });
+
+          chipsGrid.appendChild(chip);
+        });
+
+        catBlock.appendChild(chipsGrid);
+        catalogContainer.appendChild(catBlock);
+      });
+
+      variablesForm.appendChild(catalogContainer);
+
+      const updateChipsState = () => {
+        const currentCmds = userVariables[promptId]["SELECTED_COMMANDS"] || [];
+        catalogContainer.querySelectorAll(".command-chip").forEach(chip => {
+          if (currentCmds.includes(chip.dataset.code)) {
+            chip.classList.add("selected");
+          } else {
+            chip.classList.remove("selected");
+          }
+        });
+      };
+
+      // Initial renders
+      renderSelectedBar();
+      updateChipsState();
+
     } else if (prompt.variables.length === 0) {
       variablesForm.innerHTML = `
         <div style="text-align: center; padding: 2rem 1rem; color: var(--text-muted); border: 1px dashed var(--panel-border); border-radius: 10px; background: rgba(255, 255, 255, 0.01); margin-top: 0.5rem;">
@@ -360,6 +607,39 @@ document.addEventListener("DOMContentLoaded", () => {
       htmlPreviewText = htmlPreviewText.replaceAll("{TOPIC}", `<mark>${escapeHTML(topicVal)}</mark>`);
       htmlPreviewText = htmlPreviewText.replaceAll("{STEPS_COUNT}", `<mark>${countVal}</mark>`);
       htmlPreviewText = htmlPreviewText.replaceAll("{STEPS_LIST}", stepsListHtml);
+    } else if (activePromptId === "unique_images") {
+      const topicVal = userVariables["unique_images"]["TOPIC"] || "";
+      const modeVal = userVariables["unique_images"]["MODE"] || "image_based";
+      const audienceVal = userVariables["unique_images"]["AUDIENCE"] || "clinical";
+      const selectedCmds = userVariables["unique_images"]["SELECTED_COMMANDS"] || [];
+
+      const cmdText = selectedCmds.length > 0 ? selectedCmds.join(" ") : "/explodedview /blueprint";
+
+      let modeDesc = "";
+      if (modeVal === "image_based") {
+        modeDesc = "Created as a high-precision visual enhancement based on your reference image, maintaining structural fidelity while revealing concealed inner components.";
+      } else {
+        modeDesc = "Created from scratch based on the concept topic, synthesizing a clean, highly comprehensive visual representation.";
+      }
+
+      let audienceDir = "";
+      if (audienceVal === "clinical") {
+        audienceDir = "Tailored for clinical staff and physicians: emphasize medical-grade accuracy, anatomical precision, crisp scientific annotations, and professional diagnostic lighting.";
+      } else if (audienceVal === "patient") {
+        audienceDir = "Tailored for patients and families: warm, comforting, highly reassuring visual presentation, using friendly line art and soft tones, avoiding scary medical textures or anxiety-inducing elements.";
+      } else {
+        audienceDir = "Tailored for HealthTech innovation & branding: sleek 2026 digital aesthetics, glassmorphism UI elements, premium bento grid layout, and transformative teal accent highlights.";
+      }
+
+      finalPromptText = finalPromptText.replaceAll("{COMMANDS}", cmdText);
+      finalPromptText = finalPromptText.replaceAll("{TOPIC}", topicVal);
+      finalPromptText = finalPromptText.replaceAll("{MODE_DESCRIPTION}", modeDesc);
+      finalPromptText = finalPromptText.replaceAll("{AUDIENCE_DIRECTIVE}", audienceDir);
+
+      htmlPreviewText = htmlPreviewText.replaceAll("{COMMANDS}", `<mark>${escapeHTML(cmdText)}</mark>`);
+      htmlPreviewText = htmlPreviewText.replaceAll("{TOPIC}", `<mark>${escapeHTML(topicVal)}</mark>`);
+      htmlPreviewText = htmlPreviewText.replaceAll("{MODE_DESCRIPTION}", `<mark>${escapeHTML(modeDesc)}</mark>`);
+      htmlPreviewText = htmlPreviewText.replaceAll("{AUDIENCE_DIRECTIVE}", `<mark>${escapeHTML(audienceDir)}</mark>`);
     } else {
       prompt.variables.forEach(v => {
         const value = userVariables[activePromptId][v.id] || "";

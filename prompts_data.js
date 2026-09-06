@@ -657,6 +657,194 @@ IMPORTANT LAYOUT RULE: The panels and step steps must be laid out in order from 
         { name: "Sora & GPT (DALL-E 3) Prompt Design Guides", url: "https://openai.com" }
       ]
     }
+  },
+  {
+    id: "unique_images",
+    title: "תמונות ייחודיות ושילוב פקודות",
+    subtitle: "Unique Visual Commands Synthesis",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z" /></svg>`,
+    category: "תמונות ייחודיות",
+    description: "שילוב מספר פקודות סלאש מורכבות (כמו /explodedview, /blueprint, /cutaway) ליצירת תמונה רפואית ייחודית ומדויקת.",
+    variables: [
+      {
+        id: "MODE",
+        label: "סוג יצירה",
+        placeholder: "בחר סוג יצירה...",
+        default: "image_based"
+      },
+      {
+        id: "AUDIENCE",
+        label: "קהל יעד רפואי",
+        placeholder: "בחר קהל יעד...",
+        default: "clinical"
+      },
+      {
+        id: "TOPIC",
+        label: "נושא קליני / תיאור התמונה",
+        placeholder: "הזן את המושג, המכשיר או התהליך הרפואי...",
+        default: "משאף אינסולין מתקדם בעל חיישן ניטור דיגיטלי"
+      },
+      {
+        id: "COMMANDS",
+        label: "פקודות סלאש נבחרות",
+        placeholder: "בחר פקודות מהרשימה...",
+        default: "/explodedview /blueprint"
+      }
+    ],
+    template: `{COMMANDS}
+
+High-fidelity medical visualization of {TOPIC}. {MODE_DESCRIPTION} {AUDIENCE_DIRECTIVE} Overall visual quality: clean studio lighting, high contrast, professional clinical aesthetics, highly detailed medical-grade accuracy. Aspect ratio: 16:9.`,
+    background: {
+      title: "מדריך לשילוב פקודות סלאש ותמונות ייחודיות ברפואה",
+      subtitle: "שליטה מלאה במחוללי תמונות באמצעות שילוב קודים חזותיים והתאמה קלינית",
+      introduction: `פקודות סלאש (Slash Commands) במחוללי תמונות ומודלי AI כגון Midjourney, ChatGPT, Flux או Sora מעניקות יכולת שליטה מרחבית וסגנונית יוצאת דופן. כאשר משתמשים בקוד בודד, המודל מבצע התאמה ויזואלית בסיסית. אך הכוח האמיתי מתגלה כאשר משלבים שניים או שלושה קודים שאינם מתחרים זה בזה – למשל, שילוב /explodedview עם /blueprint לייצור איור הנדסי מסורטט המפרק את הרכיבים באוויר, או שילוב /cutaway במבט /isometric המעניק זווית תלת-ממדית עם חיתוך פנימי של האיבר או המוצר.
+
+בנוסף, בעולם התקשורת הרפואית (MedComms), יש חשיבות מכרעת להבחנה בין תמונה המיוצרת **על בסיס תמונה קיימת** (Image-to-Image / Refinement) לבין תמונה המיוצרת **מאפס לפי נושא** (Text-to-Image), וכן להגדרת קהל היעד הקליני (רופאים וצוות רפואי לעומת מטופלים ומשפחות).`,
+      sections: [
+        {
+          heading: "חלק א: 5 קטגוריות הפקודות והסגנונות הייחודיים",
+          content: `<p>להלן 40 פקודות הסלאש הייחודיות, מחולקות ל-5 קבוצות תוכן מרכזיות:</p>
+          
+          <h5 style="color: #00cbcb; margin-top: 1rem; font-weight: bold;">1. לפרק ולראות בפנים – מה שהמעטפת מסתירה</h5>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>הקוד</th>
+                  <th>מה מקבלים (תיאור)</th>
+                  <th>סוג יצירה</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td><strong>/xray</strong></td><td>רואים את המבנה הפנימי דרך המעטפת, שכבה אחרי שכבה</td><td>על תמונה שלכם</td></tr>
+                <tr><td><strong>/explodedview</strong></td><td>כל הרכיבים מרחפים בנפרד ומסודרים במרווחים</td><td>על תמונה שלכם</td></tr>
+                <tr><td><strong>/cutaway</strong></td><td>חלק מהמעטפת מוסר ומגלה מה יש מתחת</td><td>על תמונה שלכם</td></tr>
+                <tr><td><strong>/crosssection</strong></td><td>חיתוך ישר דרך האובייקט, כמו לתוך אותו בסכין</td><td>על תמונה שלכם</td></tr>
+                <tr><td><strong>/anatomy</strong></td><td>כל חלק מופרד ומקבל שם משלו</td><td>על תמונה שלכם</td></tr>
+                <tr><td><strong>/inside</strong></td><td>מבט אל המנגנון שמניע את הדבר</td><td>על תמונה שלכם</td></tr>
+                <tr><td><strong>/layers</strong></td><td>השכבות נפרשות מלמטה למעלה</td><td>על תמונה שלכם</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h5 style="color: #00cbcb; margin-top: 1.5rem; font-weight: bold;">2. להסביר תהליך וקשרים – איך דברים עובדים ומי מחובר למי</h5>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>הקוד</th>
+                  <th>מה מקבלים (תיאור)</th>
+                  <th>סוג יצירה</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td><strong>/diagram</strong></td><td>מושג מצויר עם חצים ותוויות</td><td>מאפס, מנושא</td></tr>
+                <tr><td><strong>/flowchart</strong></td><td>צעד אחרי צעד, כולל נקודות החלטה</td><td>מאפס, מנושא</td></tr>
+                <tr><td><strong>/mindmap</strong></td><td>נושא מרכזי שמסתעף החוצה</td><td>מאפס, מנושא</td></tr>
+                <tr><td><strong>/process</strong></td><td>כל השלבים מהתחלה עד הסוף</td><td>מאפס, מנושא</td></tr>
+                <tr><td><strong>/cycle</strong></td><td>תהליך שחוזר על עצמו בלולאה</td><td>מאפס, מנושא</td></tr>
+                <tr><td><strong>/journey</strong></td><td>הדרך מנקודת המבט של האדם שעובר אותה</td><td>מאפס, מנושא</td></tr>
+                <tr><td><strong>/timeline</strong></td><td>אירועים לפי סדר כרונולוגי</td><td>מאפס, מנושא</td></tr>
+                <tr><td><strong>/roadmap</strong></td><td>תחנות בדרך אל יעד</td><td>מאפס, מנושא</td></tr>
+                <tr><td><strong>/ecosystem</strong></td><td>כל השחקנים בתחום ומי מחובר למי</td><td>מאפס, מנושא</td></tr>
+                <tr><td><strong>/network</strong></td><td>צמתים וקווים שמחברים ביניהם</td><td>מאפס, מנושא</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h5 style="color: #00cbcb; margin-top: 1.5rem; font-weight: bold;">3. להשוות ולהראות שינוי – זה מול זה, אז מול היום</h5>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>הקוד</th>
+                  <th>מה מקבלים (תיאור)</th>
+                  <th>סוג יצירה</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td><strong>/comparison</strong></td><td>זה מול זה, לפי אותם קריטריונים</td><td>מאפס, מנושא</td></tr>
+                <tr><td><strong>/versus</strong></td><td>שני צדדים בעימות ויזואלי</td><td>מאפס, מנושא</td></tr>
+                <tr><td><strong>/beforeafter</strong></td><td>אותו דבר בדיוק, שני מצבים</td><td>על תמונה שלכם</td></tr>
+                <tr><td><strong>/thenvsnow</strong></td><td>עבר מול הווה באותו פריים</td><td>מאפס, מנושא</td></tr>
+                <tr><td><strong>/evolution</strong></td><td>התפתחות לאורך זמן, שלב אחרי שלב</td><td>מאפס, מנושא</td></tr>
+                <tr><td><strong>/scale</strong></td><td>השוואת גדלים זה לצד זה</td><td>על תמונה שלכם</td></tr>
+                <tr><td><strong>/future</strong></td><td>איך זה ייקרא בעוד כמה שנים</td><td>מאפס, מנושא</td></tr>
+                <tr><td><strong>/heatmap</strong></td><td>עוצמה שמוצגת בצבע</td><td>מאפס, מנושא</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h5 style="color: #00cbcb; margin-top: 1.5rem; font-weight: bold;">4. זווית מבט ושרטוט – מאיפה מסתכלים ובאיזה סגנון</h5>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>הקוד</th>
+                  <th>מה מקבלים (תיאור)</th>
+                  <th>סוג יצירה</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td><strong>/isometric</strong></td><td>תלת-ממד בזווית 3/4, בלי עיוות פרספקטיבה</td><td>על תמונה שלכם</td></tr>
+                <tr><td><strong>/birdseye</strong></td><td>הכל מלמעלה, כמו מרחפן</td><td>על תמונה שלכם</td></tr>
+                <tr><td><strong>/360view</strong></td><td>אותו אובייקט מכמה כיוונים בפריים אחד</td><td>על תמונה שלכם</td></tr>
+                <tr><td><strong>/microscopic</strong></td><td>מבט מיקרוסקופי אל הפרטים הקטנים</td><td>על תמונה שלכם</td></tr>
+                <tr><td><strong>/macroscopic</strong></td><td>מתרחקים עד שרואים את כל המערכת</td><td>מאפס, מנושא</td></tr>
+                <tr><td><strong>/map</strong></td><td>גיאוגרפית או מפת מושגים</td><td>מאפס, מנושא</td></tr>
+                <tr><td><strong>/blueprint</strong></td><td>קווים לבנים על כחול, עם מידות</td><td>על תמונה שלכם</td></tr>
+                <tr><td><strong>/schematic</strong></td><td>שרטוט פשוט וסימפולי, בלי קישוט</td><td>על תמונה שלכם</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h5 style="color: #00cbcb; margin-top: 1.5rem; font-weight: bold;">5. מוצר, מסך וסיפור – דברים שעוד לא קיימים</h5>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>הקוד</th>
+                  <th>מה מקבלים (תיאור)</th>
+                  <th>סוג יצירה</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td><strong>/wireframe</strong></td><td>מבנה אתר או אפליקציה בלי עיצוב</td><td>מאפס, מנושא</td></tr>
+                <tr><td><strong>/mockup</strong></td><td>המוצר כאילו הוא כבר קיים במציאות</td><td>על תמונה שלכם</td></tr>
+                <tr><td><strong>/prototype</strong></td><td>גרסה מוקדמת וגסה של מוצר</td><td>מאפס, מנושא</td></tr>
+                <tr><td><strong>/architecture</strong></td><td>מבנה מערכת והרכיבים שלה</td><td>מאפס, מנושא</td></tr>
+                <tr><td><strong>/dashboard</strong></td><td>מסך נתונים עם מדדים וגרפים</td><td>מאפס, מנושא</td></tr>
+                <tr><td><strong>/storyboard</strong></td><td>סצנה אחרי סצנה, כמו לפני צילומים</td><td>מאפס, מנושא</td></tr>
+                <tr><td><strong>/comic</strong></td><td>הסבר בפאנלים עם בועות דיבור</td><td>מאפס, מנושא</td></tr>
+                <tr><td><strong>/visualize</strong></td><td>רעיון מופשט שהופך לתמונה</td><td>מאפס, מנושא</td></tr>
+              </tbody>
+            </table>
+          </div>`
+        },
+        {
+          heading: "חלק ב: שילוב מרובה פקודות – מעבר מעתקה לשליטה יצירתית",
+          content: `<p>השילוב בין הקודים מייצר תוצרים חזותיים שאף קוד בודד לא מסוגל לספק בלעדיו:</p>
+          <ul>
+            <li><strong>/explodedview + /blueprint:</strong> מפרק מוצר או מכשיר רפואי לחלקים מרחפים, תוך הצגתם בסגנון שרטוט הנדסי כחול-לבן עם מידות מדויקות.</li>
+            <li><strong>/cutaway + /isometric:</strong> מציג את האובייקט בזווית תלת-ממדית נעימה (3/4) תוך הסרת חלק מהמעטפת החיצונית לחשיפת האיברים או המנגנונים הפנימיים.</li>
+            <li><strong>/microscopic + /heatmap:</strong> מבט תקריב מיקרוסקופי המציג עומסים קליניים או ריכוזי חומר פעיל באמצעות מפת חום סגנונית.</li>
+          </ul>`
+        },
+        {
+          heading: "חלק ג: התאמה ייעודית לרפואה ולצוותים קליניים / מטופלים",
+          content: `<p>תקשורת רפואית דורשת התאמה של סגנון התמונה לקהל היעד:</p>
+          <ul>
+            <li><strong>לרופאים וצוותים קליניים:</strong> הדגשת דיוק אנטומי ומדעי, שימוש בשרטוטים קליניים, חיתוכי אורך (crosssection) ותגיות אנטומיות ברורות.</li>
+            <li><strong>למטופלים ולמשפחות:</strong> שימוש באיורים נקיים ומפחיתי חרדה, הימנעות ממונחים מבהילים או אלמנטים מסיחים, והנגשת תהליך הטיפול (process/journey) בגובה העיניים.</li>
+            <li><strong>לחדשנות ומיתוג HealthTech:</strong> הצגת דשבורדים דיגיטליים (dashboard), אקו-סיסטם רפואי (ecosystem) ומבני מערכות (architecture) באסתטיקת פרימיום 2026.</li>
+          </ul>`
+        }
+      ],
+      sources: [
+        { name: "Midjourney & ChatGPT Visual Command Synthesis", url: "https://midjourney.com" },
+        { name: "Costello Medical - Medical Illustration & Visualization", url: "https://www.costellomedical.com" }
+      ]
+    }
   }
 ];
 
