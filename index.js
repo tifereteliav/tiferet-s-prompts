@@ -458,11 +458,16 @@ document.addEventListener("DOMContentLoaded", () => {
         let categoriesToRender = [...UNIQUE_COMMAND_CATALOG];
         const audienceVal = userVariables[promptId]["AUDIENCE"];
 
-        // Move Category 6 to top if gala_greeting audience is selected
+        // Reorder categories based on selected audience
         if (audienceVal === "gala_greeting") {
-          const galaCat = categoriesToRender.find(c => c.category.startsWith("6."));
+          const galaCat = categoriesToRender.find(c => c.category.includes("הזמנות, ברכות ומיתוג"));
           if (galaCat) {
             categoriesToRender = [galaCat, ...categoriesToRender.filter(c => c !== galaCat)];
+          }
+        } else if (audienceVal === "patient") {
+          const patientCat = categoriesToRender.find(c => c.category.includes("להסביר תהליך וקשרים"));
+          if (patientCat) {
+            categoriesToRender = [patientCat, ...categoriesToRender.filter(c => c !== patientCat)];
           }
         }
 
@@ -798,21 +803,7 @@ document.addEventListener("DOMContentLoaded", () => {
       `;
     });
 
-    if (prompt.background.sources && prompt.background.sources.length > 0) {
-      bodyHTML += `
-        <div class="drawer-sources" style="margin-top: 1.5rem; border-top: 1px solid var(--panel-border); padding-top: 1.5rem;">
-          <h4 style="color: #fff; font-size: 1.1rem; margin-bottom: 0.75rem;">מקורות והשראה אקדמית</h4>
-      `;
-      prompt.background.sources.forEach(src => {
-        bodyHTML += `
-          <div class="source-item" style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4" style="width:16px;height:16px;color:var(--primary-teal);"><path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244" /></svg>
-            <a href="${src.url}" target="_blank" rel="noopener noreferrer" style="color: var(--primary-teal); text-decoration: none; border-bottom: 1px dashed var(--primary-teal);">${src.name}</a>
-          </div>
-        `;
-      });
-      bodyHTML += `</div>`;
-    }
+
 
     drawerBody.innerHTML = bodyHTML;
     
