@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Unique Slash Commands Catalog (40 Commands across 5 Categories)
   const UNIQUE_COMMAND_CATALOG = [
     {
-      category: "1. לפרק ולראות בפנים – מה שהמעטפת מסתירה",
+      category: "לפרק ולראות בפנים – מה שהמעטפת מסתירה",
       commands: [
         { code: "/xray", desc: "רואים את המבנה הפנימי דרך המעטפת, שכבה אחרי שכבה", mode: "image_based" },
         { code: "/explodedview", desc: "כל הרכיבים מרחפים בנפרד ומסודרים במרווחים", mode: "image_based" },
@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
       ]
     },
     {
-      category: "2. להסביר תהליך וקשרים – איך דברים עובדים ומי מחובר למי",
+      category: "להסביר תהליך וקשרים – איך דברים עובדים ומי מחובר למי",
       commands: [
         { code: "/diagram", desc: "מושג מצויר עם חצים ותוויות", mode: "text_based" },
         { code: "/flowchart", desc: "צעד אחרי צעד, כולל נקודות החלטה", mode: "text_based" },
@@ -59,7 +59,7 @@ document.addEventListener("DOMContentLoaded", () => {
       ]
     },
     {
-      category: "3. להשוות ולהראות שינוי – זה מול זה, אז מול היום",
+      category: "להשוות ולהראות שינוי – זה מול זה, אז מול היום",
       commands: [
         { code: "/comparison", desc: "זה מול זה, לפי אותם קריטריונים", mode: "text_based" },
         { code: "/versus", desc: "שני צדדים בעימות ויזואלי", mode: "text_based" },
@@ -72,7 +72,7 @@ document.addEventListener("DOMContentLoaded", () => {
       ]
     },
     {
-      category: "4. זווית מבט ושרטוט – מאיפה מסתכלים ובאיזה סגנון",
+      category: "זווית מבט ושרטוט – מאיפה מסתכלים ובאיזה סגנון",
       commands: [
         { code: "/isometric", desc: "תלת-ממד בזווית 3/4, בלי עיוות פרספקטיבה", mode: "image_based" },
         { code: "/birdseye", desc: "הכל מלמעלה, כמו מרחפן", mode: "image_based" },
@@ -85,7 +85,7 @@ document.addEventListener("DOMContentLoaded", () => {
       ]
     },
     {
-      category: "5. מוצר, מסך וסיפור – דברים שעוד לא קיימים",
+      category: "מוצר, מסך וסיפור – דברים שעוד לא קיימים",
       commands: [
         { code: "/wireframe", desc: "מבנה אתר או אפליקציה בלי עיצוב", mode: "text_based" },
         { code: "/mockup", desc: "המוצר כאילו הוא כבר קיים במציאות", mode: "image_based" },
@@ -98,7 +98,7 @@ document.addEventListener("DOMContentLoaded", () => {
       ]
     },
     {
-      category: "6. הזמנות, ברכות ומיתוג – נייר, טיפוגרפיה ואווירה",
+      category: "הזמנות, ברכות ומיתוג – נייר, טיפוגרפיה ואווירה",
       commands: [
         { code: "/invitation", desc: "פריסת הזמנה יוקרתית עם שוליים נקיים ומרווחי נשימה", mode: "text_based" },
         { code: "/formal", desc: "הזמנה רשמית ומכובדת לכנסים, ימי עיון וישיבות צוות", mode: "text_based" },
@@ -144,8 +144,8 @@ document.addEventListener("DOMContentLoaded", () => {
     if (prompt.id === "unique_images") {
       userVariables[prompt.id]["MODE"] = "image_based";
       userVariables[prompt.id]["AUDIENCE"] = "clinical";
-      userVariables[prompt.id]["TOPIC"] = "משאף אינסולין מתקדם בעל חיישן ניטור דיגיטלי";
-      userVariables[prompt.id]["SELECTED_COMMANDS"] = ["/explodedview", "/blueprint"];
+      userVariables[prompt.id]["TOPIC"] = "";
+      userVariables[prompt.id]["SELECTED_COMMANDS"] = [];
       userVariables[prompt.id]["ASPECT_RATIO"] = "16:9";
     }
   });
@@ -685,7 +685,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const audienceVal = userVariables["unique_images"]["AUDIENCE"] || "clinical";
       const selectedCmds = userVariables["unique_images"]["SELECTED_COMMANDS"] || [];
 
-      const cmdText = selectedCmds.length > 0 ? selectedCmds.join(" ") : "/explodedview /blueprint";
+      const cmdText = selectedCmds.join(" ");
 
       let modeDesc = "";
       if (modeVal === "image_based") {

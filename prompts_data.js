@@ -682,13 +682,13 @@ IMPORTANT LAYOUT RULE: The panels and step steps must be laid out in order from 
         id: "TOPIC",
         label: "נושא קליני / תיאור התמונה",
         placeholder: "הזן את המושג, המכשיר או התהליך הרפואי...",
-        default: "משאף אינסולין מתקדם בעל חיישן ניטור דיגיטלי"
+        default: ""
       },
       {
         id: "COMMANDS",
         label: "פקודות סלאש נבחרות",
         placeholder: "בחר פקודות מהרשימה...",
-        default: "/explodedview /blueprint"
+        default: ""
       },
       {
         id: "ASPECT_RATIO",
@@ -708,10 +708,10 @@ High-fidelity medical visualization of {TOPIC}. {MODE_DESCRIPTION} {AUDIENCE_DIR
 בנוסף, בעולם התקשורת הרפואית (MedComms), יש חשיבות מכרעת להבחנה בין תמונה המיוצרת **על בסיס תמונה קיימת** (Image-to-Image / Refinement) לבין תמונה המיוצרת **מאפס לפי נושא** (Text-to-Image), וכן להגדרת קהל היעד הקליני (רופאים וצוות רפואי לעומת מטופלים ומשפחות).`,
       sections: [
         {
-          heading: "חלק א: 5 קטגוריות הפקודות והסגנונות הייחודיים",
-          content: `<p>להלן 40 פקודות הסלאש הייחודיות, מחולקות ל-5 קבוצות תוכן מרכזיות:</p>
+          heading: "חלק א: קטגוריות הפקודות והסגנונות הייחודיים",
+          content: `<p>להלן פקודות הסלאש הייחודיות, מחולקות לקבוצות תוכן מרכזיות:</p>
           
-          <h5 style="color: #00cbcb; margin-top: 1rem; font-weight: bold;">1. לפרק ולראות בפנים – מה שהמעטפת מסתירה</h5>
+          <h5 style="color: #00cbcb; margin-top: 1rem; font-weight: bold;">לפרק ולראות בפנים – מה שהמעטפת מסתירה</h5>
           <div class="table-container">
             <table>
               <thead>
@@ -733,7 +733,7 @@ High-fidelity medical visualization of {TOPIC}. {MODE_DESCRIPTION} {AUDIENCE_DIR
             </table>
           </div>
 
-          <h5 style="color: #00cbcb; margin-top: 1.5rem; font-weight: bold;">2. להסביר תהליך וקשרים – איך דברים עובדים ומי מחובר למי</h5>
+          <h5 style="color: #00cbcb; margin-top: 1.5rem; font-weight: bold;">להסביר תהליך וקשרים – איך דברים עובדים ומי מחובר למי</h5>
           <div class="table-container">
             <table>
               <thead>
@@ -758,7 +758,7 @@ High-fidelity medical visualization of {TOPIC}. {MODE_DESCRIPTION} {AUDIENCE_DIR
             </table>
           </div>
 
-          <h5 style="color: #00cbcb; margin-top: 1.5rem; font-weight: bold;">3. להשוות ולהראות שינוי – זה מול זה, אז מול היום</h5>
+          <h5 style="color: #00cbcb; margin-top: 1.5rem; font-weight: bold;">להשוות ולהראות שינוי – זה מול זה, אז מול היום</h5>
           <div class="table-container">
             <table>
               <thead>
@@ -781,7 +781,7 @@ High-fidelity medical visualization of {TOPIC}. {MODE_DESCRIPTION} {AUDIENCE_DIR
             </table>
           </div>
 
-          <h5 style="color: #00cbcb; margin-top: 1.5rem; font-weight: bold;">4. זווית מבט ושרטוט – מאיפה מסתכלים ובאיזה סגנון</h5>
+          <h5 style="color: #00cbcb; margin-top: 1.5rem; font-weight: bold;">זווית מבט ושרטוט – מאיפה מסתכלים ובאיזה סגנון</h5>
           <div class="table-container">
             <table>
               <thead>
@@ -804,7 +804,7 @@ High-fidelity medical visualization of {TOPIC}. {MODE_DESCRIPTION} {AUDIENCE_DIR
             </table>
           </div>
 
-          <h5 style="color: #00cbcb; margin-top: 1.5rem; font-weight: bold;">5. מוצר, מסך וסיפור – דברים שעוד לא קיימים</h5>
+          <h5 style="color: #00cbcb; margin-top: 1.5rem; font-weight: bold;">מוצר, מסך וסיפור – דברים שעוד לא קיימים</h5>
           <div class="table-container">
             <table>
               <thead>
@@ -827,7 +827,7 @@ High-fidelity medical visualization of {TOPIC}. {MODE_DESCRIPTION} {AUDIENCE_DIR
             </table>
           </div>
 
-          <h5 style="color: #00cbcb; margin-top: 1.5rem; font-weight: bold;">6. הזמנות, ברכות ומיתוג – נייר, טיפוגרפיה ואווירה</h5>
+          <h5 style="color: #00cbcb; margin-top: 1.5rem; font-weight: bold;">הזמנות, ברכות ומיתוג – נייר, טיפוגרפיה ואווירה</h5>
           <div class="table-container">
             <table>
               <thead>
