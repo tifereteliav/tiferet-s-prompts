@@ -839,6 +839,11 @@ High-fidelity medical visualization of {TOPIC}. {MODE_DESCRIPTION} {AUDIENCE_DIR
               </thead>
               <tbody>
                 <tr><td><strong>/invitation</strong></td><td>פריסת הזמנה יוקרתית עם שוליים נקיים ומרווחי נשימה</td><td>מאפס, מנושא</td></tr>
+                <tr><td><strong>/formal</strong></td><td>הזמנה רשמית ומכובדת לכנסים, ימי עיון וישיבות צוות</td><td>מאפס, מנושא</td></tr>
+                <tr><td><strong>/conference</strong></td><td>פריסת הזמנה לכנס או יום עיון עם סדר יום ומרצים</td><td>מאפס, מנושא</td></tr>
+                <tr><td><strong>/agenda</strong></td><td>הזמנה מובנית עם לוח זמנים, שעות ונושאי הרצאות</td><td>מאפס, מנושא</td></tr>
+                <tr><td><strong>/badge</strong></td><td>תג שם, כרטיס אורח או תווית משתתף לכנס</td><td>מאפס, מנושא</td></tr>
+                <tr><td><strong>/certificate</strong></td><td>תעודת הוקרה, תעודת השתתפות או תעודת סיום יום עיון</td><td>מאפס, מנושא</td></tr>
                 <tr><td><strong>/card</strong></td><td>מבנה קלאסי של כרטיס ברכה מתקפל או גלויה מעוצבת</td><td>מאפס, מנושא</td></tr>
                 <tr><td><strong>/goldfoil</strong></td><td>הטבעת זהב או כסף מבריקה (Gold Foil Stamping) על האותיות והשוליים</td><td>על תמונה שלכם</td></tr>
                 <tr><td><strong>/emboss</strong></td><td>הטבעה שקועה או בולטת בנייר (Letterpress / Debossing) ללא צבע</td><td>על תמונה שלכם</td></tr>

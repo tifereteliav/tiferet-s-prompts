@@ -101,6 +101,11 @@ document.addEventListener("DOMContentLoaded", () => {
       category: "6. הזמנות, ברכות ומיתוג – נייר, טיפוגרפיה ואווירה",
       commands: [
         { code: "/invitation", desc: "פריסת הזמנה יוקרתית עם שוליים נקיים ומרווחי נשימה", mode: "text_based" },
+        { code: "/formal", desc: "הזמנה רשמית ומכובדת לכנסים, ימי עיון וישיבות צוות", mode: "text_based" },
+        { code: "/conference", desc: "פריסת הזמנה לכנס או יום עיון עם סדר יום ומרצים", mode: "text_based" },
+        { code: "/agenda", desc: "הזמנה מובנית עם לוח זמנים, שעות ונושאי הרצאות", mode: "text_based" },
+        { code: "/badge", desc: "תג שם, כרטיס אורח או תווית משתתף לכנס", mode: "text_based" },
+        { code: "/certificate", desc: "תעודת הוקרה, תעודת השתתפות או תעודת סיום יום עיון", mode: "text_based" },
         { code: "/card", desc: "מבנה קלאסי של כרטיס ברכה מתקפל או גלויה מעוצבת", mode: "text_based" },
         { code: "/goldfoil", desc: "הטבעת זהב או כסף מבריקה (Gold Foil Stamping) על האותיות והשוליים", mode: "image_based" },
         { code: "/emboss", desc: "הטבעה שקועה או בולטת בנייר (Letterpress / Debossing) ללא צבע", mode: "image_based" },
@@ -332,18 +337,19 @@ document.addEventListener("DOMContentLoaded", () => {
       audienceGroup.className = "var-input-group";
       const currentAudience = userVariables[promptId]["AUDIENCE"] || "clinical";
       audienceGroup.innerHTML = `
-        <label for="input-AUDIENCE">קהל יעד / סגנונות מיוחדים (התאמת תוכן ואסתטיקה)</label>
+        <label for="input-AUDIENCE">קהל יעד / סגנון מבוקש</label>
         <select id="input-AUDIENCE" class="steps-count-select">
-          <option value="clinical" ${currentAudience === 'clinical' ? 'selected' : ''}>🩺 צוותים קליניים ורופאים (דיוק אנטומי ושרטוט קליני)</option>
-          <option value="patient" ${currentAudience === 'patient' ? 'selected' : ''}>💚 מטופלים ומשפחות (הסבר בגובה העיניים, מרגיע, ללא דימומים)</option>
-          <option value="tech" ${currentAudience === 'tech' ? 'selected' : ''}>🚀 מיתוג וחדשנות HealthTech (דשבורדים, אקו-סיסטם רפואי)</option>
-          <option value="gala_greeting" ${currentAudience === 'gala_greeting' ? 'selected' : ''}>✨ הזמנות, ברכות ואירועי שיא (נייר יוקרתי, הטבעות זהב, אווירה חגיגית)</option>
+          <option value="clinical" ${currentAudience === 'clinical' ? 'selected' : ''}>🩺 צוותים קליניים ורופאים</option>
+          <option value="patient" ${currentAudience === 'patient' ? 'selected' : ''}>💚 מטופלים ומשפחות</option>
+          <option value="tech" ${currentAudience === 'tech' ? 'selected' : ''}>🚀 מיתוג וחדשנות HealthTech</option>
+          <option value="gala_greeting" ${currentAudience === 'gala_greeting' ? 'selected' : ''}>✨ הזמנות, ברכות ואירועי שיא</option>
         </select>
       `;
       variablesForm.appendChild(audienceGroup);
 
       audienceGroup.querySelector("#input-AUDIENCE").addEventListener("change", (e) => {
         userVariables[promptId]["AUDIENCE"] = e.target.value;
+        renderCatalogCategories();
         updateCodePreview();
       });
 
@@ -393,7 +399,7 @@ document.addEventListener("DOMContentLoaded", () => {
         updateCodePreview();
       });
 
-      // 4. Selected commands display bar
+      // 5. Selected commands display bar
       const selectedBarGroup = document.createElement("div");
       selectedBarGroup.className = "var-input-group";
       selectedBarGroup.innerHTML = `
@@ -431,60 +437,9 @@ document.addEventListener("DOMContentLoaded", () => {
         });
       };
 
-      // 5. Render 5 command categories with 40 interactive chips
+      // 6. Render command categories (dynamically reordered if audience is gala_greeting)
       const catalogContainer = document.createElement("div");
       catalogContainer.className = "command-catalog-container";
-
-      UNIQUE_COMMAND_CATALOG.forEach(cat => {
-        const catBlock = document.createElement("div");
-        catBlock.className = "command-category-block";
-
-        const catTitle = document.createElement("div");
-        catTitle.className = "command-category-title";
-        catTitle.innerText = cat.category;
-        catBlock.appendChild(catTitle);
-
-        const chipsGrid = document.createElement("div");
-        chipsGrid.className = "command-chips-grid";
-
-        cat.commands.forEach(cmd => {
-          const chip = document.createElement("div");
-          chip.className = "command-chip";
-          chip.dataset.code = cmd.code;
-
-          const isImageBased = cmd.mode === "image_based";
-          const badgeText = isImageBased ? "על תמונה שלכם" : "מאפס, מנושא";
-          const badgeClass = isImageBased ? "badge-image-based" : "badge-text-based";
-
-          chip.innerHTML = `
-            <div class="command-chip-header">
-              <span class="command-code">${cmd.code}</span>
-              <span class="command-target-badge ${badgeClass}">${badgeText}</span>
-            </div>
-            <p class="command-desc">${cmd.desc}</p>
-          `;
-
-          chip.addEventListener("click", () => {
-            let currentCmds = userVariables[promptId]["SELECTED_COMMANDS"] || [];
-            if (currentCmds.includes(cmd.code)) {
-              currentCmds = currentCmds.filter(c => c !== cmd.code);
-            } else {
-              currentCmds.push(cmd.code);
-            }
-            userVariables[promptId]["SELECTED_COMMANDS"] = currentCmds;
-            renderSelectedBar();
-            updateChipsState();
-            updateCodePreview();
-          });
-
-          chipsGrid.appendChild(chip);
-        });
-
-        catBlock.appendChild(chipsGrid);
-        catalogContainer.appendChild(catBlock);
-      });
-
-      variablesForm.appendChild(catalogContainer);
 
       const updateChipsState = () => {
         const currentCmds = userVariables[promptId]["SELECTED_COMMANDS"] || [];
@@ -497,9 +452,77 @@ document.addEventListener("DOMContentLoaded", () => {
         });
       };
 
+      const renderCatalogCategories = () => {
+        catalogContainer.innerHTML = "";
+        
+        let categoriesToRender = [...UNIQUE_COMMAND_CATALOG];
+        const audienceVal = userVariables[promptId]["AUDIENCE"];
+
+        // Move Category 6 to top if gala_greeting audience is selected
+        if (audienceVal === "gala_greeting") {
+          const galaCat = categoriesToRender.find(c => c.category.startsWith("6."));
+          if (galaCat) {
+            categoriesToRender = [galaCat, ...categoriesToRender.filter(c => c !== galaCat)];
+          }
+        }
+
+        categoriesToRender.forEach(cat => {
+          const catBlock = document.createElement("div");
+          catBlock.className = "command-category-block";
+
+          const catTitle = document.createElement("div");
+          catTitle.className = "command-category-title";
+          catTitle.innerText = cat.category;
+          catBlock.appendChild(catTitle);
+
+          const chipsGrid = document.createElement("div");
+          chipsGrid.className = "command-chips-grid";
+
+          cat.commands.forEach(cmd => {
+            const chip = document.createElement("div");
+            chip.className = "command-chip";
+            chip.dataset.code = cmd.code;
+
+            const isImageBased = cmd.mode === "image_based";
+            const badgeText = isImageBased ? "על תמונה שלכם" : "מאפס, מנושא";
+            const badgeClass = isImageBased ? "badge-image-based" : "badge-text-based";
+
+            chip.innerHTML = `
+              <div class="command-chip-header">
+                <span class="command-code">${cmd.code}</span>
+                <span class="command-target-badge ${badgeClass}">${badgeText}</span>
+              </div>
+              <p class="command-desc">${cmd.desc}</p>
+            `;
+
+            chip.addEventListener("click", () => {
+              let currentCmds = userVariables[promptId]["SELECTED_COMMANDS"] || [];
+              if (currentCmds.includes(cmd.code)) {
+                currentCmds = currentCmds.filter(c => c !== cmd.code);
+              } else {
+                currentCmds.push(cmd.code);
+              }
+              userVariables[promptId]["SELECTED_COMMANDS"] = currentCmds;
+              renderSelectedBar();
+              updateChipsState();
+              updateCodePreview();
+            });
+
+            chipsGrid.appendChild(chip);
+          });
+
+          catBlock.appendChild(chipsGrid);
+          catalogContainer.appendChild(catBlock);
+        });
+
+        updateChipsState();
+      };
+
+      variablesForm.appendChild(catalogContainer);
+
       // Initial renders
       renderSelectedBar();
-      updateChipsState();
+      renderCatalogCategories();
 
     } else if (prompt.variables.length === 0) {
       variablesForm.innerHTML = `
