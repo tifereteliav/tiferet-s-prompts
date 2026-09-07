@@ -825,12 +825,40 @@ High-fidelity medical visualization of {TOPIC}. {MODE_DESCRIPTION} {AUDIENCE_DIR
                 <tr><td><strong>/visualize</strong></td><td>רעיון מופשט שהופך לתמונה</td><td>מאפס, מנושא</td></tr>
               </tbody>
             </table>
+          </div>
+
+          <h5 style="color: #00cbcb; margin-top: 1.5rem; font-weight: bold;">6. הזמנות, ברכות ומיתוג – נייר, טיפוגרפיה ואווירה</h5>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>הקוד</th>
+                  <th>מה מקבלים (תיאור)</th>
+                  <th>סוג יצירה</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td><strong>/invitation</strong></td><td>פריסת הזמנה יוקרתית עם שוליים נקיים ומרווחי נשימה</td><td>מאפס, מנושא</td></tr>
+                <tr><td><strong>/card</strong></td><td>מבנה קלאסי של כרטיס ברכה מתקפל או גלויה מעוצבת</td><td>מאפס, מנושא</td></tr>
+                <tr><td><strong>/goldfoil</strong></td><td>הטבעת זהב או כסף מבריקה (Gold Foil Stamping) על האותיות והשוליים</td><td>על תמונה שלכם</td></tr>
+                <tr><td><strong>/emboss</strong></td><td>הטבעה שקועה או בולטת בנייר (Letterpress / Debossing) ללא צבע</td><td>על תמונה שלכם</td></tr>
+                <tr><td><strong>/calligraphy</strong></td><td>אותיות קליגרפיות אמנותיות בעזרת ציפורן או מברשת זהב עדינה</td><td>מאפס, מנושא</td></tr>
+                <tr><td><strong>/mockup</strong></td><td>הצגת הברכה/הזמנה כרכיב פיזי אמיתי מצולם בסטודיו על נייר פשתן/כותנה</td><td>על תמונה שלכם</td></tr>
+                <tr><td><strong>/flatlay</strong></td><td>צילום מלמעלה (Knolling) של הברכה לצד מעטפה, חותמת שעווה ופרחים</td><td>על תמונה שלכם</td></tr>
+                <tr><td><strong>/watercolor</strong></td><td>איורי צבעי מים רכים (עלים, פרחים עדינים, אלמנטים מרגיעים)</td><td>מאפס, מנושא</td></tr>
+                <tr><td><strong>/stationery</strong></td><td>ערכת נייר מיתוגית מלאה (כרטיס, מעטפה, מדבקה וסרט משי)</td><td>מאפס, מנושא</td></tr>
+                <tr><td><strong>/botanical</strong></td><td>עיטורי צמחייה, עלים עדינים וענפי זית במסגרת ההזמנה</td><td>מאפס, מנושא</td></tr>
+              </tbody>
+            </table>
           </div>`
         },
         {
           heading: "חלק ב: שילוב מרובה פקודות – מעבר מעתקה לשליטה יצירתית",
           content: `<p>השילוב בין הקודים מייצר תוצרים חזותיים שאף קוד בודד לא מסוגל לספק בלעדיו:</p>
           <ul>
+            <li><strong>/invitation + /goldfoil + /mockup:</strong> הזמנה פיזית יוקרתית על נייר כותנה עם הטבעות זהב מבריקות ומסגרת גיאומטרית מודרנית מצולמת בסטודיו.</li>
+            <li><strong>/card + /watercolor + /calligraphy:</strong> כרטיס ברכה מרגיע עם איורי צבעי מים עדינים ואותיות קליגרפיות חמימות.</li>
+            <li><strong>/flatlay + /stationery + /emboss:</strong> צילום מרהיב מלמעלה של סט הברכה, המעטפה עם חותמת שעווה, סרט משי ומרקם הטבעה שקועה.</li>
             <li><strong>/explodedview + /blueprint:</strong> מפרק מוצר או מכשיר רפואי לחלקים מרחפים, תוך הצגתם בסגנון שרטוט הנדסי כחול-לבן עם מידות מדויקות.</li>
             <li><strong>/cutaway + /isometric:</strong> מציג את האובייקט בזווית תלת-ממדית נעימה (3/4) תוך הסרת חלק מהמעטפת החיצונית לחשיפת האיברים או המנגנונים הפנימיים.</li>
             <li><strong>/microscopic + /heatmap:</strong> מבט תקריב מיקרוסקופי המציג עומסים קליניים או ריכוזי חומר פעיל באמצעות מפת חום סגנונית.</li>

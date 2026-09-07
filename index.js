@@ -96,6 +96,21 @@ document.addEventListener("DOMContentLoaded", () => {
         { code: "/comic", desc: "הסבר בפאנלים עם בועות דיבור", mode: "text_based" },
         { code: "/visualize", desc: "רעיון מופשט שהופך לתמונה", mode: "text_based" }
       ]
+    },
+    {
+      category: "6. הזמנות, ברכות ומיתוג – נייר, טיפוגרפיה ואווירה",
+      commands: [
+        { code: "/invitation", desc: "פריסת הזמנה יוקרתית עם שוליים נקיים ומרווחי נשימה", mode: "text_based" },
+        { code: "/card", desc: "מבנה קלאסי של כרטיס ברכה מתקפל או גלויה מעוצבת", mode: "text_based" },
+        { code: "/goldfoil", desc: "הטבעת זהב או כסף מבריקה (Gold Foil Stamping) על האותיות והשוליים", mode: "image_based" },
+        { code: "/emboss", desc: "הטבעה שקועה או בולטת בנייר (Letterpress / Debossing) ללא צבע", mode: "image_based" },
+        { code: "/calligraphy", desc: "אותיות קליגרפיות אמנותיות בעזרת ציפורן או מברשת זהב עדינה", mode: "text_based" },
+        { code: "/mockup", desc: "הצגת הברכה/הזמנה כרכיב פיזי אמיתי מצולם בסטודיו על נייר פשתן/כותנה", mode: "image_based" },
+        { code: "/flatlay", desc: "צילום מלמעלה (Knolling) של הברכה לצד מעטפה, חותמת שעווה ופרחים", mode: "image_based" },
+        { code: "/watercolor", desc: "איורי צבעי מים רכים (עלים, פרחים עדינים, אלמנטים מרגיעים)", mode: "text_based" },
+        { code: "/stationery", desc: "ערכת נייר מיתוגית מלאה (כרטיס, מעטפה, מדבקה וסרט משי)", mode: "text_based" },
+        { code: "/botanical", desc: "עיטורי צמחייה, עלים עדינים וענפי זית במסגרת ההזמנה", mode: "text_based" }
+      ]
     }
   ];
 
@@ -317,11 +332,12 @@ document.addEventListener("DOMContentLoaded", () => {
       audienceGroup.className = "var-input-group";
       const currentAudience = userVariables[promptId]["AUDIENCE"] || "clinical";
       audienceGroup.innerHTML = `
-        <label for="input-AUDIENCE">קהל יעד רפואי (התאמת תוכן ואסתטיקה)</label>
+        <label for="input-AUDIENCE">קהל יעד / סגנונות מיוחדים (התאמת תוכן ואסתטיקה)</label>
         <select id="input-AUDIENCE" class="steps-count-select">
           <option value="clinical" ${currentAudience === 'clinical' ? 'selected' : ''}>🩺 צוותים קליניים ורופאים (דיוק אנטומי ושרטוט קליני)</option>
           <option value="patient" ${currentAudience === 'patient' ? 'selected' : ''}>💚 מטופלים ומשפחות (הסבר בגובה העיניים, מרגיע, ללא דימומים)</option>
           <option value="tech" ${currentAudience === 'tech' ? 'selected' : ''}>🚀 מיתוג וחדשנות HealthTech (דשבורדים, אקו-סיסטם רפואי)</option>
+          <option value="gala_greeting" ${currentAudience === 'gala_greeting' ? 'selected' : ''}>✨ הזמנות, ברכות ואירועי שיא (נייר יוקרתי, הטבעות זהב, אווירה חגיגית)</option>
         </select>
       `;
       variablesForm.appendChild(audienceGroup);
@@ -660,6 +676,8 @@ document.addEventListener("DOMContentLoaded", () => {
         audienceDir = "Tailored for clinical staff and physicians: emphasize medical-grade accuracy, anatomical precision, crisp scientific annotations, and professional diagnostic lighting.";
       } else if (audienceVal === "patient") {
         audienceDir = "Tailored for patients and families: warm, comforting, highly reassuring visual presentation, using friendly line art and soft tones, avoiding scary medical textures or anxiety-inducing elements.";
+      } else if (audienceVal === "gala_greeting") {
+        audienceDir = "Tailored for high-end luxury invitations and celebratory greetings: exquisite typography, premium paper texture, gold foil accents, elegant layout, and warm ambient studio lighting.";
       } else {
         audienceDir = "Tailored for HealthTech innovation & branding: sleek 2026 digital aesthetics, glassmorphism UI elements, premium bento grid layout, and transformative teal accent highlights.";
       }
