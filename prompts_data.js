@@ -689,11 +689,17 @@ IMPORTANT LAYOUT RULE: The panels and step steps must be laid out in order from 
         label: "פקודות סלאש נבחרות",
         placeholder: "בחר פקודות מהרשימה...",
         default: "/explodedview /blueprint"
+      },
+      {
+        id: "ASPECT_RATIO",
+        label: "גודל תמונה / יחס מכלול (Aspect Ratio)",
+        placeholder: "בחר יחס תמונה...",
+        default: "16:9"
       }
     ],
     template: `{COMMANDS}
 
-High-fidelity medical visualization of {TOPIC}. {MODE_DESCRIPTION} {AUDIENCE_DIRECTIVE} Overall visual quality: clean studio lighting, high contrast, professional clinical aesthetics, highly detailed medical-grade accuracy. Aspect ratio: 16:9.`,
+High-fidelity medical visualization of {TOPIC}. {MODE_DESCRIPTION} {AUDIENCE_DIRECTIVE} Overall visual quality: clean studio lighting, high contrast, professional clinical aesthetics, highly detailed medical-grade accuracy. Aspect ratio: {ASPECT_RATIO}.`,
     background: {
       title: "מדריך לשילוב פקודות סלאש ותמונות ייחודיות ברפואה",
       subtitle: "שליטה מלאה במחוללי תמונות באמצעות שילוב קודים חזותיים והתאמה קלינית",

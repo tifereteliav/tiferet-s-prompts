@@ -954,6 +954,60 @@ body.workspace-active #prompts-list {
   box-shadow: 0 0 12px rgba(0, 203, 203, 0.15);
 }
 
+/* Aspect Ratio Selector Styles */
+.ar-toggle-group {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.6rem;
+  margin-top: 0.5rem;
+}
+
+.ar-btn {
+  background: rgba(11, 15, 25, 0.8);
+  border: 1px solid var(--panel-border);
+  color: var(--text-muted);
+  padding: 0.75rem 0.5rem;
+  border-radius: 10px;
+  cursor: pointer;
+  text-align: center;
+  font-size: 0.85rem;
+  font-weight: 600;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  transition: all var(--transition-fast);
+}
+
+.ar-btn:hover {
+  border-color: rgba(255, 255, 255, 0.2);
+  color: #fff;
+}
+
+.ar-btn.active {
+  border-color: var(--primary-teal);
+  background: rgba(0, 203, 203, 0.12);
+  color: var(--primary-teal);
+  box-shadow: 0 0 12px rgba(0, 203, 203, 0.15);
+}
+
+.ar-icon {
+  font-family: monospace;
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.ar-label {
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: var(--text-muted);
+}
+
+.ar-btn.active .ar-label {
+  color: #e0fcfc;
+}
+
 /* Site Footer Styles */
 .site-footer {
   position: relative;

@@ -126,6 +126,7 @@ document.addEventListener("DOMContentLoaded", () => {
       userVariables[prompt.id]["AUDIENCE"] = "clinical";
       userVariables[prompt.id]["TOPIC"] = "משאף אינסולין מתקדם בעל חיישן ניטור דיגיטלי";
       userVariables[prompt.id]["SELECTED_COMMANDS"] = ["/explodedview", "/blueprint"];
+      userVariables[prompt.id]["ASPECT_RATIO"] = "16:9";
     }
   });
 
@@ -330,7 +331,39 @@ document.addEventListener("DOMContentLoaded", () => {
         updateCodePreview();
       });
 
-      // 3. Medical Topic / Subject input
+      // 3. Aspect Ratio Selection (16:9, 1:1, 9:16)
+      const arGroup = document.createElement("div");
+      arGroup.className = "var-input-group";
+      const currentAR = userVariables[promptId]["ASPECT_RATIO"] || "16:9";
+      arGroup.innerHTML = `
+        <label>גודל תמונה / יחס מכלול (Aspect Ratio)</label>
+        <div class="ar-toggle-group">
+          <button type="button" class="ar-btn ${currentAR === '16:9' ? 'active' : ''}" data-ar="16:9">
+            <span class="ar-icon">16:9</span>
+            <span class="ar-label">לרוחב / מסכים</span>
+          </button>
+          <button type="button" class="ar-btn ${currentAR === '1:1' ? 'active' : ''}" data-ar="1:1">
+            <span class="ar-icon">1:1</span>
+            <span class="ar-label">ריבוע / פוסטים</span>
+          </button>
+          <button type="button" class="ar-btn ${currentAR === '9:16' ? 'active' : ''}" data-ar="9:16">
+            <span class="ar-icon">9:16</span>
+            <span class="ar-label">לאורך / סטוריז</span>
+          </button>
+        </div>
+      `;
+      variablesForm.appendChild(arGroup);
+
+      arGroup.querySelectorAll(".ar-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+          arGroup.querySelectorAll(".ar-btn").forEach(b => b.classList.remove("active"));
+          btn.classList.add("active");
+          userVariables[promptId]["ASPECT_RATIO"] = btn.dataset.ar;
+          updateCodePreview();
+        });
+      });
+
+      // 4. Medical Topic / Subject input
       const topicGroup = document.createElement("div");
       topicGroup.className = "var-input-group";
       topicGroup.innerHTML = `
@@ -631,15 +664,19 @@ document.addEventListener("DOMContentLoaded", () => {
         audienceDir = "Tailored for HealthTech innovation & branding: sleek 2026 digital aesthetics, glassmorphism UI elements, premium bento grid layout, and transformative teal accent highlights.";
       }
 
+      const arVal = userVariables["unique_images"]["ASPECT_RATIO"] || "16:9";
+
       finalPromptText = finalPromptText.replaceAll("{COMMANDS}", cmdText);
       finalPromptText = finalPromptText.replaceAll("{TOPIC}", topicVal);
       finalPromptText = finalPromptText.replaceAll("{MODE_DESCRIPTION}", modeDesc);
       finalPromptText = finalPromptText.replaceAll("{AUDIENCE_DIRECTIVE}", audienceDir);
+      finalPromptText = finalPromptText.replaceAll("{ASPECT_RATIO}", arVal);
 
       htmlPreviewText = htmlPreviewText.replaceAll("{COMMANDS}", `<mark>${escapeHTML(cmdText)}</mark>`);
       htmlPreviewText = htmlPreviewText.replaceAll("{TOPIC}", `<mark>${escapeHTML(topicVal)}</mark>`);
       htmlPreviewText = htmlPreviewText.replaceAll("{MODE_DESCRIPTION}", `<mark>${escapeHTML(modeDesc)}</mark>`);
       htmlPreviewText = htmlPreviewText.replaceAll("{AUDIENCE_DIRECTIVE}", `<mark>${escapeHTML(audienceDir)}</mark>`);
+      htmlPreviewText = htmlPreviewText.replaceAll("{ASPECT_RATIO}", `<mark>${escapeHTML(arVal)}</mark>`);
     } else {
       prompt.variables.forEach(v => {
         const value = userVariables[activePromptId][v.id] || "";
