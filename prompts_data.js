@@ -28,31 +28,61 @@ const PROMPTS_DATA = [
       {
         id: "TARGET_AUDIENCE",
         label: "קהל יעד",
-        placeholder: "הזן את קהל היעד (למשל: רופאים, מטופלים)...",
-        default: "צוותים קליניים (קרדיולוגים, רופאי משפחה, אחיות מוסמכות) ומטופלים מועמדים לתוכנית הניטור הביתית"
+        placeholder: "בחר או הזן את קהל היעד...",
+        default: "Healthcare & Clinical Staff (Physicians, Specialists, Nurses) - דגש על דיוק אנטומי ומדעי, טבלאות נתונים מבוססות ראיות, מנגנוני פעולה קליניים וטון סמכותי ומקצועי"
+      },
+      {
+        id: "DESIGN_STYLE",
+        label: "סגנון עיצובי ואסתטיקה",
+        placeholder: "בחר סגנון עיצובי...",
+        default: "High-Impact Marketing & Eye-Catching 3D: ללא רקע לבן משעמם! רקע כהה עוצמתי (Dark Obsidian #090d16 או Deep Midnight), אלמנטים ואובייקטים תלת-ממדיים מרחפים ברקע (Photorealistic 3D floating medical objects), צבעי ניאון עזים וניגודיים (Cyan/Teal/Purple), דוגמאות ומרקמים מיוחדים ברקע, כרטיסיות Bento גלאסמורפיזם, ועיצוב מטורף ותופס עין שלא רואים כל יום!"
+      },
+      {
+        id: "COLOR_PALETTE",
+        label: "פלטת צבעים למצגת",
+        placeholder: "בחר פלטת צבעים...",
+        default: "Dark Obsidian & Vivid Neon - רקע כהה עמוק (#090d16), ניאון טורקיז (#22d3ee), סגול זוהר (#a855f7) וניגודיות עזה ביותר שתופסת את העין"
       },
       {
         id: "OUTPUT_LANGUAGE",
         label: "שפת פלט והגדרות כיוון",
         placeholder: "למשל: עברית עם יישור מימין לשמאל...",
         default: "Hebrew (עברית בהירה, תקנית, מדויקת מבחינה רפואית ומנוסחת באמפתיה רבה) מעוצב מימין לשמאל כמו שמקובל בעברית"
-      },
-      {
-        id: "COLOR_PALETTE",
-        label: "פלטת צבעים למצגת",
-        placeholder: "בחר פלטת צבעים או הקלד גוונים מותאמים אישית...",
-        default: "Clinical Blue & Calm Teal - פלטת גוונים מבוססת כחול רופאים עמוק, טורקיז רפואי ותכלת מרגיע עם ניגודיות גבוהה לרקע לבן."
       }
     ],
-    template: `You are a Senior Medical Communications Information Designer and an Elite HealthTech Brand Strategist. Your task is to generate a comprehensive, visually breathtaking, and scientifically rigorous {SLIDE_COUNT}-slide presentation based on the clinical topic provided below. The output must seamlessly synthesize the educational discipline of Cognitive Load Theory (CLT) with the modern, high-end visual aesthetic of a top-tier premium product launch.
+    template: `You are a Senior Medical Communications Information Designer and an Elite HealthTech Brand Strategist. Your task is to generate a comprehensive, visually breathtaking, and scientifically rigorous {SLIDE_COUNT}-slide presentation based on the clinical topic provided below. The output must seamlessly synthesize the educational discipline of Cognitive Load Theory (CLT) with the requested design style, target audience criteria, and high-end visual aesthetic.
 
 [CLINICAL TOPIC INPUT]: "{CLINICAL_TOPIC}"
 [TARGET AUDIENCE]: "{TARGET_AUDIENCE}"
-[OUTPUT LANGUAGE]: "{OUTPUT_LANGUAGE}"
+[DESIGN STYLE & VISUAL AESTHETIC]: "{DESIGN_STYLE}"
 [COLOR PALETTE]: "{COLOR_PALETTE}"
+[OUTPUT LANGUAGE]: "{OUTPUT_LANGUAGE}"
 
-Visual Design Requirements:
-Apply the specified [COLOR PALETTE] as the primary visual scheme for the slides, ensuring high-contrast text accessibility (minimum WCAG AAA ratio), using the dominant color for the backdrop or main panels, the secondary color for supporting structural grids, and the transformative accent color sparingly to highlight critical patient clinical insights or key metrics.`,
+PART 1: COMPREHENSIVE DESIGN TOKENS & VISUAL SYSTEM
+- VISUAL STYLE DIRECTIVE: Strictly adhere to "{DESIGN_STYLE}". Integrate custom visual patterns, depth layering, structural containers, and thematic artwork tailored to this style.
+- COLOR PALETTE & CONTRAST: Apply "{COLOR_PALETTE}" as the master visual color scheme. Maintain strict WCAG AAA contrast ratio for text accessibility across all devices.
+- TARGET AUDIENCE ALIGNMENT: Adapt language complexity, data representation, graphic iconography, and narrative framing specifically for "{TARGET_AUDIENCE}".
+
+PART 2: COGNITIVE OVERLOAD PREVENTION CRITERIA (CLT RULES)
+- ONE CORE INSIGHT PER SLIDE: Structure every single slide around one clear takeaway or clinical decision point. Partition complex multi-step data across distinct sequential slides.
+- INTEGRATED ANNOTATIONS (NO SPLIT ATTENTION): Embed labels, metrics, and explanatory callouts directly onto visual diagrams and flowcharts using subtle pointers. Eliminate distant legends.
+- MODALITY & REDUNDANCY ELIMINATION: Replace dense text paragraphs with streamlined infographics, timelines, or 3D visual representations. Avoid redundant text that repeats diagram content.
+- EMPATHY & CLARITY: Ensure all anatomical or human illustrations feature recognizable, empathetic facial features to build trust and reduce clinical anxiety.
+
+PART 3: THE HIGH-END NARRATIVE FRAMEWORK ({SLIDE_COUNT}-SLIDE FLOW)
+Construct the presentation logically following this biomedical structure:
+1. Cover Slide: Captivating category-defining title reflecting the chosen aesthetic.
+2. Clinical Need / Context: The core challenge framed for the target audience.
+3. The Friction / Gap: Why traditional approaches fail or cause cognitive friction.
+4. Core Solution / Innovation: Introducing the clinical value proposition.
+5. Mechanism of Action (MOA) / Process: Step-by-step visual of how the solution works.
+6. Evidence & Clinical Impact: Key validation metrics highlighted in the accent color.
+7. User / Patient Journey: Clean, empathetic visual timeline of real-world implementation.
+8. Healthcare Integration: Data flow into clinical workflows without administrative burden.
+9. Safety, Compliance & Trust: Outlining regulatory standards and data security.
+10. Actionable Conclusion: Clear next steps and onboarding resources.
+
+Ensure all text is output in {OUTPUT_LANGUAGE} with precise medical terminology, flawless grammar, and optimal RTL (Right-to-Left) slide formatting. Do not output placeholder text.`,
     background: {
       title: "מדריך לארכיטקטורת מצגות רפואיות",
       subtitle: "המדריך המלא לשילוב אופטימיזציה קוגניטיבית ואסתטיקה שיווקית עילית",
@@ -111,46 +141,51 @@ Apply the specified [COLOR PALETTE] as the primary visual scheme for the slides,
           </div>`
         },
         {
-          heading: "חלק ב: מגמות עיצוב שיווקי מתקדם לשנת 2026 והחלתן על עולם הרפואה",
-          content: `<p>אסתטיקת העיצוב המודרנית עברה מהפכה משמעותית. העיצוב השטוח והחד-ממדי (Flat Design) ששלט בעשור האחרון נתפס כיום כמיושן ומנוכר. במקומו, מגמות העיצוב לשנת 2026 מציגות מראה טקטילי, דינמי ורגיש יותר המשלב עומק חזותי עדין, צללים רכים ואפקטים דמויי זכוכית (Glassmorphism) כדי לארגן את המידע בצורה היררכית ונעימה לעין.</p>
-          <p>אחת המגמות הבולטות ביותר היא השימוש בפריסות <strong>"גריד בנטו" (Bento Grid Layout)</strong>. פריסה זו, השואבת השראה מקופסאות האוכל היפניות, מחלקת את השקף לקופסאות מודולריות מעוגלות-קצוות, כאשר כל קופסה מארחת אלמנט מידע בודד – כגון מדד מפתח (KPI), ציטוט של מטופל, תרשים זרימה או הדמיה רפואית. מבנה מודולרי זה מסייע בהפחתת העומס הקוגניטיבי, יוצר סדר חזותי ברור, ומבטיח כי המצגת תהיה "עמידה למכשירים ניידים" (Mobile-Resilient) וקריאה בקלות גם על גבי מסכים קטנים של טלפונים ניידים או טאבלטים.</p>
-          <p>מבחינת צבעוניות, עידן ה"כחול התאגידי הקר" (Cold Corporate Blue) כברירת מחדל חלף מן העולם. פלטות הצבעים החדשניות נשענות על גוונים מרגיעים, חמימים ואנושיים יותר כגון ירוק עמוק, סגול עמוק, אפור חם וגווני נייר טבעיים (Wax Paper). לצד גוונים אלו, משולב <strong>"טיל טרנספורמטיבי" (Transformative Teal)</strong> כצבע השנה, המשמש כצבע הדגשה ממוקד וחד. בתחום הרפואי, השימוש בצבע זה נועד להנחות את עין הצופה ישירות אל הנתון הקליני המשמעותי ביותר בשקף, כגון שיעור השיפור בהישרדות המטופלים או הפחתה באחוז האשפוזים החוזרים.</p>
-          <p>הטיפוגרפיה הפכה לגיבור החזותי המרכזי של השקף (Bold Typography-Led Slides). כותרות גדולות, בולטות וגיאומטריות בגדלים של 44–64 pt קובעות את קצב הקריאה ומאפשרות לצופה להבין את תמצית המסר תוך שניות בודדות, גם בקריאה אסינכרונית ללא מרצה. טקסט הגוף נשמר בגדלים קריאים של 24–32 pt עם מרווחים נדיבים, תוך הגבלה קשוחה לשתי משפחות גופנים לכל היותר לשמירה על ניקיון עיצובי.</p>
+          heading: "חלק ב: מגמות עיצוב שיווקי מתקדם לשנת 2026 והתאמה לקהלי יעד",
+          content: `<p>אסתטיקת העיצוב המודרנית עברה מהפכה משמעותית. העיצוב השטוח והחד-ממדי (Flat Design) ששלט בעשור האחרון נתפס כיום כמיושן ומנוכר. במקומו, מגמות העיצוב לשנת 2026 מציגות מראה טקטילי, דינמי ורגיש יותר המשלב עומק חזותי, צללים רכים ואפקטים דמויי זכוכית (Glassmorphism) כדי לארגן את המידע בצורה היררכית ונעימה לעין.</p>
+          <p>כדי שהמצגת תשיג את האפקט המרבי, נדרשת התאמה מדויקת בין <strong>סגנון העיצוב החזותי (Design Style)</strong> לבין <strong>קהל היעד (Target Audience)</strong>:</p>
+          <ul>
+            <li><strong>סגנון שיווקי, נועז ומטורף (High-Impact Marketing & Vivid 3D):</strong> עבור השקות מוצר, כנסים מרכזיים ומצגות שיווקיות – נטישה מוחלטת של רקע לבן בנאלי! העיצוב מבוסס על רקעים כהים עמוקים (Dark Obsidian, Deep Midnight) בשילוב אלמנטים ואובייקטים תלת-ממדיים מרחפים ברקע (Photorealistic 3D floating medical/tech icons), צבעי ניאון עזים וניגודיים (Teal/Cyan/Purple), דוגמאות מיוחדות ואיורים שמשולבים בעומק הרקע – ליצירת חוויה חזותית מטורפת שתופסת את העין ולא רואים כל יום.</li>
+            <li><strong>סגנון אלגנטי ויוקרתי (Luxury & Executive Editorial):</strong> מיועד להצגה בפני הנהלה בכירה ומשקיעים. מאופיין בצבעוניות כהה ואצילית (Midnight Navy), הטבעות זהב וברונזה מוברשת, טיפוגרפיה סריפית/גיאומטרית יוקרתית וחלל נשימה נדיב.</li>
+            <li><strong>סגנון מדעי וקליני (Scientific & Clinical Rigor):</strong> מיועד לרופאים, קרדיולוגים ואחיות מומחיות. מתמקד בדיוק אנטומי ומדעי, גרידים מובנים, תגיות הסבר משולבות ישירות בגרפים, וטבלאות ראיות קליניות בעלות ניגודיות גבוהה.</li>
+            <li><strong>סגנון חם, אמפתי ואנושי (Warm & Empathetic Patient Care):</strong> מיועד למטופלים ולבני משפחותיהם. נשען על גווני פסטל חמימים (ירוק מרווה, נייר טבעי), צורניות אורגנית, איורים אנושיים עם תווי פנים ברורים ונגישים, במטרה להפחית חרדה ולייצר ביטחון.</li>
+            <li><strong>סגנון טכנולוגי ומינימליסטי (Futuristic HealthTech Bento Grid):</strong> מבוסס על פריסת Bento Grid מודולרית, תיבות זכוכית בעלות פינות מעוגלות, אלמנטים דיגיטליים זוהרים וטיפוגרפיה גיאומטרית נקייה.</li>
+          </ul>
           
           <div class="table-container">
             <table>
               <thead>
                 <tr>
-                  <th>ממד חזותי</th>
-                  <th>האסתטיקה המיושנת (רוויה ועמוסה)</th>
-                  <th>האסתטיקה המודרנית לשנת 2026 (שיווק עילי)</th>
-                  <th>השלכות על הבנת המטופל והצוות הרפואי</th>
+                  <th>סגנון עיצובי</th>
+                  <th>מאפיינים חזותיים מרכזיים</th>
+                  <th>פלטת צבעים מומלצת</th>
+                  <th>קהל יעד אופטימלי</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td><strong>פריסת שקף וחלוקת חלל</strong></td>
-                  <td>תבניות נוקשות, רשימות תבליטים צפופות, שימוש בכל קצה פנוי בשקף.</td>
-                  <td>גריד בנטו (Bento Grid) מודולרי, תיבות בעלות פינות מעוגלות ומרחבי נשימה לבנים (White Space).</td>
-                  <td>חלוקת המידע לתאים קלים לעיכול; שיפור הקריאות במכשירים ניידים.</td>
+                  <td><strong>שיווקי, נועז ו-3D</strong></td>
+                  <td>רקע כהה עוצמתי (Dark Obsidian), אובייקטים תלת-ממדיים מרחפים, צבעי ניאון עזים, מרקמי רקע מיוחדים.</td>
+                  <td>Dark Obsidian, Neon Cyan & Electric Purple</td>
+                  <td>כנסים, השקות מוצר, הייטק רפואי ושיווק</td>
                 </tr>
                 <tr>
-                  <td><strong>פלטת צבעים</strong></td>
-                  <td>שימוש מופרז בכחול מוסדי מנוכר וקריר ובאפור משעמם ללא נקודות מיקוד.</td>
-                  <td>שילוב גוונים חמימים וטבעיים עם נגיעות של Transformative Teal להדגשת נתוני מפתח.</td>
-                  <td>הפחתת רמת החרדה הקלינית ויצירת חוויה אמפתית, אנושית ואמינה.</td>
+                  <td><strong>אלגנטי ויוקרתי</strong></td>
+                  <td>מראה מגזיני פרימיום, עיטורי זהב ושמפניה, טיפוגרפיה אצילית, עומק זכוכית מעודן.</td>
+                  <td>Midnight Navy & Metallic Gold</td>
+                  <td>משקיעים, הנהלה בכירה, קרנות הון סיכון</td>
                 </tr>
                 <tr>
-                  <td><strong>טיפוגרפיה והיררכיה</strong></td>
-                  <td>שימוש בגופנים קטנים ומרובים, כותרות אינפורמטיביות יבשות (למשל, "תוצאות ניסוי קליני").</td>
-                  <td>כותרות גיאומטריות דומיננטיות (44-64pt) המביעות תובנה אקטיבית, וגופנים משתנים (Variable Fonts).</td>
-                  <td>הבנה מיידית של השורה התחתונה הקלינית תוך 15 שניות, גם ללא קריינות.</td>
+                  <td><strong>מדעי וקליני</strong></td>
+                  <td>גרידים הנדסיים קשיחים, תרשימי זרימה קליניים, תגיות אנטומיות משולבות, WCAG AAA.</td>
+                  <td>Clinical Navy & Medical Teal</td>
+                  <td>רופאים, אחיות, חוקרים וצוותים רפואיים</td>
                 </tr>
                 <tr>
-                  <td><strong>סגנון אילוסטרציות</strong></td>
-                  <td>סמלים שטוחים וגנריים, צילומי מלאי מנוכרים או דיאגרמות מעבדה מורכבות.</td>
-                  <td>איורים קוויים נקיים עם תווי פנים ריאליסטיים, שילוב אלמנטים תלת-ממדיים רכים.</td>
-                  <td>מניעת פרשנויות מוטעות בהוראות הטיפול, שיפור ההיענות להנחיות קליניות.</td>
+                  <td><strong>חם ואמפתי</strong></td>
+                  <td>צורניות אורגנית רכה, איורים אנושיים חמים, הדרכה שלב-אחר-שלב בגובה העיניים.</td>
+                  <td>Sage Green & Earth Warmth</td>
+                  <td>מטופלים, משפחות ורפואה מונעת בקהילה</td>
                 </tr>
               </tbody>
             </table>

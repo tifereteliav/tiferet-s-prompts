@@ -548,22 +548,46 @@ document.addEventListener("DOMContentLoaded", () => {
         
         const currentValue = userVariables[promptId][variable.id] || "";
 
-        if (variable.id === "COLOR_PALETTE") {
+        if (variable.id === "COLOR_PALETTE" || variable.id === "TARGET_AUDIENCE" || variable.id === "DESIGN_STYLE") {
           const selectElement = document.createElement("select");
           selectElement.className = "steps-count-select";
           selectElement.style.marginBottom = "0.5rem";
           
-          const palettes = [
-            { name: "בחר פלטת צבעים...", value: "" },
-            { name: "כחול קליני ותכלת מרגיע (סמכותיות, שקט רפואי ואמינות)", value: "Clinical Blue & Calm Teal - פלטת גוונים מבוססת כחול רופאים עמוק, טורקיז רפואי ותכלת מרגיע עם ניגודיות גבוהה לרקע לבן." },
-            { name: "סגול עמוק וטורקיז רפואי (חדשנות בריאותית, דיגיטל וטכנולוגיה)", value: "Deep Purple & Medical Turquoise - פלטת גוונים בריאותית מודרנית המשלבת סגול עמוק סמכותי וטורקיז רפואי זוהר." },
-            { name: "ירוק מרווה וגווני אדמה (רפואה משלימה, חמימות ורוגע של טבע)", value: "Sage Green & Earth Warmth - פלטת גוונים המבוססת על ירוק מרווה מרגיע, גווני חול ואדמה חמימים המפחיתים חרדה." },
-            { name: "כחול כהה עם נגיעות אדום קליני (לנושאי חירום וקרדיולוגיה)", value: "Navy Blue & Accent Clinical Red - פלטה רפואית סמכותית של כחול כהה (Navy) עם צבע דגש של אדום קליני המיועד לסימוני אזהרה ומידע קריטי." },
-            { name: "מותאם אישית (הקלד מלל חופשי בשדה למטה)", value: "custom" }
-          ];
+          let presetOptions = [];
+          if (variable.id === "TARGET_AUDIENCE") {
+            presetOptions = [
+              { name: "בחר קהל יעד...", value: "" },
+              { name: "🩺 צוותים קליניים ורופאים (קרדיולוגים, רופאי משפחה, אחיות מוסמכות)", value: "Healthcare & Clinical Staff (Physicians, Specialists, Nurses) - דגש על דיוק אנטומי ומדעי, טבלאות נתונים מבוססות ראיות, מנגנוני פעולה קליניים וטון סמכותי ומקצועי" },
+              { name: "💚 מטופלים, בני משפחותיהם ומתמודדים", value: "Patients & Families - דגש על הפחתת חרדה קלינית, שפה פשוטה ואמפתית (Plain Language), איורים אנושיים חמימים עם תווי פנים ברורים, והדרכה הדרגתית בגובה העיניים" },
+              { name: "📢 אוכלוסייה כללית וקהל רחב (קידום בריאות ורפואה מונעת)", value: "General Public & Community - דגש על הנגשת בריאות הציבור, מטפורות חזותיות זכירות, שפה קלילה וברורה, ויזואליות תופסת עין ומסרים מעצימים" },
+              { name: "🚀 מנהלי הייטק רפואי, משקיעים והנהלה (HealthTech Execs & Investors)", value: "HealthTech Executives & Investors - דגש על הצעת ערך קלינית ועסקית, מודל צמיחה, מדדי ROI, פער שוק, ומפת דרכים אסטרטגית להשקה" },
+              { name: "✍️ מותאם אישית (הקלד מלל חופשי בשדה למטה)", value: "custom" }
+            ];
+          } else if (variable.id === "DESIGN_STYLE") {
+            presetOptions = [
+              { name: "בחר סגנון עיצובי...", value: "" },
+              { name: "🔥 שיווקי, נועז ומטורף (High-Impact Marketing, Vivid & Floating 3D)", value: "High-Impact Marketing & Eye-Catching 3D: ללא רקע לבן משעמם! רקע כהה עוצמתי (Dark Obsidian #090d16 או Deep Midnight), אלמנטים ואובייקטים תלת-ממדיים מרחפים ברקע (Photorealistic 3D floating medical objects), צבעי ניאון עזים וניגודיים (Cyan/Teal/Purple), דוגמאות ומרקמים מיוחדים ברקע, כרטיסיות Bento גלאסמורפיזם, ועיצוב מטורף ותופס עין שלא רואים כל יום!" },
+              { name: "✨ אלגנטי, יוקרתי ופרימיום (Luxury & Executive Editorial)", value: "Luxury & Executive Editorial: עיצוב יוקרתי ואלגנטי בסגנון מגזיני פרימיום, שילוב עיטורי זהב/ברונזה מוברשים, רקע כחול לילה עמוק או טקסטורת פשתן חמה, טיפוגרפיה סריפית/גיאומטרית אצילית, ומראה מוקפד בעל עומק מעודן" },
+              { name: "🔬 מדעי, קליני ואקדמי (Scientific, Academic & Clinical Rigor)", value: "Scientific & Clinical Rigor: אסתטיקה קלינית מדויקת ונאמנה למחקר, גריד הנדסי מובנה, טבלאות השוואה קליניות, תרשימי זרימה מפורטים, תגיות אנטומיות משולבות באיורים, וקריאות מקסימלית ברמת WCAG AAA" },
+              { name: "💚 חם, אמפתי ואנושי (Warm, Empathetic & Human-Centric)", value: "Warm, Empathetic & Human-Centric Patient Care: אווירה מרגיעה ומפחיתת חרדה, צורניות אורגנית רכה, גווני פסטל חמימים (ירוק מרווה, נייר טבעי, טורקיז רך), איורים אנושיים עם תווי פנים נגישים וברורים, וניקיון חזותי עדין" },
+              { name: "🚀 טכנולוגי ומינימליסטי (Futuristic HealthTech Bento Grid)", value: "Futuristic HealthTech Bento Grid: פריסת גריד בנטו מודרנית לשנת 2026, תיבות מודולריות בעלות פינות מעוגלות ואפקט זכוכית, אלמנטים דיגיטליים זוהרים, טיפוגרפיה גיאומטרית נקייה, ומראה הייטקיסטי מתקדם" },
+              { name: "✍️ מותאם אישית (הקלד מלל חופשי בשדה למטה)", value: "custom" }
+            ];
+          } else if (variable.id === "COLOR_PALETTE") {
+            presetOptions = [
+              { name: "בחר פלטת צבעים...", value: "" },
+              { name: "🔥 ניגודיות עזה וניאון (כהה, ניאון טורקיז וסגול - לשיווק ומצגות מטורפות)", value: "Dark Obsidian & Vivid Neon - רקע כהה עמוק (#090d16), ניאון טורקיז (#22d3ee), סגול זוהר (#a855f7) וניגודיות עזה ביותר שתופסת את העין" },
+              { name: "🩺 כחול קליני ותכלת מרגיע (סמכותיות, שקט רפואי ואמינות)", value: "Clinical Blue & Calm Teal - פלטת גוונים מבוססת כחול רופאים עמוק, טורקיז רפואי ותכלת מרגיע עם ניגודיות גבוהה לרקע לבן." },
+              { name: "✨ זהב יוקרתי וכחול לילה (אלגנטיות, פרימיום ויוקרה)", value: "Luxury Gold & Midnight Navy - כחול לילה עמוק, הטבעת זהב מבריקה, גווני כרמל חמימים ונגיעות שמפניה" },
+              { name: "🌿 ירוק מרווה וגווני אדמה (חמימות, רוגע של טבע והפחתת חרדה)", value: "Sage Green & Earth Warmth - פלטת גוונים המבוססת על ירוק מרווה מרגיע, גווני חול ואדמה חמימים המפחיתים חרדה." },
+              { name: "🚨 כחול כהה עם נגיעות אדום קליני (לחירום, ניתוחים וקרדיולוגיה)", value: "Navy Blue & Accent Clinical Red - פלטה רפואית סמכותית של כחול כהה (Navy) עם צבע דגש של אדום קליני המיועד לסימוני אזהרה ומידע קריטי." },
+              { name: "⚡ סגול עמוק וטורקיז רפואי (חדשנות בריאותית, דיגיטל וטכנולוגיה)", value: "Deep Purple & Medical Turquoise - פלטת גוונים בריאותית מודרנית המשלבת סגול עמוק סמכותי וטורקיז רפואי זוהר." },
+              { name: "✍️ מותאם אישית (הקלד מלל חופשי בשדה למטה)", value: "custom" }
+            ];
+          }
           
           let matched = false;
-          palettes.forEach(p => {
+          presetOptions.forEach(p => {
             const opt = document.createElement("option");
             opt.value = p.value;
             opt.innerText = p.name;
@@ -578,11 +602,11 @@ document.addEventListener("DOMContentLoaded", () => {
             selectElement.value = "custom";
           }
           
-          const textInput = document.createElement("input");
-          textInput.type = "text";
+          const textInput = document.createElement("textarea");
+          textInput.rows = 2;
           textInput.id = `input-${variable.id}`;
           textInput.value = currentValue;
-          textInput.placeholder = "או הקלד כאן פלטת צבעים מותאמת אישית (למשל: ירוק בהיר וצהוב)...";
+          textInput.placeholder = variable.placeholder;
           
           selectElement.addEventListener("change", (e) => {
             if (e.target.value === "custom") {
@@ -598,7 +622,7 @@ document.addEventListener("DOMContentLoaded", () => {
           
           textInput.addEventListener("input", (e) => {
             userVariables[promptId][variable.id] = e.target.value;
-            if (!palettes.some(p => p.value === e.target.value && p.value !== "custom")) {
+            if (!presetOptions.some(p => p.value === e.target.value && p.value !== "custom")) {
               selectElement.value = "custom";
             }
             updateCodePreview();
