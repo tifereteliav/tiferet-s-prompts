@@ -548,7 +548,7 @@ document.addEventListener("DOMContentLoaded", () => {
         
         const currentValue = userVariables[promptId][variable.id] || "";
 
-        if (variable.id === "COLOR_PALETTE" || variable.id === "TARGET_AUDIENCE" || variable.id === "DESIGN_STYLE") {
+        if (variable.id === "COLOR_PALETTE" || variable.id === "TARGET_AUDIENCE" || variable.id === "DESIGN_STYLE" || variable.id === "DEPTH_LEVEL") {
           const selectElement = document.createElement("select");
           selectElement.className = "steps-count-select";
           selectElement.style.marginBottom = "0.5rem";
@@ -557,27 +557,35 @@ document.addEventListener("DOMContentLoaded", () => {
           if (variable.id === "TARGET_AUDIENCE") {
             presetOptions = [
               { name: "בחר קהל יעד...", value: "" },
+              { name: "📢 אוכלוסייה כללית וקהל רחב (הדרכות כלליות, הרצאות וקידום מודעות)", value: "General Public & Broad Community: Accessible, highly engaging language, relatable analogies, clear visual hierarchy, clear educational structure, and empowering call-to-action." },
+              { name: "🎓 עובדים, חניכים ומשתתפי סדנה / הדרכה (למידה ופיתוח מקצועי)", value: "Trainees, Employees & Workshop Participants: Practical instructional focus, actionable takeaways, step-by-step guidance, clear operational structure, and skill-building emphasis." },
               { name: "🩺 צוותים קליניים ורופאים (קרדיולוגים, רופאי משפחה, אחיות מוסמכות)", value: "Healthcare & Clinical Staff (Physicians, Specialists, Nurses): Focus on anatomical accuracy, evidence-based data tables, clinical trial metrics, structured protocol workflows, and authoritative professional tone." },
               { name: "💚 מטופלים, בני משפחותיהם ומתמודדים", value: "Patients & Families: Focus on anxiety reduction, plain language formatting, warm empathetic tone, clear step-by-step visual guidance, and relatable friendly visual metaphors." },
-              { name: "📢 אוכלוסייה כללית וקהל רחב (קידום בריאות ורפואה מונעת)", value: "General Public & Community: Focus on clear accessible language, memorable visual analogies, engaging public health education framing, and empowering call-to-action messaging." },
-              { name: "🚀 מנהלי הייטק רפואי, משקיעים והנהלה (HealthTech Execs & Investors)", value: "HealthTech Executives & Investors: Focus on market ROI, clinical value proposition, scalable product architecture, high-impact key metrics, and strategic launch roadmap." },
+              { name: "🚀 מנהלים בכירים, משקיעים ודירקטוריון (Execs & Investors)", value: "Executives & Investors: Focus on market ROI, strategic value proposition, scalable product architecture, high-impact key metrics, and strategic launch roadmap." },
+              { name: "✍️ מותאם אישית (הקלד מלל חופשי בשדה למטה)", value: "custom" }
+            ];
+          } else if (variable.id === "DEPTH_LEVEL") {
+            presetOptions = [
+              { name: "בחר רמת פירוט...", value: "" },
+              { name: "⚡ תמציתי וממוקד (נקודות מפתח, מדדים בולטים ומסרים קצרים - להצגה פרונטלית)", value: "High-Level Executive Highlights: Concise, punchy, low-text presentation format designed for live presentation. Limit text to max 15-20 words per card/slide component. Feature giant key metrics (e.g. 85%, 3.5X, $10M+), bold single-sentence takeaways, and powerful visual anchors that the speaker can elaborate on orally." },
+              { name: "📘 פירוט מעמיק ומקיף (הסברים מלאים, דוגמאות מפורטות והקשר רחב - לקריאה עצמאית ולמידה)", value: "Comprehensive Deep Dive: Rich, fully fleshed-out self-contained instructional content designed for asynchronous reading and self-paced study. Provide thorough explanatory text, structured sub-points, detailed real-world examples, comprehensive context, and complete educational takeaways on every slide." },
               { name: "✍️ מותאם אישית (הקלד מלל חופשי בשדה למטה)", value: "custom" }
             ];
           } else if (variable.id === "DESIGN_STYLE") {
             presetOptions = [
               { name: "בחר סגנון עיצובי...", value: "" },
-              { name: "🔥 שיווקי, נועז ובעל אימפקט חזותי (High-Impact Marketing & 3D Visual Drama)", value: "High-Impact Marketing & Cinematic 3D: Zero plain white backgrounds. Utilize dark atmospheric backdrops (Dark Obsidian/Deep Charcoal) enhanced with subtle gradient meshes and micro-textured depth mapping. Feature photorealistic 3D floating objects embedded seamlessly into slide backgrounds to create visual drama. Incorporate glassmorphism bento containers, high-contrast focal points, bold geometric header typography, and dynamic asymmetrical balance designed to instantly capture attention and maximize audience engagement." },
-              { name: "👑 סמכותי, יוקרתי ומנהלי (Authoritative Executive & Luxury Editorial)", value: "Authoritative Executive & Luxury Editorial: Premium high-end publication aesthetic. Utilize dark monochromatic or rich deep surfaces with subtle metallic foil accents (brushed gold/bronze). Incorporate elegant serif and refined geometric typography, generous negative space, subtle surface elevation, structured metric cards, and sophisticated editorial layout that commands authority and respect." },
-              { name: "🔬 קליני, מדעי ואקדמי מחמיר (Scientific & Clinical Rigor)", value: "Scientific & Clinical Rigor: High-precision medical publication aesthetic. Structured grid layout optimized for clinical data density, crisp integrated diagram callouts (no distant legends), clear evidence-based comparison tables, embedded anatomical annotations, and uncompromising WCAG AAA contrast legibility." },
-              { name: "💚 אמפתי, חם ואנושי (Human-Centric & Empathetic Care)", value: "Human-Centric & Empathetic Patient Care: Reassuring, low-stress visual atmosphere. Soft organic rounded containers, generous spacing, comforting illustration style with friendly, recognizable human facial features, plain-language text formatting, and clear step-by-step visual guidance designed to reduce cognitive anxiety." },
-              { name: "🚀 חדשנות הייטק ומינימליזם דיגיטלי (Futuristic HealthTech & Digital Minimal)", value: "Futuristic HealthTech & Digital Minimal: Modern 2026 Bento Grid architecture with sleek rounded containers, glassmorphism surface panels, glowing digital indicators, high-legibility sans-serif typography, clean UI dashboard visualizers, and streamlined digital product aesthetic." },
+              { name: "🔥 סגנון WOW שיווקי מטורף (High-Impact Visual Drama, Vivid & 3D Floating Assets)", value: "High-Impact Cinematic WOW & 3D Visual Drama: STRICTLY NO PLAIN WHITE SLIDES! Master dark atmospheric backdrops (Dark Obsidian #090d16 / Deep Charcoal) with luminous gradient meshes and subtle depth texturing. Feature photorealistic 3D floating visual elements (isometric icons, floating glass spheres, glowing symbols) embedded into slide backgrounds. Use glassmorphism bento containers, high-contrast visual focal points, bold headline typography (50pt+), and dynamic asymmetrical layouts designed to deliver a jaw-dropping, unforgettable 10x presentation experience." },
+              { name: "👑 יוקרתי, סמכותי ומנהלי (Luxury Executive & Editorial Masterclass)", value: "Luxury Executive & Editorial Masterclass: Ultra-premium publication aesthetic. Rich dark monochromatic or deep slate surfaces accented with metallic foil highlights (brushed gold/bronze/champagne). Elegant serif and clean geometric typography, generous negative space, subtle surface shadows, and magazine-worthy layout composition." },
+              { name: "🚀 טכנולוגי מודרני בנטו גריד (Futuristic Bento Grid & Modern Tech)", value: "Futuristic Bento Grid & Digital Tech: 2026 Bento Grid architecture with sleek rounded containers (border-radius 16px), subtle glass reflection panels, glowing digital indicators, crisp sans-serif typography, UI dashboard visualizers, and streamlined modern tech aesthetic." },
+              { name: "🔬 מדעי, קליני ואקדמי מובנה (Structured Academic & Scientific Rigor)", value: "Structured Academic & Scientific Rigor: High-precision publication aesthetic. Rigid structured grid layout, crisp data callout cards, step-by-step flowchart diagrams, integrated diagram callouts, evidence comparison tables, and WCAG AAA accessibility." },
+              { name: "💚 חם, אמפתי ואורגני (Warm Empathetic & Organic Care)", value: "Warm Empathetic & Organic: Reassuring low-stress visual atmosphere. Soft organic rounded containers, generous negative space, warm comforting illustration style with friendly human features, plain-language formatting, and peaceful visual flow." },
               { name: "✍️ מותאם אישית (הקלד מלל חופשי בשדה למטה)", value: "custom" }
             ];
           } else if (variable.id === "COLOR_PALETTE") {
             presetOptions = [
               { name: "בחר פלטת צבעים...", value: "" },
               { name: "🔥 ניאון זוהר וניגודיות גבוהה (Vivid High-Contrast Neon)", value: "Vivid High-Contrast Neon: Deep obsidian backdrop (#090d16), vibrant neon cyan (#22d3ee), electric purple (#a855f7), and high-contrast glowing accents." },
-              { name: "🩺 כחול קליני וטורקיז רפואי (Clinical Deep Blue & Medical Teal)", value: "Clinical Deep Blue & Medical Teal: Deep navy backdrop (#0a192f), medical teal (#00cbcb), crisp slate secondary accents, and high-contrast text." },
+              { name: "🩺 כחול עמוק וטורקיז רפואי (Clinical Deep Blue & Medical Teal)", value: "Clinical Deep Blue & Medical Teal: Deep navy backdrop (#0a192f), medical teal (#00cbcb), crisp slate secondary accents, and high-contrast text." },
               { name: "✨ זהב יוקרתי וכחול לילה (Luxury Gold & Midnight Navy)", value: "Luxury Gold & Midnight Navy: Deep midnight navy backdrop (#080e1e), brushed metallic gold accents (#d4af37), champagne highlight text, and subtle warm glass surfaces." },
               { name: "🌿 ירוק מרווה וגווני אדמה חמימים (Sage Green & Warm Earth)", value: "Sage Green & Warm Earth: Soft natural linen backdrop (#f7f5f0), sage green (#7a9a85), warm terracotta accents (#c87d55), and soothing organic hues." },
               { name: "⚡ סגול עמוק וטורקיז זוהר (Deep Violet & Luminous Turquoise)", value: "Deep Violet & Luminous Turquoise: Rich dark violet backdrop (#140c24), luminous turquoise (#00f2fe), soft lavender panels, and high-energy highlights." },

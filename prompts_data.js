@@ -7,11 +7,11 @@
 const PROMPTS_DATA = [
   {
     id: "presentation",
-    title: "פרומפט למצגת רפואית קלינית",
-    subtitle: "Medical Presentation Design Prompt",
+    title: "מחולל פרומפטים למצגות WOW – הדרכה, שיווק ופרזנטציות",
+    subtitle: "Universal High-Impact Presentation Design Prompt",
     icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0V18m0 0V21m0-3h7.5m0 0V21m-7.5-6h7.5M5.25 5.25h13.5v7.5H5.25v-7.5z" /></svg>`,
-    category: "מצגות ותקשורת רפואית",
-    description: "עיצוב מצגות רפואיות קליניות המשלבות את תיאוריית העומס הקוגניטיבי (CLT) עם אסתטיקת השקה יוקרטית.",
+    category: "מצגות, הדרכה ותקשורת חזותית",
+    description: "יצירת מצגות מטורפות שתופסות את העין ומשדרגות פי 1000 כל הדרכה, הרצאה, מצגת שיווקית או קלינית. כולל שליטה ברמת הפירוט, קהל היעד והסגנון העיצובי.",
     variables: [
       {
         id: "SLIDE_COUNT",
@@ -20,22 +20,28 @@ const PROMPTS_DATA = [
         default: "10"
       },
       {
-        id: "CLINICAL_TOPIC",
-        label: "נושא קליני / מוצר",
-        placeholder: "הזן את הנושא המדעי או הקליני...",
-        default: "שילוב מערכות בינה מלאכותית בניטור חולים מרחוק למניעת אי-ספיקת לב חריפה"
+        id: "PRESENTATION_TOPIC",
+        label: "נושא המצגת / ההדרכה (כללי, שיווקי, לימודי או רפואי)",
+        placeholder: "הזן את נושא המצגת, ההדרכה, המוצר או ההרצאה...",
+        default: "הדרכה מעשית ליישום כלי בינה מלאכותית להגברת הפריון והחדשנות בעבודה היומיומית"
       },
       {
         id: "TARGET_AUDIENCE",
         label: "קהל יעד (Target Audience)",
         placeholder: "בחר או הזן את קהל היעד...",
-        default: "Healthcare & Clinical Staff (Physicians, Specialists, Nurses): Focus on anatomical accuracy, evidence-based data tables, clinical trial metrics, structured protocol workflows, and authoritative professional tone."
+        default: "General Public & Broad Community: Accessible, highly engaging language, relatable analogies, clear visual hierarchy, and empowering call-to-action."
+      },
+      {
+        id: "DEPTH_LEVEL",
+        label: "רמת הפירוט במצגת (Depth Level & Density)",
+        placeholder: "בחר רמת פירוט...",
+        default: "High-Level Executive Highlights: Concise, punchy, low-text presentation format designed for live presentation. Limit text to max 15-20 words per card/slide component. Feature giant key metrics (e.g. 85%, 3.5X, $10M+), bold single-sentence takeaways, and powerful visual anchors that the speaker can elaborate on orally."
       },
       {
         id: "DESIGN_STYLE",
         label: "סגנון עיצובי ואסתטיקה (Visual Style & Aesthetics)",
         placeholder: "בחר סגנון עיצובי...",
-        default: "High-Impact Marketing & Cinematic 3D: Zero plain white backgrounds. Utilize dark atmospheric backdrops (Dark Obsidian/Deep Charcoal) enhanced with subtle gradient meshes and micro-textured depth mapping. Feature photorealistic 3D floating objects embedded seamlessly into slide backgrounds to create visual drama. Incorporate glassmorphism bento containers, high-contrast focal points, bold geometric header typography, and dynamic asymmetrical balance designed to instantly capture attention and maximize audience engagement."
+        default: "High-Impact Cinematic WOW & 3D Visual Drama: STRICTLY NO PLAIN WHITE SLIDES! Master dark atmospheric backdrops (Dark Obsidian #090d16 / Deep Charcoal) with luminous gradient meshes and subtle depth texturing. Feature photorealistic 3D floating visual elements (isometric icons, floating glass spheres, glowing symbols) embedded into slide backgrounds. Use glassmorphism bento containers, high-contrast visual focal points, bold headline typography (50pt+), and dynamic asymmetrical layouts designed to deliver a jaw-dropping, unforgettable 10x presentation experience."
       },
       {
         id: "COLOR_PALETTE",
@@ -47,42 +53,47 @@ const PROMPTS_DATA = [
         id: "OUTPUT_LANGUAGE",
         label: "שפת פלט והגדרות כיוון",
         placeholder: "למשל: עברית עם יישור מימין לשמאל...",
-        default: "Hebrew (עברית בהירה, תקנית, מדויקת מבחינה רפואית ומנוסחת באמפתיה רבה) מעוצב מימין לשמאל כמו שמקובל בעברית"
+        default: "Hebrew (עברית בהירה, תקנית, סוחפת ומעוצבת מימין לשמאל כראוי)"
       }
     ],
-    template: `You are a Senior Medical Communications Information Designer and an Elite HealthTech Brand Strategist. Your task is to generate a comprehensive, visually breathtaking, and scientifically rigorous {SLIDE_COUNT}-slide presentation based on the clinical topic provided below. The output must seamlessly synthesize Cognitive Load Theory (CLT) with the specified visual design style, target audience criteria, and color palette.
+    template: `You are a World-Class Principal Presentation Designer, Keynote Creative Director, and Master Information Architect. Your mission is to generate a jaw-dropping, 10x-impact, {SLIDE_COUNT}-slide master presentation blueprint for the topic provided below.
 
-[CLINICAL TOPIC INPUT]: "{CLINICAL_TOPIC}"
+[PRESENTATION TOPIC / CONTENT]: "{PRESENTATION_TOPIC}"
 [TARGET AUDIENCE CRITERIA]: "{TARGET_AUDIENCE}"
+[DEPTH LEVEL & TEXT DENSITY]: "{DEPTH_LEVEL}"
 [VISUAL DESIGN STYLE]: "{DESIGN_STYLE}"
 [COLOR PALETTE SPECIFICATION]: "{COLOR_PALETTE}"
 [OUTPUT LANGUAGE & DIRECTION]: "{OUTPUT_LANGUAGE}"
 
-PART 1: MASTER VISUAL DESIGN ARCHITECTURE
-- VISUAL STYLE SYSTEM: Strictly apply "{DESIGN_STYLE}". Enforce the specified structural layout, surface depth, lighting model, and atmospheric background elements.
-- COLOR PALETTE SYSTEM: Apply "{COLOR_PALETTE}". Use the dominant hue for structural surfaces/backdrops, the secondary hue for container grids, and the accent highlight hue strictly for critical focal points and key metrics. Maintain WCAG AAA contrast ratio throughout.
-- AUDIENCE ALIGNMENT: Adapt language density, terminology, graphic iconography, and tone according to "{TARGET_AUDIENCE}".
+================================================================================
+CRITICAL DESIGN EXECUTION DIRECTIVES (NEVER GENERATE BORING SLIDES)
+================================================================================
+1. STRICT VISUAL STYLE EXECUTION: Adhere 100% to "{DESIGN_STYLE}". Absolutely NO plain, default white bullet-list slides unless explicitly requested. Every single slide MUST feature dark atmospheric or custom textured backdrops, glassmorphism bento containers, photorealistic 3D/photographic floating anchors, or editorial spatial depth.
+2. COLOR PALETTE IMPLEMENTATION: Strictly enforce "{COLOR_PALETTE}". Apply dominant colors for structural surfaces, secondary colors for grid containers, and the accent color ONLY for vital metrics, focal headlines, and call-to-actions (minimum WCAG AAA contrast).
+3. DEPTH LEVEL ENFORCEMENT: Execute "{DEPTH_LEVEL}" across all slides. If High-Level, prioritize massive visual numbers, punchy headers, and zero fluff. If Deep-Dive, provide rich, structured, comprehensive explanatory copy in organized cards.
+4. ZERO BORING BULLET POINTS: NEVER output raw bullet lists. Transform all lists into structured Bento Grid cards, visual timeline nodes, split-screen comparison blocks, or numbered process cards.
+5. SLIDE-BY-SLIDE BLUEPRINT FORMATTING: For every single slide (1 to {SLIDE_COUNT}), provide:
+   - [SLIDE NUMBER & TYPE]: (e.g. Slide 1 - Hero Cinematic Title / Slide 3 - 3-Card Bento Grid)
+   - [HEADLINE]: Bold, insight-driven action title (44-64pt)
+   - [CONTENT STRUCTURE & COPY]: Formatted layout blocks with exact text, metrics, or cards.
+   - [VISUAL ASSET PROMPT]: A detailed Midjourney/DALL-E prompt for the accompanying 3D floating object, hero graphic, or diagram.
 
-PART 2: COGNITIVE LOAD THEORY (CLT) & GRAPHIC RULES
-- ONE CORE INSIGHT PER SLIDE: Focus each slide on a single key takeaway. Partition complex multi-step data across sequential slides.
-- INTEGRATED ANNOTATIONS (ELIMINATE SPLIT ATTENTION): Place chart labels, data metrics, and explanatory callouts directly onto diagram components using minimal pointers. Do not use detached legends.
-- MODALITY & REDUNDANCY ELIMINATION: Replace heavy text paragraphs with streamlined infographics, timelines, or 3D visual representations.
-- EMPATHY & CLARITY: Ensure all human or patient illustrations display recognizable, empathetic facial features to build trust and eliminate anxiety.
+================================================================================
+MASTER {SLIDE_COUNT}-SLIDE NARRATIVE ARCHITECTURE
+================================================================================
+Generate the complete presentation specifying every slide from 1 to {SLIDE_COUNT}:
+1. Hero Cover Slide: High-impact category-defining title with a dramatic 3D visual anchor prompt.
+2. The Core Problem / Context: Framing the challenge and setting the stakes for the target audience.
+3. The Gap / Why Current Approaches Fail: Contrasting old vs new.
+4. Core Solution / Value Proposition: Revealing the central concept or framework.
+5. Mechanism / Step-by-Step Walkthrough: Visual process flow (3-5 structured steps).
+6. Evidence & Key Results / Metrics: Highlighting data, proof points, or key takeaways in accent colors.
+7. Real-World Application / Case Example: Demonstrating practical execution in action.
+8. Implementation Framework / Roadmap: Milestones and actionable next steps.
+9. Frequently Asked Questions / Key Considerations: Addressing obstacles proactively.
+10. High-Impact Call to Action & Conclusion: Clear summary and final inspiring closing statement.
 
-PART 3: BIOMEDICAL NARRATIVE STRUCTURE ({SLIDE_COUNT}-SLIDE FLOW)
-Construct the presentation logically following this structure:
-1. Cover Slide: Captivating category-defining title capturing clinical urgency.
-2. Clinical Need / Context: The core challenge framed for the target audience.
-3. The Friction / Gap: Why existing solutions fall short or cause cognitive friction.
-4. Core Solution / Innovation: Introducing the clinical value proposition.
-5. Mechanism of Action (MOA) / Process: Step-by-step visual of how the solution operates.
-6. Evidence & Clinical Impact: Key validation metrics highlighted in the accent color.
-7. User / Patient Journey: Clean visual timeline of real-world implementation.
-8. Healthcare Integration: Data flow into clinical workflows without administrative burden.
-9. Safety, Compliance & Trust: Outlining regulatory standards and data security.
-10. Actionable Conclusion: Clear next steps and onboarding resources.
-
-Ensure all text is output in {OUTPUT_LANGUAGE} with precise medical terminology, flawless grammar, and optimal RTL (Right-to-Left) slide formatting. Do not output placeholder text.`,
+Generate the entire presentation in {OUTPUT_LANGUAGE}, using flawless grammar, professional tone, and optimal Right-to-Left (RTL) slide layout formatting. Output the full text with zero placeholders.`,
     background: {
       title: "מדריך לארכיטקטורת מצגות רפואיות",
       subtitle: "המדריך המלא לשילוב אופטימיזציה קוגניטיבית ואסתטיקה שיווקית עילית",
