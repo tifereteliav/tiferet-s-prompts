@@ -27,21 +27,21 @@ const PROMPTS_DATA = [
       },
       {
         id: "TARGET_AUDIENCE",
-        label: "קהל יעד",
+        label: "קהל יעד (Target Audience)",
         placeholder: "בחר או הזן את קהל היעד...",
-        default: "Healthcare & Clinical Staff (Physicians, Specialists, Nurses) - דגש על דיוק אנטומי ומדעי, טבלאות נתונים מבוססות ראיות, מנגנוני פעולה קליניים וטון סמכותי ומקצועי"
+        default: "Healthcare & Clinical Staff (Physicians, Specialists, Nurses): Focus on anatomical accuracy, evidence-based data tables, clinical trial metrics, structured protocol workflows, and authoritative professional tone."
       },
       {
         id: "DESIGN_STYLE",
-        label: "סגנון עיצובי ואסתטיקה",
+        label: "סגנון עיצובי ואסתטיקה (Visual Style & Aesthetics)",
         placeholder: "בחר סגנון עיצובי...",
-        default: "High-Impact Marketing & Eye-Catching 3D: ללא רקע לבן משעמם! רקע כהה עוצמתי (Dark Obsidian #090d16 או Deep Midnight), אלמנטים ואובייקטים תלת-ממדיים מרחפים ברקע (Photorealistic 3D floating medical objects), צבעי ניאון עזים וניגודיים (Cyan/Teal/Purple), דוגמאות ומרקמים מיוחדים ברקע, כרטיסיות Bento גלאסמורפיזם, ועיצוב מטורף ותופס עין שלא רואים כל יום!"
+        default: "High-Impact Marketing & Cinematic 3D: Zero plain white backgrounds. Utilize dark atmospheric backdrops (Dark Obsidian/Deep Charcoal) enhanced with subtle gradient meshes and micro-textured depth mapping. Feature photorealistic 3D floating objects embedded seamlessly into slide backgrounds to create visual drama. Incorporate glassmorphism bento containers, high-contrast focal points, bold geometric header typography, and dynamic asymmetrical balance designed to instantly capture attention and maximize audience engagement."
       },
       {
         id: "COLOR_PALETTE",
-        label: "פלטת צבעים למצגת",
+        label: "פלטת צבעים (Color Palette)",
         placeholder: "בחר פלטת צבעים...",
-        default: "Dark Obsidian & Vivid Neon - רקע כהה עמוק (#090d16), ניאון טורקיז (#22d3ee), סגול זוהר (#a855f7) וניגודיות עזה ביותר שתופסת את העין"
+        default: "Vivid High-Contrast Neon: Deep obsidian backdrop (#090d16), vibrant neon cyan (#22d3ee), electric purple (#a855f7), and high-contrast glowing accents."
       },
       {
         id: "OUTPUT_LANGUAGE",
@@ -50,34 +50,34 @@ const PROMPTS_DATA = [
         default: "Hebrew (עברית בהירה, תקנית, מדויקת מבחינה רפואית ומנוסחת באמפתיה רבה) מעוצב מימין לשמאל כמו שמקובל בעברית"
       }
     ],
-    template: `You are a Senior Medical Communications Information Designer and an Elite HealthTech Brand Strategist. Your task is to generate a comprehensive, visually breathtaking, and scientifically rigorous {SLIDE_COUNT}-slide presentation based on the clinical topic provided below. The output must seamlessly synthesize the educational discipline of Cognitive Load Theory (CLT) with the requested design style, target audience criteria, and high-end visual aesthetic.
+    template: `You are a Senior Medical Communications Information Designer and an Elite HealthTech Brand Strategist. Your task is to generate a comprehensive, visually breathtaking, and scientifically rigorous {SLIDE_COUNT}-slide presentation based on the clinical topic provided below. The output must seamlessly synthesize Cognitive Load Theory (CLT) with the specified visual design style, target audience criteria, and color palette.
 
 [CLINICAL TOPIC INPUT]: "{CLINICAL_TOPIC}"
-[TARGET AUDIENCE]: "{TARGET_AUDIENCE}"
-[DESIGN STYLE & VISUAL AESTHETIC]: "{DESIGN_STYLE}"
-[COLOR PALETTE]: "{COLOR_PALETTE}"
-[OUTPUT LANGUAGE]: "{OUTPUT_LANGUAGE}"
+[TARGET AUDIENCE CRITERIA]: "{TARGET_AUDIENCE}"
+[VISUAL DESIGN STYLE]: "{DESIGN_STYLE}"
+[COLOR PALETTE SPECIFICATION]: "{COLOR_PALETTE}"
+[OUTPUT LANGUAGE & DIRECTION]: "{OUTPUT_LANGUAGE}"
 
-PART 1: COMPREHENSIVE DESIGN TOKENS & VISUAL SYSTEM
-- VISUAL STYLE DIRECTIVE: Strictly adhere to "{DESIGN_STYLE}". Integrate custom visual patterns, depth layering, structural containers, and thematic artwork tailored to this style.
-- COLOR PALETTE & CONTRAST: Apply "{COLOR_PALETTE}" as the master visual color scheme. Maintain strict WCAG AAA contrast ratio for text accessibility across all devices.
-- TARGET AUDIENCE ALIGNMENT: Adapt language complexity, data representation, graphic iconography, and narrative framing specifically for "{TARGET_AUDIENCE}".
+PART 1: MASTER VISUAL DESIGN ARCHITECTURE
+- VISUAL STYLE SYSTEM: Strictly apply "{DESIGN_STYLE}". Enforce the specified structural layout, surface depth, lighting model, and atmospheric background elements.
+- COLOR PALETTE SYSTEM: Apply "{COLOR_PALETTE}". Use the dominant hue for structural surfaces/backdrops, the secondary hue for container grids, and the accent highlight hue strictly for critical focal points and key metrics. Maintain WCAG AAA contrast ratio throughout.
+- AUDIENCE ALIGNMENT: Adapt language density, terminology, graphic iconography, and tone according to "{TARGET_AUDIENCE}".
 
-PART 2: COGNITIVE OVERLOAD PREVENTION CRITERIA (CLT RULES)
-- ONE CORE INSIGHT PER SLIDE: Structure every single slide around one clear takeaway or clinical decision point. Partition complex multi-step data across distinct sequential slides.
-- INTEGRATED ANNOTATIONS (NO SPLIT ATTENTION): Embed labels, metrics, and explanatory callouts directly onto visual diagrams and flowcharts using subtle pointers. Eliminate distant legends.
-- MODALITY & REDUNDANCY ELIMINATION: Replace dense text paragraphs with streamlined infographics, timelines, or 3D visual representations. Avoid redundant text that repeats diagram content.
-- EMPATHY & CLARITY: Ensure all anatomical or human illustrations feature recognizable, empathetic facial features to build trust and reduce clinical anxiety.
+PART 2: COGNITIVE LOAD THEORY (CLT) & GRAPHIC RULES
+- ONE CORE INSIGHT PER SLIDE: Focus each slide on a single key takeaway. Partition complex multi-step data across sequential slides.
+- INTEGRATED ANNOTATIONS (ELIMINATE SPLIT ATTENTION): Place chart labels, data metrics, and explanatory callouts directly onto diagram components using minimal pointers. Do not use detached legends.
+- MODALITY & REDUNDANCY ELIMINATION: Replace heavy text paragraphs with streamlined infographics, timelines, or 3D visual representations.
+- EMPATHY & CLARITY: Ensure all human or patient illustrations display recognizable, empathetic facial features to build trust and eliminate anxiety.
 
-PART 3: THE HIGH-END NARRATIVE FRAMEWORK ({SLIDE_COUNT}-SLIDE FLOW)
-Construct the presentation logically following this biomedical structure:
-1. Cover Slide: Captivating category-defining title reflecting the chosen aesthetic.
+PART 3: BIOMEDICAL NARRATIVE STRUCTURE ({SLIDE_COUNT}-SLIDE FLOW)
+Construct the presentation logically following this structure:
+1. Cover Slide: Captivating category-defining title capturing clinical urgency.
 2. Clinical Need / Context: The core challenge framed for the target audience.
-3. The Friction / Gap: Why traditional approaches fail or cause cognitive friction.
+3. The Friction / Gap: Why existing solutions fall short or cause cognitive friction.
 4. Core Solution / Innovation: Introducing the clinical value proposition.
-5. Mechanism of Action (MOA) / Process: Step-by-step visual of how the solution works.
+5. Mechanism of Action (MOA) / Process: Step-by-step visual of how the solution operates.
 6. Evidence & Clinical Impact: Key validation metrics highlighted in the accent color.
-7. User / Patient Journey: Clean, empathetic visual timeline of real-world implementation.
+7. User / Patient Journey: Clean visual timeline of real-world implementation.
 8. Healthcare Integration: Data flow into clinical workflows without administrative burden.
 9. Safety, Compliance & Trust: Outlining regulatory standards and data security.
 10. Actionable Conclusion: Clear next steps and onboarding resources.
