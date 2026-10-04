@@ -88,41 +88,42 @@ const PROMPTS_DATA = [
     ],
     template: `{PROMPT_CONTENT}`,
     background: {
-      title: "המדריך המלא: יצירת תמונות תדמית ופורטרטים מקצועיים ב-AI",
-      subtitle: "ממראה פלסטיק מביך לתוצאות שנראות טוב באמת – מתודולוגיית הצילום והריאליזם המתקדמת",
-      introduction: `תמונת תדמית מקצועית (Executive Headshot / Personal Branding Portrait) היא חלון הראווה הדיגיטלי שלכם ברשתות החברתיות, בלינקדאין, באתרי אינטרנט ובמצגות עסקיות.
+      title: "מדריך מתודולוגי: הנדסת פרומפטים לצילום תדמית ומיתוג אישי ב-AI",
+      subtitle: "עקרונות צילום מתקדמים, פיזיקה של תאורה, מפרט עדשות ואופטימיזציית טקסטורות לשנת 2026",
+      introduction: `תמונת תדמית מקצועית (Executive Headshot & Personal Branding Portrait) מהווה את העוגן החזותי של הזהות המקצועית בעידן הדיגיטלי. יצירת פורטרט סמכותי ומשכנע במחוללי בינה מלאכותית מודרניים דורשת הבנה מעמיקה בשפת הצילום המקצועי, דירקטיבות תאורה פיזיקליות, ומפרט טקסטילי מוחשי.
 
-בעוד שרוב מחוללי התמונות הגנריים מייצרים דמויות בעלות מראה "שעווה" או פלסטיק מלאכותי וחסר חיים, שימוש בהנדסת פרומפטים מקצועית המבוססת על עקרונות צילום אמיתיים – בחירת עדשות, תאורה עם כיוון, מרקמי בדים מוגדרים (Materials, Not Vibes), ועור אנושי בעל נקבוביות ופגמים טבעיים (Perfect Imperfection) – מייצר תוצאות עוצרות נשימה הנראות כאילו צולמו בסטודיו יוקרתי או נתפסו ברגע אותנטי מהחיים.
+בעוד שמודלים גנריים נוטים לייצר דימויים בעלי מראה סינתטי, שטוח או מלאכותי, יישום שיטתי של מתודולוגיית הנדסת פרומפטים מבוססת-מציאות – הכוללת בחירת אורך מוקד אופטי, תאורה בעלת כיווניות וצללים מוגדרים, פירוט חומרים פיזיים (Materials Specification), ומרקם עור בעל מאפיינים אותנטיים – מניב תוצאות פרימיום העומדות בסטנדרטים הגבוהים ביותר של צילום סטודיו ומגזינים בינלאומיים.
 
-מדריך זה מרכז את 6 הכללים הקריטיים מתוך הדרכת העומק לצילום תדמית ב-AI, יחד עם פירוט עדשות, זוויות צילום, והשוואת לבוש מדויקת בין גברים לנשים.`,
+מדריך זה מרכז את עקרונות המפתח להפקת דימויי תדמית איכותיים, כולל התאמה מגדרית קפדנית, מפרטי עדשות, ובקרת דיוק סגנונית.`,
       sections: [
         {
-          heading: "כלל 1: חומרים ולא תחושות (Materials, Not Vibes)",
-          content: `<p>הטעות הנפוצה ביותר היא לכתוב למודל ביטויים סובייקטיביים כמו <em>"חולצה יפה"</em>, <em>"חליפה יוקרתית"</em> או <em>"משרד מודרני"</em>. המודל אינו מבין "וייבים" מופשטים – הוא מבין <strong>מרקמים, שזירות וגימורים פיזיים</strong>:</p>
+          heading: "עקרון 1: מפרט חומרים ומרקמים פיזיים (Materials Specification)",
+          content: `<p>אחד העקרונות המרכזיים בשיפור איכות הפלט הוויזואלי הוא הימנעות ממונחים סובייקטיביים מופשטים (כגון <em>\"חולצה יפה\"</em> או <em>\"משרד מודרני\"</em>), והמרתם במפרט חומרי מדויק וטקסטורות מוגדרות:</p>
           <ul>
-            <li><strong>במקום "חולצה יפה":</strong> נגדיר <code>Chocolate brown linen shirt, natural linen fabric weave</code> (בד פשתן חום שוקולד בעל מרקם אריגה טבעי) או <code>crisp white poplin cotton button-down shirt</code>.</li>
-            <li><strong>במקום "חליפה מחויטת":</strong> נגדיר <code>structured ivory blazer in rich textured wool crepe over a jet-black modest dress</code>.</li>
-            <li><strong>הגדירו חומרים אמיתיים בסצנה:</strong> שיש קררה לבן עם נימים אפורים עדינים (<code>pristine white Carrara marble with delicate grey veining</code>), זהב 18K מלוטש או מוברש (<code>polished 18K gold</code>), זכוכית קריסטלית שקופה וחלקה (<code>seamless transparent crystalline glass</code>), או עץ אלון טבעי.</li>
+            <li><strong>הגדרת אריגים וטקסטיל:</strong> במקום תיאור כללי, יש להגדיר את אופן האריגה, המשקל וההרכב של הבד. דוגמה: <code>Chocolate brown linen shirt, natural linen fabric weave</code> (בד פשתן באריגה טבעית גלויה) או <code>crisp white poplin cotton button-down shirt</code> (כותנה פופלין מכופתרת מובנית).</li>
+            <li><strong>גזרות מחויטות עשירות:</strong> <code>structured ivory blazer in rich textured wool crepe over a jet-black modest dress</code> (בלייזר שנהב מצמר קרפ בעל טקסטורה מובחנת).</li>
+            <li><strong>פירוט חומרים פיזיים בסצנה:</strong> שיש קררה לבן בעל נימים אפורים עדינים (<code>pristine white Carrara marble with delicate grey veining</code>), זהב 18K מלוטש או מוברש (<code>polished 18K gold</code>), זכוכית קריסטלית שקופה וחלקה (<code>seamless transparent crystalline glass</code>), או חיפויי עץ אלון טבעי.</li>
+          </ul>
+          <p>הדיוק ברמת החומר מספק למודל עוגנים מבניים המונעים רינדור שטוח או גנרי.</p>`
+        },
+        {
+          heading: "עקרון 2: ארכיטקטורת תאורה וכיווניות צללים (Directional Lighting Architecture)",
+          content: `<p>הביטוי הכללי <code>Good lighting</code> אינו מספק למודל פרמטרים אופטיים לפעולה. אמינותו של דימוי מצולם נשענת בראש ובראשונה על כיווניות מקור האור, יחסי ניגודיות (Lighting Ratio) ויצירת צללים ריאליסטיים המגדירים נפח ומבנה תלת-ממדי:</p>
+          <ul>
+            <li><strong>תאורת יום טבעית וצללים שבורים (Natural Window Light):</strong> הגדרה כדוגמת <code>Soft natural window light from the left, casting irregular leaf-like shadows</code> מייצרת שבירת אור אסימטרית ומבנה צללים אותנטי שהעין האנושית מזהה כצילום אמיתי ולא כהדמיה ממוחשבת.</li>
+            <li><strong>תאורת סטודיו מובנית והפרדת סילואט (Key Light & Golden Rim Light):</strong> שימוש בתאורת מפתח רכה (<code>Dedicated soft-box key light</code>) להארת תווי הפנים בזווית 45 מעלות, בשילוב תאורת שוליים מוזהבת עדינה (<code>subtle golden rim light</code>) המפרידה את הסילואט מהרקע ומעניקה עומק ונפח רב-שכבתי.</li>
+            <li><strong>תאורת High-Key נקייה לפרופיל מקצועי:</strong> תאורה רכה מפוזרת המבטלת צללים קשים באזור העיניים, ומספקת אסתטיקה בהירה, נקייה וסמכותית המתאימה במיוחד לתמונות פרופיל דיגיטליות.</li>
           </ul>`
         },
         {
-          heading: "כלל 2: תאורה עם כיוון, לא \"תאורה טובה\" (Directional Lighting)",
-          content: `<p>הביטוי <code>Good lighting</code> הוא ביטוי ריק שלא אומר למודל שום דבר. מה שהופך תמונה לאמינה זו תאורה שמייצרת <strong>צללים אמיתיים ומבנה נפח תלת-ממדי</strong> בחדר:</p>
-          <ul>
-            <li><strong>אור חלון אותנטי עם צללים שבורים:</strong> <code>Soft natural window light from the left, casting irregular leaf-like shadows</code>. ברגע שיש לתאורה כיוון מוגדר וצללים לא אחידים, מוח האדם תופס את הפריים כצילום אמיתי ולא כרינדור ממוחשב.</li>
-            <li><strong>תאורת סטודיו ממוקדת והפרדת שוליים:</strong> שילוב של סופט-בוקס רך המאיר את תווי הפנים בזווית 45 מעלות, יחד עם תאורת שוליים מוזהבת עדינה (<code>subtle golden rim light</code>) המפרידה את הסילואט מהרקע ויוצרת עומק קולנועי.</li>
-            <li><strong>תאורת High-Key מוארת ונקייה:</strong> ביטול צללים כבדים מתחת לעיניים באמצעות תאורה רכה מפוזרת שמעניקה לפנים זוהר מקצועי ונקי (מתאים במיוחד לתמונות פרופיל לרשתות).</li>
-          </ul>`
-        },
-        {
-          heading: "כלל 3: מחקו מיד את 5 מילות הפלסטיק של ה-AI!",
-          content: `<p>הימנעו לחלוטין משימוש במילות הבאזז הנדושות: <code>8K</code>, <code>ultra-realistic</code>, <code>masterpiece</code>, <code>hyper-detailed</code>, <code>award-winning</code>.</p>
+          heading: "עקרון 3: דירקטיבת אותנטיות אנושית והסרת מונחי באזז סינתטיים (Human Authenticity Directive)",
+          content: `<p>ניתוח מעמיק של אלגוריתמי היצירה מעלה כי שימוש במונחי באזז נדושים – כגון <code>8K</code>, <code>ultra-realistic</code>, <code>hyper-detailed</code>, <code>masterpiece</code> או <code>award-winning</code> – מייצר לעיתים קרובות אפקט הפוך: מרקם שעווה מבריק ומראה פלסטיק מלאכותי האופייני לגרפיקה ממוחשבת.</p>
           <div class="table-container">
             <table>
               <thead>
                 <tr>
-                  <th>במקום מילות הפלסטיק (שיוצרות עור שעווה מלאכותי)</th>
-                  <th>החליפו בביטויי אמינות ואותנטיות אנושית</th>
+                  <th>מונחי באזז היוצרים מראה סינתטי</th>
+                  <th>מינוח מקצועי המבסס אמינות פוטו-ריאליסטית</th>
                 </tr>
               </thead>
               <tbody>
@@ -131,120 +132,126 @@ const PROMPTS_DATA = [
                   <td><code>realistic skin texture, visible pores, subtle natural imperfections</code></td>
                 </tr>
                 <tr>
-                  <td><code>award-winning flawless face</code></td>
-                  <td><code>natural authentic expression, perfectly imperfect, gentle laugh lines</code></td>
+                  <td><code>award-winning flawless airbrushed face</code></td>
+                  <td><code>authentic facial expression, natural skin tones, gentle laugh lines</code></td>
                 </tr>
                 <tr>
-                  <td><code>plastic studio glamour</code></td>
-                  <td><code>tactile fabric weaves, natural hair strands, authentic depth of field</code></td>
+                  <td><code>plastic studio glamour render</code></td>
+                  <td><code>tactile fabric weaves, natural hair strands, optical depth of field</code></td>
                 </tr>
               </tbody>
             </table>
           </div>
-          <p>פגמים קלים ומרקמי עור אמיתיים הם בדיוק מה שהופך תמונה לאנושית ומעוררת אמון! אף אחד מאיתנו אינו בובת פלסטיק.</p>`
+          <p>שילוב פגמים עדינים, נקבוביות עור נראות לעין ומרקמי סיבים טבעיים מבסס אמינות פוטו-ריאליסטית גבוהה ומעוררת אמון.</p>`
         },
         {
-          heading: "כלל 4: שפת מצלמה היא סגנון, לא פיזיקה (Camera Lens Aesthetics)",
-          content: `<p>המודל אינו מרכיב עדשת זכוכית פיזית, אלא מזהה את <strong>האסתטיקה, הפרופורציות ועומק השדה</strong> שמזוהים עם כל אורך מוקד:</p>
+          heading: "עקרון 4: מפרט אופטי ועומק שדה (Focal Length & Lens Aesthetics)",
+          content: `<p>המודל מזהה מפרטי עדשות כמערכת חוקים אסתטית המגדירה פרספקטיבה, עיוותים מרחביים (Distortion) ועומק שדה (Depth of Field):</p>
           <div class="table-container">
             <table>
               <thead>
                 <tr>
                   <th>אורך מוקד ועדשה</th>
-                  <th>סגנון והשפעה ויזואלית</th>
-                  <th>מתי מומלץ להשתמש?</th>
+                  <th>מאפיינים אופטיים והשפעה חזותית</th>
+                  <th>ייעוד מומלץ</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <td><strong>85mm ב-f/1.8 (או f/1.2)</strong></td>
-                  <td>ברירת המחדל המושלמת לפורטרט מחמיא, פרופורציות פנים טבעיות, טשטוש רקע מלטף ובוקה קולנועי רך.</td>
-                  <td>תמונות תדמית מנהלים, פורטרטים יוקרתיים, צילום על רקע אותיות או שולחן שיש.</td>
+                  <td>דחיסת פרספקטיבה אופטימלית, פרופורציות פנים טבעיות ומחמיאות, הפרדת רקע רכה ואלגנטית (Creamy Blooming Bokeh).</td>
+                  <td>תמונות תדמית מנהלים, פורטרטים יוקרתיים וצילום קונספטואלי.</td>
                 </tr>
                 <tr>
                   <td><strong>100mm ב-f/1.4</strong></td>
-                  <td>תקריב פנים הדוק (Tight Headshot), פוקוס חד על העיניים, פירוט נקבוביות מרבי ובידוד מוחלט מהרקע.</td>
-                  <td>תמונת פרופיל סמכותית ל-LinkedIn, כתבות עיתונות, כרטיסי מרצה.</td>
+                  <td>תקריב פנים הדוק (Tight Headshot), פוקוס חד על העיניים, בידוד מרבי מהרקע ועומק שדה רדוד במיוחד.</td>
+                  <td>תמונת פרופיל סמכותית ל-LinkedIn, כתבות עיתונות וכרטיסי מרצה.</td>
                 </tr>
                 <tr>
                   <td><strong>50mm ב-f/1.8</strong></td>
-                  <td>מראה תיעודי, נקי, קרוב מאוד לזווית הראייה הטבעית של העין האנושית, ללא עיוותי פרספקטיבה.</td>
-                  <td>תמונות תדמית יומיומיות, מבט ישיר ואמין בגובה העיניים, סביבת קליניקה.</td>
+                  <td>זווית ראייה הקרובה ביותר לראייה האנושית, נקייה מעיוותי פרספקטיבה ומעבירה ישירות מקצועית ואמינה.</td>
+                  <td>תמונות תדמית יומיומיות, תקשורת רפואית וסביבת קליניקה.</td>
                 </tr>
                 <tr>
                   <td><strong>24mm – 35mm</strong></td>
-                  <td>זווית רחבה יחסית הלוכדת את הדמות יחד עם סביבת העבודה המלאה. תחושה יומיומית אותנטית של צילום סמארטפון איכותי.</td>
-                  <td>תמונות סביבת עבודה, צילום בתוך מעבדה/משרד פתוח, פוסטים לרשתות חברתיות.</td>
+                  <td>זווית רחבה יחסית הלוכדת את הדמות בהקשר הסביבתי המלא (Environmental Portrait).</td>
+                  <td>תיעוד סביבת עבודה, מעבדות, משרדים פתוחים ומדיה דיגיטלית.</td>
                 </tr>
               </tbody>
             </table>
           </div>`
         },
         {
-          heading: "כלל 5: עריכה במקום יצירה מחדש (Edit, Don't Regenerate)",
-          content: `<p>קיבלתם תמונה שיצאה 90% מושלמת? <strong>אל תלחצו על Generate מחדש!</strong> אין Seed קבוע ברוב המודלים, ובחיים לא תקבלו שוב את אותה גרסה מוצלחת.</p>
-          <p>במקום זאת, תנו הוראת עריכה נקודתית במבנה הבא:</p>
+          heading: "עקרון 5: מתודולוגיית עריכה נקודתית (Targeted Iteration: Edit, Don't Regenerate)",
+          content: `<p>בשל היעדר Seed קבוע במרבית המודלים הגנרטיביים המודרניים, יצירה מחדש (Regenerate) של פלט מוצלח מובילה לאובדן הקומפוזיציה ומאפייני הדמות.</p>
+          <p>המתודולוגיה המקצועית מחייבת מעבר להוראת עריכה נקודתית מובנית (Targeted Inpainting / Modification Directive):</p>
           <div style="background: rgba(0, 203, 203, 0.08); border: 1px solid rgba(0, 203, 203, 0.25); border-radius: 8px; padding: 1rem; margin: 1rem 0; font-family: monospace; direction: ltr; text-align: left;">
-            Strictly maintain the exact character identity, facial structure, skin texture, lighting, and composition 100% identical. Only modify: [הגדירו שינוי בודד, למשל צבע החליפה או הבעת החיוך]. Make no other changes.
+            Strictly maintain the exact character identity, facial structure, skin texture, lighting, and core scene composition 100% identical. Make only the following specific modification: "[SPECIFIC CHANGE]". Make no other changes.
           </div>
-          <p><strong>הכלל:</strong> שינוי נקודתי אחד בכל פעם, תוך דרישה מפורשת לשמר את כל שאר מרכיבי התמונה.</p>`
+          <p>עקרון זה מבטיח יישום מבוקר של שינויים צבעוניים או סגנוניים תוך שמירה קפדנית על שלמות הפריים.</p>`
         },
         {
-          heading: "כלל 6: הטיפ למתקדמים – הטריק של ה-Camera Roll",
-          content: `<p>רוצים תמונה שנראית כמו תפיסה אותנטית שתפסתם ברגע אמיתי מהגלריה של הטלפון ולא כמו צילום סטודיו מלאכותי? תתארו <em>"כשל" קל של מצלמה</em>:</p>
+          heading: "עקרון 6: אסתטיקה דוקומנטרית ולכידה חיה (Authentic Handheld & Candid Aesthetic)",
+          content: `<p>עבור צרכים הדורשים תחושה אותנטית שאינה מבוימת, ניתן להנחות את המודל לדמות מאפיינים של לכידה תיעודית חיה (Candid Photography):</p>
           <ul>
-            <li><code>Shot on iPhone, AF pulled slightly to the background</code> (הפוקוס האוטומטי נמשך מעט לרקע)</li>
-            <li><code>incomplete HDR correction, direct handheld flash</code></li>
+            <li><code>Shot on iPhone, natural candid handheld framing</code> (קומפוזיציה טבעית נטולת בימוי)</li>
+            <li><code>AF pulled slightly to the background, incomplete HDR correction, direct handheld flash</code></li>
           </ul>
-          <p>כאשר המיקוד מעט מטושטש על הדמות וחד על הרקע או כאשר התאורה אינה שטוחה אלא פלאש ישיר אופנתי, המוח האנושי משתכנע מיד שמדובר בצילום אמיתי ולא בבינה מלאכותית!</p>`
+          <p>שילוב מבוקר של מאפיינים אלו מסיר את הניכור המאפיין תאורת סטודיו סינתטית, ומייצר דימוי בעל תוקף פוטו-ז'ורנליסטי גבוה.</p>`
         },
         {
-          heading: "איך להבטיח שהחליפה של האישה תיראה נשית ולא גברית? (Feminine Tailoring)",
-          content: `<p>במחוללי תמונות בינה מלאכותית (Midjourney, Flux, DALL-E), שימוש במילים כלליות כמו <em>"Suit"</em>, <em>"Blazer"</em> או <em>"Button-down shirt"</em> עלול לגרום למודל להשתמש במשקלי אימון של חליפות עסקים גבריות (כתפיים רחבות ומרובעות, גזרה ישרה ללא מותן ומראה מגושם). כדי להבטיח שהתוצאה תהיה <strong>נשית, מחמיאה, אלגנטית ומדויקת</strong>, המערכת משלבת מספר מנגנוני הגנה מוכחים:</p>
+          heading: "עקרון 7: הנדסת גזרה נשית מחויטת (Feminine Couture Tailoring Architecture)",
+          content: `<p>במחוללי תמונות AI, מונחים בלתי מסויגים כגון <em>\"Suit\"</em>, <em>\"Blazer\"</em> או <em>\"Button-down shirt\"</em> מפעילים לעיתים קרובות את משקלי האימון של חליפות עסקים גבריות, המתאפיינות במבנה קופסתי, כתפיים מרובעות וגזרה ישרה. כדי להבטיח תוצאה נשית, מעודנת ומחמיאה, המערכת משלבת פרוטוקול ניסוח קפדני:</p>
           <ul>
-            <li><strong>הגדרת גזרה מחוטבת (Cinched Waist & Princess Seams):</strong> הדגשת מותן מוגדרת (<code>contoured feminine waistline</code>) ותפרי פרינסס נשיים המונעים גזרה קופסתית.</li>
-            <li><strong>כתפיים רכות וטבעיות:</strong> שימוש ב-<code>soft natural feminine shoulder line</code> מבטל לחלוטין את כריות הכתפיים הגבריות המרובעות.</li>
-            <li><strong>דשים מעודנים (Shawl or Curved Lapels):</strong> דשים מעוגלים ודקים במקום דשי חליפה גבריים נוקשים.</li>
-            <li><strong>שכבה פנימית נשית ונשפכת:</strong> החלפת חולצה מכופתרת גברית בטופ משי רך (<code>fluid silk blouse</code>), שמלה צנועה זורמת עם מותן מוגדרת, או ז'קט שאנל/טוויד פריזאי עם כפתורי פנינה ללא דשים כלל (<code>Chanel-style collarless tweed jacket</code>).</li>
-            <li><strong>הנחיית שלילה מכוונת (Negative Prompt):</strong> הוספת <code>--no masculine cut, boxy suit, oversized male shoulders, necktie, male clothing</code> שמסננת כל מאפיין גברי באופן אקטיבי.</li>
+            <li><strong>הדגשת גזרה נשית מחוטבת (Contoured Waistline & Princess Seams):</strong> שימוש במונחים טכניים כגון <code>contoured feminine waistline</code>, <code>cinched waist</code>, ו-<code>tailored princess seams</code> המגדירים קימורים הרמוניים ומבנה נשי אלגנטי.</li>
+            <li><strong>מיתון קו הכתפיים:</strong> הגדרת <code>soft natural feminine shoulder line</code> למניעת כריות כתפיים גבריות נוקשות.</li>
+            <li><strong>דשים מעודנים (Shawl or Curved Lapels):</strong> דשים מעוגלים ודקים במקום דשי חליפה גבריים רחבים וקשיחים.</li>
+            <li><strong>שכבות פנימיות נשפכות:</strong> החלפת חולצות מכופתרות גבריות בטופ משי רך (<code>fluid silk blouse with graceful drape</code>), שמלה צנועה זורמת בעלת מותן מוגדרת, או ז'קט טוויד פריזאי נטול דשים עם כפתורי פנינה (<code>Chanel-style collarless tweed jacket</code>).</li>
+            <li><strong>הנחיית שלילה מערכתית (Negative Directives):</strong> הטמעת פקודת סינון אקטיבית: <code>--no masculine cut, boxy suit, oversized male shoulders, necktie, male clothing</code> לשלילה מוחלטת של אלמנטים גבריים.</li>
           </ul>`
         },
         {
-          heading: "השוואת ביגוד וסממנים מגדריים (Wardrobe Blueprint)",
-          content: `<p>התאמה של סגנון הלבוש והחליפה בהתאם למגדר ולסממני הראש:</p>
+          heading: "מפרט ביגוד והתאמה מגדרית (Wardrobe Specification Table)",
+          content: `<p>פרוטוקול התאמה סגנוני לפי מגדר וסממני זהות:</p>
           <div class="table-container">
             <table>
               <thead>
                 <tr>
                   <th>סגנון לבוש</th>
-                  <th>התאמה לאישה (כיסוי ראש צנוע)</th>
-                  <th>התאמה לאישה (שיער מעוצב פזור)</th>
-                  <th>התאמה לגבר</th>
+                  <th>מפרט לאישה (כיסוי ראש צנוע)</th>
+                  <th>מפרט לאישה (שיער מעוצב)</th>
+                  <th>מפרט לגבר</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <td><strong>מחויט עסקי יוקרתי</strong></td>
-                  <td>בלייזר שנהב מחויט מעל שמלה שחורה צנועה מבד צמר קרפ עשיר, כיסוי ראש אלגנטי תואם.</td>
-                  <td>בלייזר שחור מחויט מעל חולצה מכופתרת לבנה צחורה / בלייזר שנהב מעל טופ משי שחור, שיער מעוצב בבלואאוט מקצועי.</td>
-                  <td>חליפת צמר כהה (נייבי או פחם), חולצה מכופתרת לבנה צחורה מבד כותנה פופלין, מכנסיים מחויטים, עניבה אופציונלית.</td>
+                  <td>בלייזר שנהב מחוטב (Contoured Waist) מעל שמלה שחורה צנועה מצמר קרפ עשיר, כיסוי ראש אלגנטי תואם.</td>
+                  <td>בלייזר מחויט בגזרה נשית עם תפרי פרינסס מעל טופ משי שחור ומכנסיים מחויטים, שיער מעוצב בבלואאוט מקצועי.</td>
+                  <td>חליפת צמר כהה (נייבי עמוק או פחם), חולצה מכופתרת לבנה צחורה מכותנה פופלין, מכנסיים מחויטים.</td>
                 </tr>
                 <tr>
                   <td><strong>High-Contrast יוקרתי</strong></td>
-                  <td>שמלה שחורה צנועה מובחנת תחת בלייזר שנהב חד-גזרה (Ivory Blazer) עם טקסטורת אריג עשירה.</td>
-                  <td>טופ משי שחור יוקרתי תחת בלייזר שנהב חד-גזרה ומכנסיים שחורים מחויטים.</td>
+                  <td>שמלה שחורה צנועה זורמת תחת בלייזר שנהב בעל מותן מודגשת וטקסטורת אריג עשירה.</td>
+                  <td>טופ משי שחור נשפך תחת בלייזר שנהב בגזרה נשית מחוטבת ומכנסיים מחויטים.</td>
                   <td>חולצה לבנה מכופתרת מגוהצת תחת בלייזר שחור מחויט ומכנסי גרפיט כהים.</td>
                 </tr>
                 <tr>
+                  <td><strong>ז'קט טוויד / שאנל</strong></td>
+                  <td>ז'קט טוויד פריזאי ללא דשים עם שזירות זהב עדינות וכפתורי פנינה מעל שמלה שחורה צנועה.</td>
+                  <td>ז'קט טוויד שאנל קלאסי בגוון שמנת וזהב עם כפתורי פנינה מעל טופ משי ומכנסיים אלגנטיים.</td>
+                  <td>בלייזר טוויד עשיר בגוון אפור פחם מעל סריג קשמיר דק ומכנסי צ'ינו מחויטים.</td>
+                </tr>
+                <tr>
                   <td><strong>סמארט קז'ואל איכותי</strong></td>
-                  <td>שמלת פשתן אלגנטית ארוכה עם בלייזר קליל בגוון אבן/חול טבעי, צעיף/כיסוי ראש הרמוני.</td>
-                  <td>טופ משי אלגנטי ומכנסי פשתן מחויטים עם בלייזר רך בגוון אבן, שיער טבעי ומסודר.</td>
-                  <td>חולצת פשתן איכותית בצבע לבן או חום שוקולד (Natural Linen Weave), בלייזר קליל ומכנסי צ'ינו מחויטים.</td>
+                  <td>שמלת פשתן ארוכה אלגנטית עם בלייזר רך בגוון אבן טבעי, צעיף/כיסוי ראש הרמוני.</td>
+                  <td>טופ משי אלגנטי ומכנסי פשתן מחויטים עם בלייזר פשתן רך בגוון אבן, שיער טבעי ומסודר.</td>
+                  <td>חולצת פשתן איכותית בצבע חום שוקולד או לבן (Natural Linen Weave), בלייזר קליל ומכנסי צ'ינו.</td>
                 </tr>
                 <tr>
                   <td><strong>רפואי / HealthTech</strong></td>
-                  <td>חלוק רופאה לבן מגוהץ ואיכותי מעל ביגוד צנוע אלגנטי, או מדי סקראבס פרימיום בכחול נייבי עמוק.</td>
-                  <td>חלוק מעבדה/קליניקה לבן מוקפד מעל טופ כחול/שחור, או מדי סקראבס מעוצבים בגזרה מחמיאה.</td>
+                  <td>חלוק רופאה לבן מגוהץ בעל גזרה נשית מותאמת מעל ביגוד צנוע אלגנטי, או סקראבס פרימיום נייבי.</td>
+                  <td>חלוק מעבדה/קליניקה מותאם גוף מעל טופ כחול/שחור, או מדי סקראבס מעוצבים בגזרה מחמיאה.</td>
                   <td>חלוק רופאים לבן מגוהץ עם צווארון חד מעל חולצה מכופתרת כחולה, או סקראבס פרימיום מודרניים.</td>
                 </tr>
               </tbody>
@@ -253,12 +260,11 @@ const PROMPTS_DATA = [
         }
       ],
       sources: [
-        { name: "Master Photography & Lighting Guide (Materials, Not Vibes)", url: "#" },
-        { name: "Midjourney & Flux Character Consistency Blueprint", url: "https://midjourney.com" },
-        { name: "Executive Branding & High-Impact Headshots (2026 Standards)", url: "#" }
+        { name: "Professional Studio Portraiture & Lighting Physics (2026 Standards)", url: "#" },
+        { name: "Midjourney & Flux Character Consistency & Negative Constraints", url: "https://midjourney.com" },
+        { name: "Executive Branding & High-Impact Portraiture Blueprint", url: "#" }
       ]
-    }
-  },
+    }  },
   {
     id: "ai_logo_strategy",
     title: "מחולל פרומפטים לתוכנית אב למיתוג וזהות",

@@ -553,7 +553,7 @@ document.addEventListener("DOMContentLoaded", () => {
       helperBanner.className = "var-helper-badge";
       helperBanner.innerHTML = `
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z" /></svg>
-        <span>הגדרת מגדר, לבוש, עדשות ותאורה לפי 6 כללי הריאליזם (ממרקמי בדים ועד עור אנושי אותנטי)</span>
+        <span>מערכת הנדסת פרומפטים לתמונות תדמית: התאמה מגדרית, מפרט טקסטיל מוחשי ודירקטיבות תאורה ועדשות</span>
       `;
       variablesForm.appendChild(helperBanner);
 
@@ -563,7 +563,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const currentGender = userVariables[promptId]["GENDER"] || "woman_covered";
       
       genderGroup.innerHTML = `
-        <label>1. הגדרת מגדר וסממני ראש / שיער (סממני דמות בסיסיים)</label>
+        <label>1. הגדרת מגדר וסממני זהות / שיער (בסיס אנטומי וסממני דמות)</label>
         <div class="mode-toggle-group cols-3">
           <button type="button" class="mode-btn ${currentGender === 'woman_covered' ? 'active' : ''}" data-gender="woman_covered">
             🧕 אישה (כיסוי ראש צנוע)
@@ -583,7 +583,7 @@ document.addEventListener("DOMContentLoaded", () => {
       scenarioGroup.className = "var-input-group";
       const currentScenario = userVariables[promptId]["SCENARIO"] || "3d_letters";
       scenarioGroup.innerHTML = `
-        <label for="input-SCENARIO">2. קונספט וסצנת התדמית (מתוך הדוגמאות המובילות)</label>
+        <label for="input-SCENARIO">2. קונספט וסביבת הצילום (קומפוזיציה ותפאורה)</label>
         <select id="input-SCENARIO" class="steps-count-select">
           <option value="3d_letters" ${currentScenario === '3d_letters' ? 'selected' : ''}>🔤 אותיות 3D ענקיות מזהב 18K וקריסטל (Zen-Tech Studio - דוגמאות 6, 7, 8)</option>
           <option value="marble_table" ${currentScenario === 'marble_table' ? 'selected' : ''}>🏛️ שולחן שיש קררה לבן, פירות/מוצרים וכיתוב זהב חרוט (דוגמאות 1, 2)</option>
@@ -668,7 +668,7 @@ document.addEventListener("DOMContentLoaded", () => {
       wardrobeGroup.className = "var-input-group";
       
       wardrobeGroup.innerHTML = `
-        <label for="input-WARDROBE_STYLE">3. סגנון לבוש ואריגים (מותאם מגדרית - חומרים ולא וייבים)</label>
+        <label for="input-WARDROBE_STYLE">3. מפרט טקסטיל וגזרה מגדרית (Materials Specification)</label>
         <select id="input-WARDROBE_STYLE" class="steps-count-select"></select>
         <div id="custom-wardrobe-container" style="display: none; margin-top: 0.5rem;">
           <textarea id="input-CUSTOM_WARDROBE" rows="2" placeholder="תאר את סוג האריג, הצבעים וגזרת הלבוש (למשל: Navy blue wool blazer, crisp white poplin shirt)...">${escapeHTML(userVariables[promptId]["CUSTOM_WARDROBE"] || "")}</textarea>
@@ -759,13 +759,13 @@ document.addEventListener("DOMContentLoaded", () => {
       lensGroup.className = "var-input-group";
       const currentLens = userVariables[promptId]["CAMERA_LENS"] || "85mm";
       lensGroup.innerHTML = `
-        <label for="input-CAMERA_LENS">4. שפת מצלמה ועדשות (סגנון ואסתטיקה - כלל 4)</label>
+        <label for="input-CAMERA_LENS">4. מפרט אופטי ועומק שדה (Focal Length & Lens Aesthetics)</label>
         <select id="input-CAMERA_LENS" class="steps-count-select">
           <option value="85mm" ${currentLens === '85mm' ? 'selected' : ''}>📷 85mm f/1.8 – הברירת-מחדל המושלמת לפורטרט מחמיא והפרדת רקע רכה (Blooming Bokeh)</option>
           <option value="100mm" ${currentLens === '100mm' ? 'selected' : ''}>🔍 100mm f/1.4 – תקריב פנים הדוק ל-LinkedIn ופוקוס חד על העיניים (Extreme Detail)</option>
           <option value="50mm" ${currentLens === '50mm' ? 'selected' : ''}>🌿 50mm f/1.8 – מראה תיעודי, טבעי ונקי ללא עיוותי פרספקטיבה (Documentary Clean)</option>
           <option value="35mm" ${currentLens === '35mm' ? 'selected' : ''}>📱 35mm – יומיומי ואותנטי, לכידת סביבת העבודה הרחבה</option>
-          <option value="camera_roll" ${currentLens === 'camera_roll' ? 'selected' : ''}>📸 טריק ה-Camera Roll המתקדם (Shot on iPhone, AF pulled to background)</option>
+          <option value="camera_roll"  ${currentLens === 'camera_roll' ? 'selected' : ''}>📸 סגנון דוקומנטרי אותנטי (Handheld / Camera Roll Aesthetic)</option>
         </select>
       `;
       variablesForm.appendChild(lensGroup);
@@ -780,7 +780,7 @@ document.addEventListener("DOMContentLoaded", () => {
       lightingGroup.className = "var-input-group";
       const currentLighting = userVariables[promptId]["LIGHTING"] || "softbox_rim";
       lightingGroup.innerHTML = `
-        <label for="input-LIGHTING">5. תאורה עם כיוון (מבנה צללים אמיתי - כלל 2)</label>
+        <label for="input-LIGHTING">5. ארכיטקטורת תאורה וכיווניות צללים (Directional Lighting Architecture)</label>
         <select id="input-LIGHTING" class="steps-count-select">
           <option value="softbox_rim" ${currentLighting === 'softbox_rim' ? 'selected' : ''}>💡 סופט-בוקס סטודיו ממוקד ותאורת שוליים מוזהבת (Dedicated Soft-Box & Golden Rim Light)</option>
           <option value="window_leaf" ${currentLighting === 'window_leaf' ? 'selected' : ''}>🪟 אור חלון טבעי מהצד עם צללים שבורים אותנטיים (Soft window light casting leaf-like shadows)</option>
@@ -800,7 +800,7 @@ document.addEventListener("DOMContentLoaded", () => {
       realismGroup.className = "var-input-group";
       const currentRealism = userVariables[promptId]["REALISM_MODE"] || "authentic_skin";
       realismGroup.innerHTML = `
-        <label>6. סגנון ריאליזם ומרקם עור (הסרת מילות פלסטיק AI - כלל 3)</label>
+        <label>6. דירקטיבת אותנטיות אנושית (עור טבעי מול מונחי באזז)</label>
         <div class="mode-toggle-group cols-2">
           <button type="button" class="mode-btn ${currentRealism === 'authentic_skin' ? 'active' : ''}" data-realism="authentic_skin">
             🌿 ריאליזם אותנטי (נקבוביות עור, פגמים טבעיים)
@@ -826,7 +826,7 @@ document.addEventListener("DOMContentLoaded", () => {
       actionGroup.className = "var-input-group";
       const currentAction = userVariables[promptId]["ACTION_MODE"] || "generate";
       actionGroup.innerHTML = `
-        <label>7. מצב פעולה (עריכה במקום יצירה מחדש - כלל 5)</label>
+        <label>7. מצב פעולה (יצירה חדשה / עריכה נקודתית)</label>
         <div class="mode-toggle-group cols-2">
           <button type="button" class="mode-btn ${currentAction === 'generate' ? 'active' : ''}" data-action="generate">
             ✨ יצירת תמונה חדשה מאפס
@@ -838,7 +838,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <div id="edit-instruction-container" style="display: ${currentAction === 'edit' ? 'block' : 'none'}; margin-top: 0.75rem;">
           <label for="input-EDIT_INSTRUCTION" style="color: var(--primary-teal);">מה ברצונך לשנות בתמונה הקיימת? (make no other changes)</label>
           <input type="text" id="input-EDIT_INSTRUCTION" value="${escapeHTML(userVariables[promptId]["EDIT_INSTRUCTION"] || "change blazer color to deep midnight navy")}" placeholder="למשל: change blazer color to emerald green או add warm gentle smile..." />
-          <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.25rem;">התמונה יצאה 90% מושלמת? המודל ישמור על תווי הפנים, התאורה והתנוחה ויבצע אך ורק את השינוי הזה.</p>
+          <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.25rem;">מתודולוגיית עריכה נקודתית: שימור מלא של תווי הפנים, התאורה והקומפוזיציה, תוך יישום שינוי ממוקד ויחיד.</p>
         </div>
       `;
       variablesForm.appendChild(actionGroup);
