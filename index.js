@@ -695,21 +695,24 @@ document.addEventListener("DOMContentLoaded", () => {
           ];
         } else if (gender === "woman_styled") {
           options = [
-            { val: "tailored_contrast", text: "🕶️ High-Contrast יוקרתי (טופ משי שחור יוקרתי תחת בלייזר שנהב חד-גזרה ומכנסיים מחויטים)" },
-            { val: "tailored_business", text: "👔 מחויט עסקי קלאסי (בלייזר שחור מחויט מעל חולצה מכופתרת לבנה צחורה / טופ משי)" },
-            { val: "smart_casual", text: "👕 סמארט קז'ואל איכותי (טופ משי אלגנטי ומכנסי פשתן מחויטים עם בלייזר אבן/שנהב רך)" },
-            { val: "healthtech_clinical", text: "🩺 רפואי / HealthTech (חלוק רופאה לבן מוקפד מעל טופ כחול או סקראבס מעוצבים בגזרה מחמיאה)" },
-            { val: "luxury_gala", text: "✨ ערב יוקרתי ואירועי גאלה (שמלת ערב מרהיבה עם טקסטורות עשירות או חליפת טוקסידו נשית)" },
+            { val: "tailored_feminine_cinched", text: "👑 חליפה נשית מחוטבת עם מותן מודגשת (Chic Contoured Waist - גזרה נשית מחמיאה)" },
+            { val: "tailored_contrast", text: "🕶️ High-Contrast נשי מחוטב (טופ משי נשפך ובלייזר שנהב בגזרה נשית מותאמת)" },
+            { val: "chanel_tweed", text: "✨ ז'קט שאנל / טוויד פריזאי יוקרתי וכפתורי פנינה (ללא דשים גבריים - Chanel-Style Tweed)" },
+            { val: "silk_feminine_suit", text: "🌸 חליפת מכנסיים נשית עם חולצת משי נשפכת (Fluid Silk Drape & Soft Shoulders)" },
+            { val: "smart_casual", text: "👕 סמארט קז'ואל נשי מפשתן ומשי (טופ משי ובלייזר פשתן רך בגוון אבן)" },
+            { val: "healthtech_clinical", text: "🩺 רפואי / HealthTech בגזרה נשית מותאמת (חלוק רופאה מותאם גוף או סקראבס מעוצבים)" },
+            { val: "luxury_gala", text: "💎 ערב יוקרתי ואירועי גאלה (שמלת ערב מרהיבה עם טקסטורות עשירות וגזרה נשית)" },
             { val: "custom", text: "✍️ לבוש בהתאמה אישית (הקלד חופשי)" }
           ];
         } else {
           // woman_covered
           options = [
-            { val: "tailored_contrast", text: "🕶️ High-Contrast יוקרתי (שמלה שחורה צנועה תחת בלייזר שנהב חד-גזרה באריג צמר קרפ עשיר)" },
-            { val: "tailored_business", text: "👔 מחויט עסקי יוקרתי (חולצה מכופתרת לבנה מתחת לז'קט שחור מחויט, כיסוי ראש תואם)" },
-            { val: "smart_casual", text: "👕 סמארט קז'ואל איכותי (שמלת פשתן ארוכה ובלייזר אבן/שנהב עם כיסוי ראש הרמוני)" },
-            { val: "healthtech_clinical", text: "🩺 רפואי / HealthTech (חלוק רופאה לבן מוקפד מעל ביגוד צנוע אלגנטי או סקראבס פרימיום נייבי)" },
-            { val: "luxury_gala", text: "✨ ערב יוקרתי ואירועי גאלה (שמלת ערב צנועה יוקרתית עם טקסטורות עשירות ובלייזר שנהב מעודן)" },
+            { val: "tailored_contrast", text: "🕶️ High-Contrast נשי מחוטב (שמלה שחורה צנועה זורמת ובלייזר שנהב מותאם לגוף)" },
+            { val: "tailored_feminine_cinched", text: "👑 חליפה נשית צנועה מחוטבת (Feminine Cinched Suit - תפרי פרינסס וגזרה נשית)" },
+            { val: "chanel_tweed", text: "✨ ז'קט שאנל / טוויד פריזאי יוקרתי וכפתורי פנינה (ללא דשים גבריים מעל שמלה שחורה)" },
+            { val: "smart_casual", text: "👕 סמארט קז'ואל נשי איכותי (שמלת פשתן ארוכה ובלייזר אבן/שנהב עם כיסוי ראש הרמוני)" },
+            { val: "healthtech_clinical", text: "🩺 רפואי / HealthTech בגזרה נשית מותאמת (חלוק רופאה מותאם גוף מעל שמלה אלגנטית)" },
+            { val: "luxury_gala", text: "💎 ערב יוקרתי ואירועי גאלה (שמלת ערב צנועה יוקרתית עם טקסטורות עשירות ובלייזר שנהב מעודן)" },
             { val: "custom", text: "✍️ לבוש בהתאמה אישית (הקלד חופשי)" }
           ];
         }
@@ -1262,44 +1265,53 @@ document.addEventListener("DOMContentLoaded", () => {
           }
         } else if (gender === "woman_styled") {
           switch (wardrobeStyle) {
-            case "tailored_business":
-              wardrobeText = `She wears a sophisticated, high-contrast ensemble: a sleek, high-quality black silk top under her signature sharp-tailored ivory blazer in textured wool crepe with tailored black trousers.`;
+            case "tailored_feminine_cinched":
+              wardrobeText = `She wears an exquisitely tailored feminine suit: a chic, tailored feminine blazer with an elegant contoured waistline (cinched waist), delicate princess seams, and softer natural shoulders, paired with high-waisted tailored trousers and a soft silk blouse, strictly avoiding boxy or masculine cuts.`;
               break;
             case "tailored_contrast":
-              wardrobeText = `She wears a modern smart-casual outfit: a high-quality black top and tailored black trousers, layered under a clean, structured blazer in a light stone or ivory shade.`;
+              wardrobeText = `She wears an effortlessly chic feminine ensemble: a soft, fluid black silk camisole top with a graceful drape, layered under a bespoke ivory blazer featuring a contoured feminine waistline (cinched waist), slender curved lapels, and feminine shoulder lines, paired with high-waisted tailored trousers (strictly avoiding boxy or masculine suit cuts).`;
+              break;
+            case "chanel_tweed":
+              wardrobeText = `She wears an iconic luxury Chanel-style collarless tweed jacket in cream and gold weave with delicate pearl buttons, worn over a fine black silk top and tailored trousers—classic, glamorous, and purely feminine.`;
+              break;
+            case "silk_feminine_suit":
+              wardrobeText = `She wears an elegant modern feminine suit: a fluid, lustrous silk blouse with delicate draped gathers, layered under a chic feminine jacket with softly sculpted shoulders and tailored slim trousers.`;
               break;
             case "smart_casual":
-              wardrobeText = `She wears an effortless luxury smart-casual look: an ivory silk blouse layered under a relaxed linen blazer with tailored trousers and refined fabric textures.`;
+              wardrobeText = `She wears an effortless luxury feminine smart-casual look: an ivory silk blouse layered under a relaxed, softly draped linen blazer in a warm stone shade, paired with tailored trousers and refined fabric textures.`;
               break;
             case "healthtech_clinical":
-              wardrobeText = `She wears a pristine, tailored doctor's lab coat in crisp white twill over an elegant navy blouse, exuding medical excellence and compassionate leadership.`;
+              wardrobeText = `She wears a pristine, tailored doctor's lab coat designed specifically with a contoured feminine waistline and soft shoulders over an elegant navy blouse, exuding medical excellence and compassionate leadership.`;
               break;
             case "luxury_gala":
-              wardrobeText = `She wears an exquisite evening gown with rich tactile fabrics, delicate hand-finished detailing, and understated luxury textures.`;
+              wardrobeText = `She wears a breathtaking evening gown with sculpted feminine drapery, tactile luxury fabric textures, and subtle sparkling accents.`;
               break;
             default:
-              wardrobeText = `She wears a crisp white button-down shirt under a sharp-tailored black feminine suit jacket.`;
+              wardrobeText = `She wears a chic, tailored feminine suit jacket with a contoured waistline over a delicate silk blouse, celebrating a graceful feminine silhouette.`;
           }
         } else {
           // woman_covered
           switch (wardrobeStyle) {
             case "tailored_contrast":
-              wardrobeText = `She wears her signature high-contrast ensemble: a premium jet-black modest dress (or blouse and skirt) layered under a structured, sharp-tailored blazer in a light cream or ivory shade, with rich fabric textures.`;
+              wardrobeText = `She wears an exquisitely tailored high-contrast feminine ensemble: an elegant flowing jet-black modest dress with a softly cinched waist, layered under a chic bespoke ivory blazer featuring a graceful contoured feminine waistline (cinched waist), delicate curved lapels, and soft natural shoulders, completely tailored for a feminine silhouette (strictly avoiding boxy or masculine suit cuts).`;
               break;
-            case "tailored_business":
-              wardrobeText = `She wears a crisp white button-down shirt under a sharp-tailored black feminine suit jacket, perfectly coordinated with her elegant modest head covering.`;
+            case "tailored_feminine_cinched":
+              wardrobeText = `She wears a chic, tailored feminine suit jacket with subtle waist darts (cinched waist), graceful curved lapels, and soft natural shoulders over a fluid black modest dress, radiating refined feminine authority and graceful poise (avoiding oversized or masculine cuts).`;
+              break;
+            case "chanel_tweed":
+              wardrobeText = `She wears a luxury Parisian-style collarless tweed jacket in ivory and gold weave with delicate pearl buttons and soft feminine trims, worn over an elegant modest black dress—timeless, sophisticated, and undeniably feminine.`;
               break;
             case "smart_casual":
-              wardrobeText = `She wears a refined modest smart-casual ensemble: a long flowing linen dress in rich earthy tones paired with an unconstructed stone blazer and a harmonizing head covering.`;
+              wardrobeText = `She wears a refined modest smart-casual ensemble: a long flowing linen dress in rich earthy tones paired with an unconstructed, softly draped stone blazer and a harmonizing head covering.`;
               break;
             case "healthtech_clinical":
-              wardrobeText = `She wears a pristine tailored white clinical coat over an elegant modest black ensemble, combining medical authority with welcoming warmth.`;
+              wardrobeText = `She wears a pristine tailored white clinical coat with a contoured feminine waistline over an elegant modest black ensemble, combining medical authority with welcoming feminine warmth.`;
               break;
             case "luxury_gala":
-              wardrobeText = `She wears a bespoke high-end modest gala dress with rich woven textures, layered under an ivory tailored blazer with subtle golden accents.`;
+              wardrobeText = `She wears a bespoke high-end modest gala dress with rich woven textures and a softly defined feminine waist, layered under an ivory tailored blazer with subtle golden accents.`;
               break;
             default:
-              wardrobeText = `She wears her signature high-contrast ensemble: a jet-black modest dress under a sharp-tailored ivory blazer.`;
+              wardrobeText = `She wears a chic feminine ivory blazer with a contoured waistline over a jet-black modest dress, tailored gracefully for a woman's silhouette.`;
           }
         }
 
@@ -1367,15 +1379,20 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         const arParam = `--ar ${ar}`;
+        let antiMasculineNegative = "";
+        if (gender === "woman_covered" || gender === "woman_styled") {
+          antiMasculineNegative = "--no masculine cut, boxy suit, oversized male shoulders, necktie, male clothing";
+        }
 
-        finalPromptText = `${opening} ${scenarioText} ${wardrobeText} ${lightingText} ${cameraText} ${arParam}`;
+        finalPromptText = `${opening} ${scenarioText} ${wardrobeText} ${lightingText} ${cameraText} ${arParam} ${antiMasculineNegative}`.trim();
 
         htmlPreviewText = `${escapeHTML(opening)}<br><br>` +
           `<mark>${escapeHTML(scenarioText)}</mark><br><br>` +
           `<mark>${escapeHTML(wardrobeText)}</mark><br><br>` +
           `<mark>${escapeHTML(lightingText)}</mark><br><br>` +
           `<mark>${escapeHTML(cameraText)}</mark><br><br>` +
-          `<mark>${escapeHTML(arParam)}</mark>`;
+          `<mark>${escapeHTML(arParam)}</mark>` +
+          (antiMasculineNegative ? `<br><br><mark style="background: rgba(239, 68, 68, 0.2); color: #fca5a5; border-color: rgba(239, 68, 68, 0.4);">${escapeHTML(antiMasculineNegative)}</mark>` : "");
       }
     } else {
       prompt.variables.forEach(v => {

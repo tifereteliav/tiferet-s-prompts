@@ -199,6 +199,17 @@ const PROMPTS_DATA = [
           <p>כאשר המיקוד מעט מטושטש על הדמות וחד על הרקע או כאשר התאורה אינה שטוחה אלא פלאש ישיר אופנתי, המוח האנושי משתכנע מיד שמדובר בצילום אמיתי ולא בבינה מלאכותית!</p>`
         },
         {
+          heading: "איך להבטיח שהחליפה של האישה תיראה נשית ולא גברית? (Feminine Tailoring)",
+          content: `<p>במחוללי תמונות בינה מלאכותית (Midjourney, Flux, DALL-E), שימוש במילים כלליות כמו <em>"Suit"</em>, <em>"Blazer"</em> או <em>"Button-down shirt"</em> עלול לגרום למודל להשתמש במשקלי אימון של חליפות עסקים גבריות (כתפיים רחבות ומרובעות, גזרה ישרה ללא מותן ומראה מגושם). כדי להבטיח שהתוצאה תהיה <strong>נשית, מחמיאה, אלגנטית ומדויקת</strong>, המערכת משלבת מספר מנגנוני הגנה מוכחים:</p>
+          <ul>
+            <li><strong>הגדרת גזרה מחוטבת (Cinched Waist & Princess Seams):</strong> הדגשת מותן מוגדרת (<code>contoured feminine waistline</code>) ותפרי פרינסס נשיים המונעים גזרה קופסתית.</li>
+            <li><strong>כתפיים רכות וטבעיות:</strong> שימוש ב-<code>soft natural feminine shoulder line</code> מבטל לחלוטין את כריות הכתפיים הגבריות המרובעות.</li>
+            <li><strong>דשים מעודנים (Shawl or Curved Lapels):</strong> דשים מעוגלים ודקים במקום דשי חליפה גבריים נוקשים.</li>
+            <li><strong>שכבה פנימית נשית ונשפכת:</strong> החלפת חולצה מכופתרת גברית בטופ משי רך (<code>fluid silk blouse</code>), שמלה צנועה זורמת עם מותן מוגדרת, או ז'קט שאנל/טוויד פריזאי עם כפתורי פנינה ללא דשים כלל (<code>Chanel-style collarless tweed jacket</code>).</li>
+            <li><strong>הנחיית שלילה מכוונת (Negative Prompt):</strong> הוספת <code>--no masculine cut, boxy suit, oversized male shoulders, necktie, male clothing</code> שמסננת כל מאפיין גברי באופן אקטיבי.</li>
+          </ul>`
+        },
+        {
           heading: "השוואת ביגוד וסממנים מגדריים (Wardrobe Blueprint)",
           content: `<p>התאמה של סגנון הלבוש והחליפה בהתאם למגדר ולסממני הראש:</p>
           <div class="table-container">
