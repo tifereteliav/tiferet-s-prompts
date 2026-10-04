@@ -140,6 +140,24 @@ document.addEventListener("DOMContentLoaded", () => {
       userVariables[prompt.id]["step_10"] = "";
     }
 
+    // Custom initialization for branding_headshots
+    if (prompt.id === "branding_headshots") {
+      userVariables[prompt.id]["GENDER"] = "woman_covered";
+      userVariables[prompt.id]["SCENARIO"] = "3d_letters";
+      userVariables[prompt.id]["CUSTOM_SCENARIO"] = "";
+      userVariables[prompt.id]["WARDROBE_STYLE"] = "tailored_contrast";
+      userVariables[prompt.id]["CUSTOM_WARDROBE"] = "";
+      userVariables[prompt.id]["NAME_TEXT"] = "Tiferet";
+      userVariables[prompt.id]["ENGRAVED_TEXT"] = 'חג ט"ו בשבט שמח!';
+      userVariables[prompt.id]["DISPLAY_ITEMS"] = "an exquisite arrangement of premium Tu BiShvat fruits—glistening Medjool dates, honey-glazed apricots, ruby-red pomegranate seeds, and vibrant tropical fruits—styled like high-end jewelry";
+      userVariables[prompt.id]["CAMERA_LENS"] = "85mm";
+      userVariables[prompt.id]["LIGHTING"] = "softbox_rim";
+      userVariables[prompt.id]["REALISM_MODE"] = "authentic_skin";
+      userVariables[prompt.id]["ACTION_MODE"] = "generate";
+      userVariables[prompt.id]["EDIT_INSTRUCTION"] = "change blazer color to deep midnight navy";
+      userVariables[prompt.id]["ASPECT_RATIO"] = "1:1";
+    }
+
     // Custom initialization for unique_images
     if (prompt.id === "unique_images") {
       userVariables[prompt.id]["MODE"] = "image_based";
@@ -529,6 +547,354 @@ document.addEventListener("DOMContentLoaded", () => {
       renderSelectedBar();
       renderCatalogCategories();
 
+    } else if (promptId === "branding_headshots") {
+      // Helper Banner
+      const helperBanner = document.createElement("div");
+      helperBanner.className = "var-helper-badge";
+      helperBanner.innerHTML = `
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z" /></svg>
+        <span>הגדרת מגדר, לבוש, עדשות ותאורה לפי 6 כללי הריאליזם (ממרקמי בדים ועד עור אנושי אותנטי)</span>
+      `;
+      variablesForm.appendChild(helperBanner);
+
+      // 1. Gender & Hair / Head-covering Selection
+      const genderGroup = document.createElement("div");
+      genderGroup.className = "var-input-group";
+      const currentGender = userVariables[promptId]["GENDER"] || "woman_covered";
+      
+      genderGroup.innerHTML = `
+        <label>1. הגדרת מגדר וסממני ראש / שיער (סממני דמות בסיסיים)</label>
+        <div class="mode-toggle-group cols-3">
+          <button type="button" class="mode-btn ${currentGender === 'woman_covered' ? 'active' : ''}" data-gender="woman_covered">
+            🧕 אישה (כיסוי ראש צנוע)
+          </button>
+          <button type="button" class="mode-btn ${currentGender === 'woman_styled' ? 'active' : ''}" data-gender="woman_styled">
+            👩 אישה (שיער מעוצב פזור)
+          </button>
+          <button type="button" class="mode-btn ${currentGender === 'man' ? 'active' : ''}" data-gender="man">
+            👨 גבר (חליפה וסממנים גבריים)
+          </button>
+        </div>
+      `;
+      variablesForm.appendChild(genderGroup);
+
+      // 2. Scenario & Concept Preset Selection
+      const scenarioGroup = document.createElement("div");
+      scenarioGroup.className = "var-input-group";
+      const currentScenario = userVariables[promptId]["SCENARIO"] || "3d_letters";
+      scenarioGroup.innerHTML = `
+        <label for="input-SCENARIO">2. קונספט וסצנת התדמית (מתוך הדוגמאות המובילות)</label>
+        <select id="input-SCENARIO" class="steps-count-select">
+          <option value="3d_letters" ${currentScenario === '3d_letters' ? 'selected' : ''}>🔤 אותיות 3D ענקיות מזהב 18K וקריסטל (Zen-Tech Studio - דוגמאות 6, 7, 8)</option>
+          <option value="marble_table" ${currentScenario === 'marble_table' ? 'selected' : ''}>🏛️ שולחן שיש קררה לבן, פירות/מוצרים וכיתוב זהב חרוט (דוגמאות 1, 2)</option>
+          <option value="open_executive_office" ${currentScenario === 'open_executive_office' ? 'selected' : ''}>🏢 משרד מנהלים מרווח ומואר - ללא שולחן מפריד לפתיחות (דוגמה 3)</option>
+          <option value="linkedin_headshot" ${currentScenario === 'linkedin_headshot' ? 'selected' : ''}>💼 הדשוט סמכותי ומנהיגותי ל-LinkedIn בזווית נמוכה קלה (דוגמה 4)</option>
+          <option value="social_avatar" ${currentScenario === 'social_avatar' ? 'selected' : ''}>📱 תמונת פרופיל סטודיו מוארת ונקייה לרשתות חברתיות (דוגמה 5)</option>
+          <option value="executive_lounge" ${currentScenario === 'executive_lounge' ? 'selected' : ''}>☕ לאונג' מנהלים יוקרתי עם קיר עץ אקוסטי וסביבת עבודה</option>
+          <option value="custom" ${currentScenario === 'custom' ? 'selected' : ''}>✍️ סצנה בהתאמה אישית חופשית (Custom Scenario)</option>
+        </select>
+      `;
+      variablesForm.appendChild(scenarioGroup);
+
+      // Dynamic container for scenario fields
+      const scenarioDetailsContainer = document.createElement("div");
+      scenarioDetailsContainer.id = "scenario-details-container";
+      variablesForm.appendChild(scenarioDetailsContainer);
+
+      const renderScenarioFields = (scen) => {
+        scenarioDetailsContainer.innerHTML = "";
+
+        if (scen === "3d_letters") {
+          const nameGroup = document.createElement("div");
+          nameGroup.className = "var-input-group";
+          nameGroup.innerHTML = `
+            <label for="input-NAME_TEXT">שם הדמות / המותג המעוצב באותיות 3D מזהב וקריסטל</label>
+            <input type="text" id="input-NAME_TEXT" value="${escapeHTML(userVariables[promptId]["NAME_TEXT"] || "Tiferet")}" placeholder="הקלד שם (באנגלית או עברית, למשל: Tiferet)..." />
+          `;
+          scenarioDetailsContainer.appendChild(nameGroup);
+          nameGroup.querySelector("#input-NAME_TEXT").addEventListener("input", (e) => {
+            userVariables[promptId]["NAME_TEXT"] = e.target.value;
+            updateCodePreview();
+          });
+        } else if (scen === "marble_table") {
+          const textGroup = document.createElement("div");
+          textGroup.className = "var-input-group";
+          textGroup.innerHTML = `
+            <label for="input-ENGRAVED_TEXT">הכיתוב שייחרט באותיות זהב 18K על שולחן השיש</label>
+            <input type="text" id="input-ENGRAVED_TEXT" value="${escapeHTML(userVariables[promptId]["ENGRAVED_TEXT"] || 'חג ט\"ו בשבט שמח!')}" placeholder="הקלד את הכיתוב שרוצים שיופיע חרוט בזהב..." />
+          `;
+          scenarioDetailsContainer.appendChild(textGroup);
+          textGroup.querySelector("#input-ENGRAVED_TEXT").addEventListener("input", (e) => {
+            userVariables[promptId]["ENGRAVED_TEXT"] = e.target.value;
+            updateCodePreview();
+          });
+
+          const itemsGroup = document.createElement("div");
+          itemsGroup.className = "var-input-group";
+          itemsGroup.innerHTML = `
+            <label for="input-DISPLAY_ITEMS">סידור פריטים / מוצרים על שולחן השיש (פירות, ירקות או כל פריט מיתוגי)</label>
+            <textarea id="input-DISPLAY_ITEMS" rows="2" placeholder="למשל: סידור פירות ט&quot;ו בשבט יוקרתיים, לפטופ יוקרתי, או מוצרי החברה...">${escapeHTML(userVariables[promptId]["DISPLAY_ITEMS"] || "")}</textarea>
+          `;
+          scenarioDetailsContainer.appendChild(itemsGroup);
+          itemsGroup.querySelector("#input-DISPLAY_ITEMS").addEventListener("input", (e) => {
+            userVariables[promptId]["DISPLAY_ITEMS"] = e.target.value;
+            updateCodePreview();
+          });
+        } else if (scen === "custom") {
+          const customGroup = document.createElement("div");
+          customGroup.className = "var-input-group";
+          customGroup.innerHTML = `
+            <label for="input-CUSTOM_SCENARIO">תיאור סצנה ומיקום בהתאמה אישית</label>
+            <textarea id="input-CUSTOM_SCENARIO" rows="2" placeholder="תאר את הרקע, הסביבה והקומפוזיציה המבוקשת...">${escapeHTML(userVariables[promptId]["CUSTOM_SCENARIO"] || "")}</textarea>
+          `;
+          scenarioDetailsContainer.appendChild(customGroup);
+          customGroup.querySelector("#input-CUSTOM_SCENARIO").addEventListener("input", (e) => {
+            userVariables[promptId]["CUSTOM_SCENARIO"] = e.target.value;
+            updateCodePreview();
+          });
+        }
+      };
+
+      renderScenarioFields(currentScenario);
+
+      scenarioGroup.querySelector("#input-SCENARIO").addEventListener("change", (e) => {
+        userVariables[promptId]["SCENARIO"] = e.target.value;
+        renderScenarioFields(e.target.value);
+        updateCodePreview();
+      });
+
+      // 3. Wardrobe & Fabrics (Materials, Not Vibes - Rule 1)
+      const wardrobeGroup = document.createElement("div");
+      wardrobeGroup.className = "var-input-group";
+      
+      wardrobeGroup.innerHTML = `
+        <label for="input-WARDROBE_STYLE">3. סגנון לבוש ואריגים (מותאם מגדרית - חומרים ולא וייבים)</label>
+        <select id="input-WARDROBE_STYLE" class="steps-count-select"></select>
+        <div id="custom-wardrobe-container" style="display: none; margin-top: 0.5rem;">
+          <textarea id="input-CUSTOM_WARDROBE" rows="2" placeholder="תאר את סוג האריג, הצבעים וגזרת הלבוש (למשל: Navy blue wool blazer, crisp white poplin shirt)...">${escapeHTML(userVariables[promptId]["CUSTOM_WARDROBE"] || "")}</textarea>
+        </div>
+      `;
+      variablesForm.appendChild(wardrobeGroup);
+
+      const wardrobeSelect = wardrobeGroup.querySelector("#input-WARDROBE_STYLE");
+      const customWardrobeContainer = wardrobeGroup.querySelector("#custom-wardrobe-container");
+      const customWardrobeInput = wardrobeGroup.querySelector("#input-CUSTOM_WARDROBE");
+
+      const populateWardrobeOptions = (gender) => {
+        wardrobeSelect.innerHTML = "";
+        let options = [];
+
+        if (gender === "man") {
+          options = [
+            { val: "tailored_business", text: "👔 מחויט עסקי קלאסי (חליפת צמר כהה, חולצה מכופתרת לבנה צחורה מכותנה פופלין)" },
+            { val: "tailored_contrast", text: "🕶️ High-Contrast יוקרתי (חולצה לבנה מכופתרת תחת בלייזר שחור מחויט ומכנסי גרפיט)" },
+            { val: "smart_casual", text: "👕 סמארט קז'ואל מפשתן (חולצת פשתן חומה/לבנה באריג טבעי, בלייזר קליל ומכנסי צ'ינו)" },
+            { val: "healthtech_clinical", text: "🩺 רפואי / HealthTech (חלוק רופאים לבן מגוהץ עם צווארון חד או סקראבס נייבי יוקרתיים)" },
+            { val: "luxury_gala", text: "✨ ערב יוקרתי ואירועי גאלה (טוקסידו שחור עם דשי סאטן מבריקים ועניבת פרפר)" },
+            { val: "custom", text: "✍️ לבוש בהתאמה אישית (הקלד חופשי)" }
+          ];
+        } else if (gender === "woman_styled") {
+          options = [
+            { val: "tailored_contrast", text: "🕶️ High-Contrast יוקרתי (טופ משי שחור יוקרתי תחת בלייזר שנהב חד-גזרה ומכנסיים מחויטים)" },
+            { val: "tailored_business", text: "👔 מחויט עסקי קלאסי (בלייזר שחור מחויט מעל חולצה מכופתרת לבנה צחורה / טופ משי)" },
+            { val: "smart_casual", text: "👕 סמארט קז'ואל איכותי (טופ משי אלגנטי ומכנסי פשתן מחויטים עם בלייזר אבן/שנהב רך)" },
+            { val: "healthtech_clinical", text: "🩺 רפואי / HealthTech (חלוק רופאה לבן מוקפד מעל טופ כחול או סקראבס מעוצבים בגזרה מחמיאה)" },
+            { val: "luxury_gala", text: "✨ ערב יוקרתי ואירועי גאלה (שמלת ערב מרהיבה עם טקסטורות עשירות או חליפת טוקסידו נשית)" },
+            { val: "custom", text: "✍️ לבוש בהתאמה אישית (הקלד חופשי)" }
+          ];
+        } else {
+          // woman_covered
+          options = [
+            { val: "tailored_contrast", text: "🕶️ High-Contrast יוקרתי (שמלה שחורה צנועה תחת בלייזר שנהב חד-גזרה באריג צמר קרפ עשיר)" },
+            { val: "tailored_business", text: "👔 מחויט עסקי יוקרתי (חולצה מכופתרת לבנה מתחת לז'קט שחור מחויט, כיסוי ראש תואם)" },
+            { val: "smart_casual", text: "👕 סמארט קז'ואל איכותי (שמלת פשתן ארוכה ובלייזר אבן/שנהב עם כיסוי ראש הרמוני)" },
+            { val: "healthtech_clinical", text: "🩺 רפואי / HealthTech (חלוק רופאה לבן מוקפד מעל ביגוד צנוע אלגנטי או סקראבס פרימיום נייבי)" },
+            { val: "luxury_gala", text: "✨ ערב יוקרתי ואירועי גאלה (שמלת ערב צנועה יוקרתית עם טקסטורות עשירות ובלייזר שנהב מעודן)" },
+            { val: "custom", text: "✍️ לבוש בהתאמה אישית (הקלד חופשי)" }
+          ];
+        }
+
+        const currentVal = userVariables[promptId]["WARDROBE_STYLE"] || "tailored_contrast";
+        options.forEach(opt => {
+          const el = document.createElement("option");
+          el.value = opt.val;
+          el.innerText = opt.text;
+          if (opt.val === currentVal) el.selected = true;
+          wardrobeSelect.appendChild(el);
+        });
+
+        customWardrobeContainer.style.display = wardrobeSelect.value === "custom" ? "block" : "none";
+      };
+
+      populateWardrobeOptions(currentGender);
+
+      wardrobeSelect.addEventListener("change", (e) => {
+        userVariables[promptId]["WARDROBE_STYLE"] = e.target.value;
+        customWardrobeContainer.style.display = e.target.value === "custom" ? "block" : "none";
+        updateCodePreview();
+      });
+
+      customWardrobeInput.addEventListener("input", (e) => {
+        userVariables[promptId]["CUSTOM_WARDROBE"] = e.target.value;
+        updateCodePreview();
+      });
+
+      // Gender button click handlers
+      genderGroup.querySelectorAll(".mode-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+          genderGroup.querySelectorAll(".mode-btn").forEach(b => b.classList.remove("active"));
+          btn.classList.add("active");
+          const selectedGender = btn.dataset.gender;
+          userVariables[promptId]["GENDER"] = selectedGender;
+          populateWardrobeOptions(selectedGender);
+          updateCodePreview();
+        });
+      });
+
+      // 4. Camera Lens & Aesthetics (Rule 4 from images)
+      const lensGroup = document.createElement("div");
+      lensGroup.className = "var-input-group";
+      const currentLens = userVariables[promptId]["CAMERA_LENS"] || "85mm";
+      lensGroup.innerHTML = `
+        <label for="input-CAMERA_LENS">4. שפת מצלמה ועדשות (סגנון ואסתטיקה - כלל 4)</label>
+        <select id="input-CAMERA_LENS" class="steps-count-select">
+          <option value="85mm" ${currentLens === '85mm' ? 'selected' : ''}>📷 85mm f/1.8 – הברירת-מחדל המושלמת לפורטרט מחמיא והפרדת רקע רכה (Blooming Bokeh)</option>
+          <option value="100mm" ${currentLens === '100mm' ? 'selected' : ''}>🔍 100mm f/1.4 – תקריב פנים הדוק ל-LinkedIn ופוקוס חד על העיניים (Extreme Detail)</option>
+          <option value="50mm" ${currentLens === '50mm' ? 'selected' : ''}>🌿 50mm f/1.8 – מראה תיעודי, טבעי ונקי ללא עיוותי פרספקטיבה (Documentary Clean)</option>
+          <option value="35mm" ${currentLens === '35mm' ? 'selected' : ''}>📱 35mm – יומיומי ואותנטי, לכידת סביבת העבודה הרחבה</option>
+          <option value="camera_roll" ${currentLens === 'camera_roll' ? 'selected' : ''}>📸 טריק ה-Camera Roll המתקדם (Shot on iPhone, AF pulled to background)</option>
+        </select>
+      `;
+      variablesForm.appendChild(lensGroup);
+
+      lensGroup.querySelector("#input-CAMERA_LENS").addEventListener("change", (e) => {
+        userVariables[promptId]["CAMERA_LENS"] = e.target.value;
+        updateCodePreview();
+      });
+
+      // 5. Directional Lighting (Rule 2 from images)
+      const lightingGroup = document.createElement("div");
+      lightingGroup.className = "var-input-group";
+      const currentLighting = userVariables[promptId]["LIGHTING"] || "softbox_rim";
+      lightingGroup.innerHTML = `
+        <label for="input-LIGHTING">5. תאורה עם כיוון (מבנה צללים אמיתי - כלל 2)</label>
+        <select id="input-LIGHTING" class="steps-count-select">
+          <option value="softbox_rim" ${currentLighting === 'softbox_rim' ? 'selected' : ''}>💡 סופט-בוקס סטודיו ממוקד ותאורת שוליים מוזהבת (Dedicated Soft-Box & Golden Rim Light)</option>
+          <option value="window_leaf" ${currentLighting === 'window_leaf' ? 'selected' : ''}>🪟 אור חלון טבעי מהצד עם צללים שבורים אותנטיים (Soft window light casting leaf-like shadows)</option>
+          <option value="sun_drenched" ${currentLighting === 'sun_drenched' ? 'selected' : ''}>☀️ אור יום טבעי שוטף וקרני שמש עדינות (Sun-drenched natural daylight)</option>
+          <option value="high_key_shadowless" ${currentLighting === 'high_key_shadowless' ? 'selected' : ''}>⚡ High-Key Studio זוהר ונקי ללא צללים (Radiant shadowless high-key)</option>
+        </select>
+      `;
+      variablesForm.appendChild(lightingGroup);
+
+      lightingGroup.querySelector("#input-LIGHTING").addEventListener("change", (e) => {
+        userVariables[promptId]["LIGHTING"] = e.target.value;
+        updateCodePreview();
+      });
+
+      // 6. Realism & Skin Texture Mode (Rule 3 from images)
+      const realismGroup = document.createElement("div");
+      realismGroup.className = "var-input-group";
+      const currentRealism = userVariables[promptId]["REALISM_MODE"] || "authentic_skin";
+      realismGroup.innerHTML = `
+        <label>6. סגנון ריאליזם ומרקם עור (הסרת מילות פלסטיק AI - כלל 3)</label>
+        <div class="mode-toggle-group cols-2">
+          <button type="button" class="mode-btn ${currentRealism === 'authentic_skin' ? 'active' : ''}" data-realism="authentic_skin">
+            🌿 ריאליזם אותנטי (נקבוביות עור, פגמים טבעיים)
+          </button>
+          <button type="button" class="mode-btn ${currentRealism === 'polished_studio' ? 'active' : ''}" data-realism="polished_studio">
+            💎 סטודיו מלוטש והיי-אנד (8K Masterpiece Style)
+          </button>
+        </div>
+      `;
+      variablesForm.appendChild(realismGroup);
+
+      realismGroup.querySelectorAll(".mode-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+          realismGroup.querySelectorAll(".mode-btn").forEach(b => b.classList.remove("active"));
+          btn.classList.add("active");
+          userVariables[promptId]["REALISM_MODE"] = btn.dataset.realism;
+          updateCodePreview();
+        });
+      });
+
+      // 7. Action Mode: Generate vs Edit (Rule 5 from images: Edit, Don't Regenerate)
+      const actionGroup = document.createElement("div");
+      actionGroup.className = "var-input-group";
+      const currentAction = userVariables[promptId]["ACTION_MODE"] || "generate";
+      actionGroup.innerHTML = `
+        <label>7. מצב פעולה (עריכה במקום יצירה מחדש - כלל 5)</label>
+        <div class="mode-toggle-group cols-2">
+          <button type="button" class="mode-btn ${currentAction === 'generate' ? 'active' : ''}" data-action="generate">
+            ✨ יצירת תמונה חדשה מאפס
+          </button>
+          <button type="button" class="mode-btn ${currentAction === 'edit' ? 'active' : ''}" data-action="edit">
+            🎯 הוראת עריכה נקודתית (שימור 100% קיים)
+          </button>
+        </div>
+        <div id="edit-instruction-container" style="display: ${currentAction === 'edit' ? 'block' : 'none'}; margin-top: 0.75rem;">
+          <label for="input-EDIT_INSTRUCTION" style="color: var(--primary-teal);">מה ברצונך לשנות בתמונה הקיימת? (make no other changes)</label>
+          <input type="text" id="input-EDIT_INSTRUCTION" value="${escapeHTML(userVariables[promptId]["EDIT_INSTRUCTION"] || "change blazer color to deep midnight navy")}" placeholder="למשל: change blazer color to emerald green או add warm gentle smile..." />
+          <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.25rem;">התמונה יצאה 90% מושלמת? המודל ישמור על תווי הפנים, התאורה והתנוחה ויבצע אך ורק את השינוי הזה.</p>
+        </div>
+      `;
+      variablesForm.appendChild(actionGroup);
+
+      const editContainer = actionGroup.querySelector("#edit-instruction-container");
+      const editInput = actionGroup.querySelector("#input-EDIT_INSTRUCTION");
+
+      actionGroup.querySelectorAll(".mode-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+          actionGroup.querySelectorAll(".mode-btn").forEach(b => b.classList.remove("active"));
+          btn.classList.add("active");
+          const mode = btn.dataset.action;
+          userVariables[promptId]["ACTION_MODE"] = mode;
+          editContainer.style.display = mode === "edit" ? "block" : "none";
+          updateCodePreview();
+        });
+      });
+
+      editInput.addEventListener("input", (e) => {
+        userVariables[promptId]["EDIT_INSTRUCTION"] = e.target.value;
+        updateCodePreview();
+      });
+
+      // 8. Aspect Ratio Selection
+      const arGroup = document.createElement("div");
+      arGroup.className = "var-input-group";
+      const currentAR = userVariables[promptId]["ASPECT_RATIO"] || "1:1";
+      arGroup.innerHTML = `
+        <label>8. יחס גובה-רוחב (Aspect Ratio)</label>
+        <div class="ar-toggle-group" style="grid-template-columns: repeat(4, 1fr);">
+          <button type="button" class="ar-btn ${currentAR === '1:1' ? 'active' : ''}" data-ar="1:1">
+            <span class="ar-icon">1:1</span>
+            <span class="ar-label">ריבוע / פרופיל</span>
+          </button>
+          <button type="button" class="ar-btn ${currentAR === '4:5' ? 'active' : ''}" data-ar="4:5">
+            <span class="ar-icon">4:5</span>
+            <span class="ar-label">פורטרט / פיד</span>
+          </button>
+          <button type="button" class="ar-btn ${currentAR === '9:16' ? 'active' : ''}" data-ar="9:16">
+            <span class="ar-icon">9:16</span>
+            <span class="ar-label">לאורך / סטורי</span>
+          </button>
+          <button type="button" class="ar-btn ${currentAR === '16:9' ? 'active' : ''}" data-ar="16:9">
+            <span class="ar-icon">16:9</span>
+            <span class="ar-label">לרוחב / אתר</span>
+          </button>
+        </div>
+      `;
+      variablesForm.appendChild(arGroup);
+
+      arGroup.querySelectorAll(".ar-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+          arGroup.querySelectorAll(".ar-btn").forEach(b => b.classList.remove("active"));
+          btn.classList.add("active");
+          userVariables[promptId]["ASPECT_RATIO"] = btn.dataset.ar;
+          updateCodePreview();
+        });
+      });
+
     } else if (prompt.variables.length === 0) {
       variablesForm.innerHTML = `
         <div style="text-align: center; padding: 2rem 1rem; color: var(--text-muted); border: 1px dashed var(--panel-border); border-radius: 10px; background: rgba(255, 255, 255, 0.01); margin-top: 0.5rem;">
@@ -821,6 +1187,196 @@ document.addEventListener("DOMContentLoaded", () => {
       htmlPreviewText = htmlPreviewText.replaceAll("{MODE_DESCRIPTION}", `<mark>${escapeHTML(modeDesc)}</mark>`);
       htmlPreviewText = htmlPreviewText.replaceAll("{AUDIENCE_DIRECTIVE}", `<mark>${escapeHTML(audienceDir)}</mark>`);
       htmlPreviewText = htmlPreviewText.replaceAll("{ASPECT_RATIO}", `<mark>${escapeHTML(arVal)}</mark>`);
+    } else if (activePromptId === "branding_headshots") {
+      const vars = userVariables["branding_headshots"];
+      const gender = vars["GENDER"] || "woman_covered";
+      const scenario = vars["SCENARIO"] || "3d_letters";
+      const wardrobeStyle = vars["WARDROBE_STYLE"] || "tailored_contrast";
+      const customWardrobe = vars["CUSTOM_WARDROBE"] || "";
+      const customScenario = vars["CUSTOM_SCENARIO"] || "";
+      const nameText = vars["NAME_TEXT"] || "Tiferet";
+      const engravedText = vars["ENGRAVED_TEXT"] || 'חג ט"ו בשבט שמח!';
+      const displayItems = vars["DISPLAY_ITEMS"] || "";
+      const cameraLens = vars["CAMERA_LENS"] || "85mm";
+      const lighting = vars["LIGHTING"] || "softbox_rim";
+      const realismMode = vars["REALISM_MODE"] || "authentic_skin";
+      const actionMode = vars["ACTION_MODE"] || "generate";
+      const editInstruction = vars["EDIT_INSTRUCTION"] || "change blazer color to deep midnight navy";
+      const ar = vars["ASPECT_RATIO"] || "1:1";
+
+      if (actionMode === "edit") {
+        finalPromptText = `[IMAGE EDIT INSTRUCTION - EDIT, DON'T REGENERATE]: Strictly maintain the exact character identity, facial structure, skin texture, lighting, and core scene composition 100% identical. Make only the following specific modification: "${editInstruction}". Make no other changes.`;
+        htmlPreviewText = `<strong>[IMAGE EDIT INSTRUCTION - EDIT, DON'T REGENERATE]:</strong><br><br>Strictly maintain the exact character identity, facial structure, skin texture, lighting, and core scene composition 100% identical.<br><br>Make only the following specific modification: <mark>"${escapeHTML(editInstruction)}"</mark>.<br><br>Make no other changes.`;
+      } else {
+        // Pronouns & Identity
+        let pronounCap = "She";
+        let pronounLower = "she";
+        let pronounPoss = "her";
+        let pronounObj = "her";
+        let subjectDesc = "";
+
+        if (gender === "man") {
+          pronounCap = "He";
+          pronounLower = "he";
+          pronounPoss = "his";
+          pronounObj = "him";
+          subjectDesc = "a man with a sharp, professional appearance and neatly styled hair, strictly maintaining his exact identity and masculine facial features";
+        } else if (gender === "woman_styled") {
+          subjectDesc = "the character, strictly maintaining her exact identity and facial structure. Her hair is styled in an elegant, polished blowout, framing her face";
+        } else {
+          // woman_covered
+          subjectDesc = "the character, strictly maintaining her exact identity, facial structure, and modest head covering";
+        }
+
+        // Realism Prefix (Rule 3 from images)
+        let opening = "";
+        if (realismMode === "authentic_skin") {
+          opening = `A cinematic, authentic photographic portrait of ${subjectDesc}. Natural realistic skin texture with visible pores and subtle natural imperfections for authentic human realism.`;
+        } else {
+          opening = `A cinematic, hyper-realistic 8K masterpiece portrait of ${subjectDesc}.`;
+        }
+
+        // Wardrobe (Materials, Not Vibes - Rule 1 from images)
+        let wardrobeText = "";
+        if (wardrobeStyle === "custom" && customWardrobe.trim()) {
+          wardrobeText = `${pronounCap} wears ${customWardrobe.trim()}.`;
+        } else if (gender === "man") {
+          switch (wardrobeStyle) {
+            case "tailored_business":
+              wardrobeText = `He is wearing a classic high-end business ensemble: a crisp, tailored white button-down shirt in fine poplin cotton, tucked into dark charcoal or jet-black tailored trousers, layered under a matching sharp-cut dark navy or black wool blazer.`;
+              break;
+            case "tailored_contrast":
+              wardrobeText = `He wears a sharp high-contrast professional ensemble: a crisp white poplin shirt layered under a structured jet-black tailored blazer with dark charcoal trousers, with rich fabric textures.`;
+              break;
+            case "smart_casual":
+              wardrobeText = `He wears an authentic modern smart-casual outfit: a chocolate brown linen shirt with natural linen fabric weave, paired with tailored stone-colored chinos and a light unconstructed blazer.`;
+              break;
+            case "healthtech_clinical":
+              wardrobeText = `He wears a pristine, tailored medical coat in crisp white twill over a light-blue button-down shirt, projecting clinical authority, warmth, and innovation.`;
+              break;
+            case "luxury_gala":
+              wardrobeText = `He wears an ultra-luxurious tailored black tuxedo with satin peak lapels, a crisp pleated white tuxedo shirt, and a classic black silk bow tie.`;
+              break;
+            default:
+              wardrobeText = `He wears a tailored dark blazer over a crisp white button-down shirt with fine fabric textures.`;
+          }
+        } else if (gender === "woman_styled") {
+          switch (wardrobeStyle) {
+            case "tailored_business":
+              wardrobeText = `She wears a sophisticated, high-contrast ensemble: a sleek, high-quality black silk top under her signature sharp-tailored ivory blazer in textured wool crepe with tailored black trousers.`;
+              break;
+            case "tailored_contrast":
+              wardrobeText = `She wears a modern smart-casual outfit: a high-quality black top and tailored black trousers, layered under a clean, structured blazer in a light stone or ivory shade.`;
+              break;
+            case "smart_casual":
+              wardrobeText = `She wears an effortless luxury smart-casual look: an ivory silk blouse layered under a relaxed linen blazer with tailored trousers and refined fabric textures.`;
+              break;
+            case "healthtech_clinical":
+              wardrobeText = `She wears a pristine, tailored doctor's lab coat in crisp white twill over an elegant navy blouse, exuding medical excellence and compassionate leadership.`;
+              break;
+            case "luxury_gala":
+              wardrobeText = `She wears an exquisite evening gown with rich tactile fabrics, delicate hand-finished detailing, and understated luxury textures.`;
+              break;
+            default:
+              wardrobeText = `She wears a crisp white button-down shirt under a sharp-tailored black feminine suit jacket.`;
+          }
+        } else {
+          // woman_covered
+          switch (wardrobeStyle) {
+            case "tailored_contrast":
+              wardrobeText = `She wears her signature high-contrast ensemble: a premium jet-black modest dress (or blouse and skirt) layered under a structured, sharp-tailored blazer in a light cream or ivory shade, with rich fabric textures.`;
+              break;
+            case "tailored_business":
+              wardrobeText = `She wears a crisp white button-down shirt under a sharp-tailored black feminine suit jacket, perfectly coordinated with her elegant modest head covering.`;
+              break;
+            case "smart_casual":
+              wardrobeText = `She wears a refined modest smart-casual ensemble: a long flowing linen dress in rich earthy tones paired with an unconstructed stone blazer and a harmonizing head covering.`;
+              break;
+            case "healthtech_clinical":
+              wardrobeText = `She wears a pristine tailored white clinical coat over an elegant modest black ensemble, combining medical authority with welcoming warmth.`;
+              break;
+            case "luxury_gala":
+              wardrobeText = `She wears a bespoke high-end modest gala dress with rich woven textures, layered under an ivory tailored blazer with subtle golden accents.`;
+              break;
+            default:
+              wardrobeText = `She wears her signature high-contrast ensemble: a jet-black modest dress under a sharp-tailored ivory blazer.`;
+          }
+        }
+
+        // Scenario & Composition
+        let scenarioText = "";
+        switch (scenario) {
+          case "3d_letters":
+            scenarioText = `${pronounCap} is sitting elegantly and confidently on large, uniform 3D letters spelling "${nameText}"—each letter features an identical, high-tech luxury design: a core of polished 18K gold encased in sleek, seamless transparent crystalline glass. The subject looks directly at the camera with a bold, visionary, and approachable expression. The background is a bright, minimalist "Zen-Tech" studio with a soft-focus light blue and white gradient, featuring a cascading green plant in the top left corner for a touch of organic freshness. The floor is a white polished surface with soft, realistic reflections of the gold letters.`;
+            break;
+          case "marble_table":
+            scenarioText = `${pronounCap} is seated with grace and confidence behind a pristine, white Carrara marble display table. The background is transformed into a breathtaking, sun-drenched natural vista, featuring a blooming almond orchard and rolling green hills under a clear, soft-blue sky. Ethereal daylight filters through the white and pink blossoms, creating a dreamy, high-end outdoor atmosphere. On the table, ${displayItems || "an exquisite arrangement of premium Tu BiShvat fruits"}. Centered on the marble table, the Hebrew text "${engravedText}" is elegantly engraved in polished, 3D 18K gold calligraphy.`;
+            break;
+          case "open_executive_office":
+            scenarioText = `${pronounCap} is sitting elegantly in a premium executive chair, positioned in the center of a spacious, airy room with no desk visible in front of ${pronounObj}, creating a sense of openness and accessibility. ${pronounPoss.charAt(0).toUpperCase() + pronounPoss.slice(1)} expression features a warm, genuine, and professional smile, radiating confidence and approachability. The setting is a contemporary, sun-drenched modern office flooded with natural, bright daylight. In the background, a minimalist white floor-to-ceiling bookshelf and a lush, vibrant green indoor plant are visible, rendered with a soft-focus cinematic bokeh (slightly blurred) to create depth.`;
+            break;
+          case "linkedin_headshot":
+            scenarioText = `A tight, high-impact professional headshot for LinkedIn. The camera is positioned at a slight low-angle to project natural authority and leadership. Looking directly into the lens with a confident, genuine, and charismatic professional smile. The face is the primary focus. The background is a bright, minimalist executive suite with a high-end, creamy bokeh effect showing hints of a white bookshelf and soft greenery.`;
+            break;
+          case "social_avatar":
+            scenarioText = `A tight, centered professional headshot optimized for a social media profile picture. The camera is positioned at a subtle low-angle to project natural authority and leadership. Looking directly into the lens with a confident, genuine, and charismatic professional smile. The face is the primary focus, captured in an extreme close-up. The background is a bright, luminous off-white minimalist studio backdrop, creating a clean and airy professional atmosphere.`;
+            break;
+          case "executive_lounge":
+            scenarioText = `${pronounCap} is seated in a luxury executive lounge armchair, with an open and engaging posture looking toward the lens. The background features warm acoustic wood slat panelling, a curated collection of design volumes, and a distant architectural glass facade overlooking an urban morning skyline with creamy blurred bokeh.`;
+            break;
+          case "custom":
+            scenarioText = customScenario.trim() || `${pronounCap} is seated in a modern professional setting, looking directly into the lens with a warm and confident expression.`;
+            break;
+        }
+
+        // Lighting (Rule 2 from images)
+        let lightingText = "";
+        switch (lighting) {
+          case "softbox_rim":
+            lightingText = `The lighting is high-key and sophisticated, featuring a dedicated soft-box key light that illuminates ${pronounPoss} face with a healthy radiant glow, while a subtle golden rim light separates ${pronounObj} from the background.`;
+            break;
+          case "window_leaf":
+            lightingText = `The scene is illuminated by soft natural window light from the side, casting gentle, irregular leaf-like shadows across the scene to create authentic real-world depth.`;
+            break;
+          case "sun_drenched":
+            lightingText = `The scene is flooded with bright, natural sun-drenched daylight with subtle golden sunbeams highlighting the luxury fabric textures.`;
+            break;
+          case "high_key_shadowless":
+            lightingText = `Illuminated by intensive high-key studio lighting that eliminates harsh shadows and creates a radiant, bright glow on the facial features with professional clarity.`;
+            break;
+        }
+
+        // Camera Lens & Aesthetics (Rule 4 from images)
+        let cameraText = "";
+        switch (cameraLens) {
+          case "85mm":
+            cameraText = `Shot with an 85mm prime lens at f/1.8 for extreme clarity and a shallow depth of field, emphasizing luxury fabric textures against a soft, creamy blooming bokeh.`;
+            break;
+          case "100mm":
+            cameraText = `Shot with a 100mm f/1.4 lens for extreme facial detail, sharp eye catchlights, and a shallow depth of field.`;
+            break;
+          case "50mm":
+            cameraText = `Captured with a 50mm f/1.8 lens providing a natural, clean, documentary-grade perspective with authentic facial proportions.`;
+            break;
+          case "35mm":
+            cameraText = `Shot with a 35mm lens for an authentic, everyday environmental feel capturing the subject naturally within the space.`;
+            break;
+          case "camera_roll":
+            cameraText = `Authentic camera roll aesthetic: Shot on iPhone, natural candid handheld framing, AF pulled slightly to the background, incomplete HDR correction, direct flash aesthetic for undeniable human realism.`;
+            break;
+        }
+
+        const arParam = `--ar ${ar}`;
+
+        finalPromptText = `${opening} ${scenarioText} ${wardrobeText} ${lightingText} ${cameraText} ${arParam}`;
+
+        htmlPreviewText = `${escapeHTML(opening)}<br><br>` +
+          `<mark>${escapeHTML(scenarioText)}</mark><br><br>` +
+          `<mark>${escapeHTML(wardrobeText)}</mark><br><br>` +
+          `<mark>${escapeHTML(lightingText)}</mark><br><br>` +
+          `<mark>${escapeHTML(cameraText)}</mark><br><br>` +
+          `<mark>${escapeHTML(arParam)}</mark>`;
+      }
     } else {
       prompt.variables.forEach(v => {
         const value = userVariables[activePromptId][v.id] || "";

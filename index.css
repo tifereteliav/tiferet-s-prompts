@@ -1016,6 +1016,49 @@ body.workspace-active #prompts-list {
   color: #e0fcfc;
 }
 
+/* Gender and Headshot Mode Selector Helpers */
+.mode-toggle-group.cols-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.mode-toggle-group.cols-4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.mode-toggle-group.cols-2 {
+  grid-template-columns: 1fr 1fr;
+}
+
+@media (max-width: 640px) {
+  .mode-toggle-group.cols-3 {
+    grid-template-columns: 1fr;
+  }
+  .mode-toggle-group.cols-4 {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.var-helper-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(0, 203, 203, 0.08);
+  border: 1px solid rgba(0, 203, 203, 0.25);
+  color: var(--primary-teal);
+  font-size: 0.85rem;
+  padding: 0.5rem 0.85rem;
+  border-radius: 8px;
+  margin-bottom: 1.25rem;
+  width: 100%;
+  line-height: 1.4;
+}
+
+.var-helper-badge svg {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+}
+
 /* Site Footer Styles */
 .site-footer {
   position: relative;
