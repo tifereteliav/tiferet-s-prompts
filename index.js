@@ -197,13 +197,20 @@ document.addEventListener("DOMContentLoaded", () => {
       card.dataset.id = prompt.id;
       
       card.innerHTML = `
-        <div class="prompt-icon">
-          ${prompt.icon}
-        </div>
-        <div class="prompt-meta">
+        <div class="prompt-card-top">
+          <div class="prompt-icon">
+            ${prompt.icon}
+          </div>
           <span class="prompt-category">${prompt.category}</span>
+        </div>
+        <div class="prompt-card-main">
           <h3 class="prompt-card-title">${prompt.title}</h3>
-          <p class="prompt-card-desc">${prompt.description}</p>
+        </div>
+        <div class="prompt-card-footer">
+          <span class="prompt-action-link">
+            התאמת פרומפט
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.2" stroke="currentColor" class="action-arrow" style="width:16px;height:16px;"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" /></svg>
+          </span>
         </div>
       `;
       

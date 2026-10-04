@@ -126,19 +126,7 @@ header {
   line-height: 1.2;
 }
 
-.brand-tagline {
-  display: inline-block;
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--primary-violet);
-  background: var(--brand-gradient-soft);
-  border: 1px solid rgba(104, 57, 147, 0.18);
-  padding: 0.2rem 0.75rem;
-  border-radius: 9999px;
-  margin-top: 0.35rem;
-}
+
 
 .logo-section p {
   color: var(--text-muted);
@@ -237,48 +225,100 @@ header {
 .span-8 { grid-column: span 8; }
 .span-12 { grid-column: span 12; }
 
-/* Custom sizes for modern asymmetrical aesthetic */
+/* Welcome Hero */
 .card-welcome {
   grid-column: span 12;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background: radial-gradient(circle at 100% 0%, rgba(104, 57, 147, 0.06) 0%, transparent 60%),
-              radial-gradient(circle at 0% 100%, rgba(41, 154, 232, 0.06) 0%, transparent 60%),
+  align-items: flex-start;
+  background: radial-gradient(circle at 100% 0%, rgba(104, 57, 147, 0.05) 0%, transparent 55%),
+              radial-gradient(circle at 0% 100%, rgba(41, 154, 232, 0.05) 0%, transparent 55%),
               #ffffff;
   border-right: 4px solid var(--primary-azure);
+  padding: 2.25rem 2.5rem;
+  border-radius: 20px;
+}
+
+.welcome-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--primary-azure-dark);
+  background: var(--brand-gradient-soft);
+  border: 1px solid rgba(41, 154, 232, 0.25);
+  padding: 0.25rem 0.85rem;
+  border-radius: 9999px;
+  margin-bottom: 0.65rem;
 }
 
 .card-welcome h2 {
-  font-size: 1.8rem;
-  font-weight: 700;
-  margin-bottom: 0.75rem;
+  font-size: 1.75rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
   color: var(--text-main);
+  margin-bottom: 0.35rem;
+  line-height: 1.3;
 }
 
 .card-welcome p {
   color: var(--text-muted);
-  max-width: 850px;
-  font-size: 1.05rem;
-  line-height: 1.7;
+  max-width: 650px;
+  font-size: 1rem;
+  line-height: 1.5;
+  font-weight: 400;
 }
 
-/* Prompt selector grid */
+/* Prompts Grid */
+.prompts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+/* Prompt Card - Minimalist, spacious & elegant */
 .prompt-card {
   cursor: pointer;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 2.5rem 2rem;
-  aspect-ratio: 1.1 / 1;
+  justify-content: space-between;
+  align-items: stretch;
+  text-align: right;
+  padding: 1.75rem 1.6rem;
+  min-height: 200px;
   height: auto;
   background: #ffffff;
   border: 1px solid var(--panel-border);
-  border-radius: 18px;
-  box-shadow: var(--card-shadow);
+  border-radius: 20px;
+  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.04), 0 2px 6px -1px rgba(15, 23, 42, 0.02);
   transition: all var(--transition-medium);
+  position: relative;
+  overflow: hidden;
+}
+
+.prompt-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--brand-gradient);
+  opacity: 0;
+  transition: opacity var(--transition-medium);
+}
+
+.prompt-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(41, 154, 232, 0.4);
+  box-shadow: 0 16px 35px -5px rgba(41, 154, 232, 0.12), 0 6px 14px -2px rgba(104, 57, 147, 0.06);
+}
+
+.prompt-card:hover::before {
+  opacity: 1;
 }
 
 .prompt-card-active {
@@ -287,50 +327,100 @@ header {
   background: #ffffff;
 }
 
+.prompt-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.25rem;
+}
+
 .prompt-icon {
-  width: 62px;
-  height: 62px;
-  border-radius: 18px;
+  width: 52px;
+  height: 52px;
+  border-radius: 16px;
   background: var(--brand-gradient-soft);
   color: var(--primary-azure);
   border: 1px solid rgba(41, 154, 232, 0.2);
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 1.25rem;
   transition: transform var(--transition-fast), background var(--transition-fast), color var(--transition-fast), box-shadow var(--transition-fast);
 }
 
+.prompt-icon svg {
+  width: 26px;
+  height: 26px;
+}
+
 .prompt-card:hover .prompt-icon {
-  transform: scale(1.1);
+  transform: scale(1.08);
   background: var(--brand-gradient);
   color: #ffffff;
   border-color: transparent;
-  box-shadow: 0 6px 20px rgba(41, 154, 232, 0.35);
-}
-
-.prompt-card h3 {
-  font-size: 1.25rem;
-  font-weight: 700;
-  margin-bottom: 0.75rem;
-  color: var(--text-main);
-}
-
-.prompt-meta {
-  margin-top: 0.25rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  box-shadow: 0 6px 18px rgba(41, 154, 232, 0.35);
 }
 
 .prompt-category {
-  font-size: 0.78rem;
+  font-size: 0.75rem;
   background: var(--brand-gradient-soft);
-  padding: 0.35rem 0.9rem;
+  padding: 0.3rem 0.8rem;
   border-radius: 9999px;
   color: var(--primary-violet);
-  border: 1px solid rgba(104, 57, 147, 0.18);
+  border: 1px solid rgba(104, 57, 147, 0.16);
   font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.prompt-card-main {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.25rem;
+}
+
+.prompt-card-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-main);
+  line-height: 1.4;
+  margin: 0;
+  transition: color var(--transition-fast);
+}
+
+.prompt-card:hover .prompt-card-title {
+  color: var(--primary-azure-dark);
+}
+
+.prompt-card-footer {
+  border-top: 1px solid rgba(226, 232, 240, 0.7);
+  padding-top: 0.85rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.prompt-action-link {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--primary-azure-dark);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: gap var(--transition-fast), color var(--transition-fast);
+}
+
+.action-arrow {
+  width: 15px;
+  height: 15px;
+  transition: transform var(--transition-fast);
+}
+
+.prompt-card:hover .prompt-action-link {
+  color: var(--primary-violet);
+}
+
+.prompt-card:hover .action-arrow {
+  transform: translateX(-4px);
 }
 
 /* Prompt Workspace Area */
