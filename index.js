@@ -1017,6 +1017,7 @@ document.addEventListener("DOMContentLoaded", () => {
             } else if (variable.id === "COLOR_PALETTE") {
               presetOptions = [
                 { name: "בחר פלטת צבעים...", value: "" },
+                { name: "🧬 מיתוג תפארת אליאב: תכלת חשמלי וסגול מלכותי (Tiferet Eliav Brand: Azure & Royal Violet)", value: "Tiferet Eliav Brand Signature: Clean medical-tech backdrop (#f8fafc), vibrant electric azure (#299ae8), royal deep violet (#683993), and crisp high-contrast typography." },
                 { name: "🔥 ניאון זוהר וניגודיות גבוהה (Vivid High-Contrast Neon)", value: "Vivid High-Contrast Neon: Deep obsidian backdrop (#090d16), vibrant neon cyan (#22d3ee), electric purple (#a855f7), and high-contrast glowing accents." },
                 { name: "🩺 כחול עמוק וטורקיז רפואי (Clinical Deep Blue & Medical Teal)", value: "Clinical Deep Blue & Medical Teal: Deep navy backdrop (#0a192f), medical teal (#00cbcb), crisp slate secondary accents, and high-contrast text." },
                 { name: "✨ זהב יוקרתי וכחול לילה (Luxury Gold & Midnight Navy)", value: "Luxury Gold & Midnight Navy: Deep midnight navy backdrop (#080e1e), brushed metallic gold accents (#d4af37), champagne highlight text, and subtle warm glass surfaces." },

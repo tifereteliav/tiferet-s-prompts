@@ -185,7 +185,7 @@ const PROMPTS_DATA = [
           heading: "עקרון 5: מתודולוגיית עריכה נקודתית (Targeted Iteration: Edit, Don't Regenerate)",
           content: `<p>בשל היעדר Seed קבוע במרבית המודלים הגנרטיביים המודרניים, יצירה מחדש (Regenerate) של פלט מוצלח מובילה לאובדן הקומפוזיציה ומאפייני הדמות.</p>
           <p>המתודולוגיה המקצועית מחייבת מעבר להוראת עריכה נקודתית מובנית (Targeted Inpainting / Modification Directive):</p>
-          <div style="background: rgba(0, 203, 203, 0.08); border: 1px solid rgba(0, 203, 203, 0.25); border-radius: 8px; padding: 1rem; margin: 1rem 0; font-family: monospace; direction: ltr; text-align: left;">
+          <div style="background: rgba(41, 154, 232, 0.08); border: 1px solid rgba(41, 154, 232, 0.25); border-radius: 8px; padding: 1rem; margin: 1rem 0; font-family: monospace; direction: ltr; text-align: left; color: #0f172a;">
             Strictly maintain the exact character identity, facial structure, skin texture, lighting, and core scene composition 100% identical. Make only the following specific modification: "[SPECIFIC CHANGE]". Make no other changes.
           </div>
           <p>עקרון זה מבטיח יישום מבוקר של שינויים צבעוניים או סגנוניים תוך שמירה קפדנית על שלמות הפריים.</p>`
@@ -523,9 +523,9 @@ Generate the entire Master Brand Strategy in {OUTPUT_LANGUAGE}, with the ready-t
               </tbody>
             </table>
           </div>
-          <div style="margin-top: 1.25rem; padding: 1rem; border-radius: 8px; background: rgba(0, 203, 203, 0.08); border: 1px solid rgba(0, 203, 203, 0.2);">
-            <p style="font-weight: 600; color: var(--primary-teal); margin-bottom: 0.25rem;">💡 לזכור תמיד:</p>
-            <p style="margin: 0; font-size: 0.95rem;">לוגו מנצח = שילוב של טכנולוגיה מתקדמת + חשיבה אסטרטגית + טעם ודיוק אנושי. לוגו טוב פותח דלתות, מותג חזק יוצר אימפקט!</p>
+          <div style="margin-top: 1.25rem; padding: 1rem; border-radius: 8px; background: rgba(41, 154, 232, 0.08); border: 1px solid rgba(41, 154, 232, 0.25);">
+            <p style="font-weight: 600; color: var(--primary-azure-dark); margin-bottom: 0.25rem;">💡 לזכור תמיד:</p>
+            <p style="margin: 0; font-size: 0.95rem; color: #334155;">לוגו מנצח = שילוב של טכנולוגיה מתקדמת + חשיבה אסטרטגית + טעם ודיוק אנושי. לוגו טוב פותח דלתות, מותג חזק יוצר אימפקט!</p>
           </div>`
         }
       ],
