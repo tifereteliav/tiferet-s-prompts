@@ -548,51 +548,123 @@ document.addEventListener("DOMContentLoaded", () => {
         
         const currentValue = userVariables[promptId][variable.id] || "";
 
-        if (variable.id === "COLOR_PALETTE" || variable.id === "TARGET_AUDIENCE" || variable.id === "DESIGN_STYLE" || variable.id === "DEPTH_LEVEL") {
+        const isLogoPrompt = (promptId === "ai_logo");
+        const hasPreset = (
+          (isLogoPrompt && ["LOGO_STYLE", "COLOR_PALETTE", "AI_PLATFORM", "BUSINESS_FIELD", "BRAND_VALUES", "TARGET_AUDIENCE"].includes(variable.id)) ||
+          (!isLogoPrompt && ["COLOR_PALETTE", "TARGET_AUDIENCE", "DESIGN_STYLE", "DEPTH_LEVEL"].includes(variable.id))
+        );
+
+        if (hasPreset) {
           const selectElement = document.createElement("select");
           selectElement.className = "steps-count-select";
           selectElement.style.marginBottom = "0.5rem";
           
           let presetOptions = [];
-          if (variable.id === "TARGET_AUDIENCE") {
-            presetOptions = [
-              { name: "בחר קהל יעד...", value: "" },
-              { name: "📢 אוכלוסייה כללית וקהל רחב (הדרכות כלליות, הרצאות וקידום מודעות)", value: "General Public & Broad Community: Accessible, highly engaging language, relatable analogies, clear visual hierarchy, clear educational structure, and empowering call-to-action." },
-              { name: "🎓 עובדים, חניכים ומשתתפי סדנה / הדרכה (למידה ופיתוח מקצועי)", value: "Trainees, Employees & Workshop Participants: Practical instructional focus, actionable takeaways, step-by-step guidance, clear operational structure, and skill-building emphasis." },
-              { name: "🩺 צוותים קליניים ורופאים (קרדיולוגים, רופאי משפחה, אחיות מוסמכות)", value: "Healthcare & Clinical Staff (Physicians, Specialists, Nurses): Focus on anatomical accuracy, evidence-based data tables, clinical trial metrics, structured protocol workflows, and authoritative professional tone." },
-              { name: "💚 מטופלים, בני משפחותיהם ומתמודדים", value: "Patients & Families: Focus on anxiety reduction, plain language formatting, warm empathetic tone, clear step-by-step visual guidance, and relatable friendly visual metaphors." },
-              { name: "🚀 מנהלים בכירים, משקיעים ודירקטוריון (Execs & Investors)", value: "Executives & Investors: Focus on market ROI, strategic value proposition, scalable product architecture, high-impact key metrics, and strategic launch roadmap." },
-              { name: "✍️ מותאם אישית (הקלד מלל חופשי בשדה למטה)", value: "custom" }
-            ];
-          } else if (variable.id === "DEPTH_LEVEL") {
-            presetOptions = [
-              { name: "בחר רמת פירוט...", value: "" },
-              { name: "⚡ תמציתי וממוקד (נקודות מפתח, מדדים בולטים ומסרים קצרים - להצגה פרונטלית)", value: "High-Level Executive Highlights: Concise, punchy, low-text presentation format designed for live presentation. Limit text to max 15-20 words per card/slide component. Feature giant key metrics (e.g. 85%, 3.5X, $10M+), bold single-sentence takeaways, and powerful visual anchors that the speaker can elaborate on orally." },
-              { name: "📘 פירוט מעמיק ומקיף (הסברים מלאים, דוגמאות מפורטות והקשר רחב - לקריאה עצמאית ולמידה)", value: "Comprehensive Deep Dive: Rich, fully fleshed-out self-contained instructional content designed for asynchronous reading and self-paced study. Provide thorough explanatory text, structured sub-points, detailed real-world examples, comprehensive context, and complete educational takeaways on every slide." },
-              { name: "✍️ מותאם אישית (הקלד מלל חופשי בשדה למטה)", value: "custom" }
-            ];
-          } else if (variable.id === "DESIGN_STYLE") {
-            presetOptions = [
-              { name: "בחר סגנון עיצובי...", value: "" },
-              { name: "🔥 סגנון WOW שיווקי מטורף (High-Impact Visual Drama, Vivid & 3D Floating Assets)", value: "High-Impact Cinematic WOW & 3D Visual Drama: STRICTLY NO PLAIN WHITE SLIDES! Master dark atmospheric backdrops (Dark Obsidian #090d16 / Deep Charcoal) with luminous gradient meshes and subtle depth texturing. Feature photorealistic 3D floating visual elements (isometric icons, floating glass spheres, glowing symbols) embedded into slide backgrounds. Use glassmorphism bento containers, high-contrast visual focal points, bold headline typography (50pt+), and dynamic asymmetrical layouts designed to deliver a jaw-dropping, unforgettable 10x presentation experience." },
-              { name: "👑 יוקרתי, סמכותי ומנהלי (Luxury Executive & Editorial Masterclass)", value: "Luxury Executive & Editorial Masterclass: Ultra-premium publication aesthetic. Rich dark monochromatic or deep slate surfaces accented with metallic foil highlights (brushed gold/bronze/champagne). Elegant serif and clean geometric typography, generous negative space, subtle surface shadows, and magazine-worthy layout composition." },
-              { name: "🚀 טכנולוגי מודרני בנטו גריד (Futuristic Bento Grid & Modern Tech)", value: "Futuristic Bento Grid & Digital Tech: 2026 Bento Grid architecture with sleek rounded containers (border-radius 16px), subtle glass reflection panels, glowing digital indicators, crisp sans-serif typography, UI dashboard visualizers, and streamlined modern tech aesthetic." },
-              { name: "🔬 מדעי, קליני ואקדמי מובנה (Structured Academic & Scientific Rigor)", value: "Structured Academic & Scientific Rigor: High-precision publication aesthetic. Rigid structured grid layout, crisp data callout cards, step-by-step flowchart diagrams, integrated diagram callouts, evidence comparison tables, and WCAG AAA accessibility." },
-              { name: "💚 חם, אמפתי ואורגני (Warm Empathetic & Organic Care)", value: "Warm Empathetic & Organic: Reassuring low-stress visual atmosphere. Soft organic rounded containers, generous negative space, warm comforting illustration style with friendly human features, plain-language formatting, and peaceful visual flow." },
-              { name: "✍️ מותאם אישית (הקלד מלל חופשי בשדה למטה)", value: "custom" }
-            ];
-          } else if (variable.id === "COLOR_PALETTE") {
-            presetOptions = [
-              { name: "בחר פלטת צבעים...", value: "" },
-              { name: "🔥 ניאון זוהר וניגודיות גבוהה (Vivid High-Contrast Neon)", value: "Vivid High-Contrast Neon: Deep obsidian backdrop (#090d16), vibrant neon cyan (#22d3ee), electric purple (#a855f7), and high-contrast glowing accents." },
-              { name: "🩺 כחול עמוק וטורקיז רפואי (Clinical Deep Blue & Medical Teal)", value: "Clinical Deep Blue & Medical Teal: Deep navy backdrop (#0a192f), medical teal (#00cbcb), crisp slate secondary accents, and high-contrast text." },
-              { name: "✨ זהב יוקרתי וכחול לילה (Luxury Gold & Midnight Navy)", value: "Luxury Gold & Midnight Navy: Deep midnight navy backdrop (#080e1e), brushed metallic gold accents (#d4af37), champagne highlight text, and subtle warm glass surfaces." },
-              { name: "🌿 ירוק מרווה וגווני אדמה חמימים (Sage Green & Warm Earth)", value: "Sage Green & Warm Earth: Soft natural linen backdrop (#f7f5f0), sage green (#7a9a85), warm terracotta accents (#c87d55), and soothing organic hues." },
-              { name: "⚡ סגול עמוק וטורקיז זוהר (Deep Violet & Luminous Turquoise)", value: "Deep Violet & Luminous Turquoise: Rich dark violet backdrop (#140c24), luminous turquoise (#00f2fe), soft lavender panels, and high-energy highlights." },
-              { name: "🚨 כחול כהה ואדום קליני להדגשה (Navy Blue & Clinical Alert Red)", value: "Navy Blue & Clinical Alert Red: Authoritative dark navy background (#0f172a), crisp white structural grids, and high-visibility clinical red accents for urgent metrics." },
-              { name: "🖤 מונוכרומטי כהה ואפור פחם (Dark Charcoal Monochromatic & Platinum)", value: "Dark Charcoal Monochromatic & Platinum: Deep charcoal gray backdrop (#121212), platinum white panels, subtle silver borders, and high-contrast slate text." },
-              { name: "✍️ מותאם אישית (הקלד מלל חופשי בשדה למטה)", value: "custom" }
-            ];
+          if (isLogoPrompt) {
+            if (variable.id === "LOGO_STYLE") {
+              presetOptions = [
+                { name: "בחר סגנון עיצובי ללוגו...", value: "" },
+                { name: "✨ סמל מינימליסטי גיאומטרי (Flat Minimal Geometric - שטוח, מדויק ואייקוני)", value: "Minimalist Geometric & Smart Negative Space: סמל גיאומטרי שטוח, מודרני ונקי, עם מטאפורה חכמה וחלל שלילי המשלב בין דופק/גל לבבי לבין מגן ביטחון וצמיחה" },
+                { name: "💡 סמל חכם עם חלל שלילי ומטאפורה כפולה (Clever Negative Space & Dual Metaphor)", value: "Smart Negative Space & Clever Dual Metaphor: שילוב מתוחכם בין שתי משמעויות בתוך סילואט נקי ובלתי נשכח המייצר אפקט WOW מידי" },
+                { name: "👑 מונוגרם אותיות יוקרתי (Luxury Monogram Lettermark - שילוב אותיות המותג)", value: "Luxury Monogram Lettermark: שזירה אמנותית של ראשי התיבות של המותג בקווי פרימיום מעודנים ואלגנטיות יוקרתית" },
+                { name: "✒️ קו אחד רציף מינימליסטי (Continuous Single-Line Art - זורם ואורגני)", value: "Continuous Single-Line Art: קו וקטורי יחיד ורציף היוצר צורה זורמת, אורגנית, הרמונית ומעודנת ביותר" },
+                { name: "🛡️ אמבלם מודרני ותגית טכנולוגית (Modern Tech Emblem & Badge - יציב וסמכותי)", value: "Modern Tech Emblem & Badge: סמל גיאומטרי סגור ומאוזן, בעל נוכחות סמכותית ומראה דיגיטלי מתקדם לשנת 2026" },
+                { name: "🔤 לוגו טיפוגרפי נקי ומובחן (Clean Modern Wordmark - פונט ייחודי וקריא)", value: "Clean Modern Wordmark: טיפוגרפיה גיאומטרית בהתאמה אישית, חיתוכי אותיות ייחודיים ופוקוס מלא על שם המותג" },
+                { name: "✍️ מותאם אישית (הקלד מלל חופשי בשדה למטה)", value: "custom" }
+              ];
+            } else if (variable.id === "COLOR_PALETTE") {
+              presetOptions = [
+                { name: "בחר פלטת צבעים...", value: "" },
+                { name: "🩺 כחול קליני עמוק וטורקיז רפואי (אמינות, ביטחון וחדשנות דיגיטלית)", value: "Clinical Deep Blue & Luminous Cyan: כחול כהה עמוק (#0B192C) המסמל אמינות וסמכות, וטורקיז-ציאן זוהר (#00CBCB) המסמל חדשנות דיגיטלית וחיות" },
+                { name: "✨ שחור פחם וזהב מוברש (יוקרה עילאית, פרמיום ואלגנטיות מוקפדת)", value: "Luxury Charcoal & Brushed Gold: שחור פחם עמוק (#121212), זהב מוברש יוקרתי (#D4AF37), ונגיעות שמפניה בהירות" },
+                { name: "🌿 ירוק מרווה וגווני אדמה (טבע, בריאות, צמיחה והרמוניה אורגנית)", value: "Sage Green & Warm Earth: ירוק מרווה מרגיע (#6B8E7B), טרקוטה חמימה (#C87D55), וגוון פשתן בהיר (#FAF9F6)" },
+                { name: "⚡ סגול עמוק וציאן ניאון (חדשנות עתידנית, בינה מלאכותית ו-High-Tech)", value: "Deep Violet & Neon Cyan: סגול לילה עמוק (#140C24), תכלת ניאון זוהר (#22D3EE), וסגול אולטרה-ויולט (#A855F7)" },
+                { name: "🖤 מונוכרום שחור-לבן מינימליסטי (על-זמני, עוצמתי ונקי מכל הסחת דעת)", value: "Timeless Monochrome: שחור מלא אבסולוטי (#000000) על גבי לבן צח ונקי (#FFFFFF), מקסימום ניגודיות וסילואט אייקוני" },
+                { name: "🔥 כתום שקיעה ואינדיגו (יצירתיות, אנרגיה ותעוזה עסקית)", value: "Sunset Orange & Deep Indigo: כתום אנרגטי חם (#F97316), כחול אינדיגו עמוק וסמכותי (#1E1B4B), ולבן בוהק" },
+                { name: "🚨 כחול נייבי כהה ואדום נועז (נוכחות חדה, סמכות ועוצמה)", value: "Navy Blue & Bold Accent Red: כחול כהה סמכותי (#0F172A), לבן נקי, ואדום בוהק (#EF4444) להדגשה חדה" },
+                { name: "✍️ מותאם אישית (הקלד מלל חופשי בשדה למטה)", value: "custom" }
+              ];
+            } else if (variable.id === "AI_PLATFORM") {
+              presetOptions = [
+                { name: "בחר פלטפורמת AI...", value: "" },
+                { name: "🎯 Ideogram 2.0 (המומלץ ביותר לטיפוגרפיה, אותיות מדויקות וטקסט באנגלית)", value: "Ideogram 2.0 (Optimized for perfect text typography, vector illustration style, pure white background)" },
+                { name: "🎨 Midjourney v6 (אסתטיקה עילאית, סמלים מופשטים ותחכום ויזואלי)", value: "Midjourney v6 (--ar 1:1 --no 3d, realistic photo, shadows, textures, mockups --v 6.0)" },
+                { name: "📐 Recraft AI (מומחה לעיצוב וקטורי נקי וייצוא קבצי SVG מוכנים)", value: "Recraft AI (Vector Flat / Line Art mode, clean scalable vector geometry, pure white background)" },
+                { name: "🧠 ChatGPT / DALL-E 3 (הבנת הקשר מעולה וסינתזה רעיונית של בריף מותג)", value: "ChatGPT / DALL-E 3 (Vector graphic logo, isolated on pure white background, minimal flat aesthetics)" },
+                { name: "⚡ Flux.1 / Canva AI (עיצוב מהיר, גמיש ונקי)", value: "Flux.1 / Canva AI (Clean 2D vector logo mark, centered, high contrast)" },
+                { name: "✍️ מותאם אישית (הקלד מלל חופשי בשדה למטה)", value: "custom" }
+              ];
+            } else if (variable.id === "BUSINESS_FIELD") {
+              presetOptions = [
+                { name: "בחר תחום פעילות לדוגמה או הקלד חופשי...", value: "" },
+                { name: "🩺 סטארטאפ בריאות דיגיטלית ובינה מלאכותית (HealthTech & AI Diagnostics)", value: "פלטפורמת בינה מלאכותית לניטור מדדים רפואיים וחיזוי בריאותי מותאם אישית למטופלים ומרפאות" },
+                { name: "🏥 מרכז רפואי, קליניקה פרטית או מרפאת מומחים", value: "מרפאת מומחים רב-תחומית המעניקה רפואה מותאמת אישית, שירות מקצועי מתקדם וחוויית מטופל מרגיעה ובטוחה" },
+                { name: "🚀 חברת תוכנה, פלטפורמת SaaS וטכנולוגיית ענן", value: "חברת תוכנה המספקת פתרונות אוטומציה מבוססי ענן וניהול נתונים חכם לעסקים וארגונים גלובליים" },
+                { name: "✨ מותג יוקרה, עיצוב פרימיום ואירוח", value: "מותג בוטיק יוקרתי המציע מוצרי עיצוב, אופנה ואירוח ברמת גימור עילאית ובלעדית" },
+                { name: "🌿 מותג וולנס, תזונה בריאה ואורח חיים", value: "מיזם בריאות ואורח חיים טבעי המציע תוספי תזונה, סדנאות ואימונים מבוססי מדע לגוף ולנפש" },
+                { name: "💼 פירמת ייעוץ עסקי, פיננסים ופינטק", value: "פירמה לייעוץ אסטרטגי, פתרונות פינטק וניהול השקעות מתקדם ליזמים וחברות צמיחה" },
+                { name: "✍️ מותאם אישית (הקלד מלל חופשי בשדה למטה)", value: "custom" }
+              ];
+            } else if (variable.id === "BRAND_VALUES") {
+              presetOptions = [
+                { name: "בחר שילוב ערכים או הקלד חופשי...", value: "" },
+                { name: "🛡️ אמינות, חדשנות פורצת דרך וביטחון קליני", value: "אמינות קלינית ללא פשרות, חדשנות טכנולוגית פורצת דרך, אופטימיות, חמימות ופשטות שמעניקה שקט נפשי" },
+                { name: "👑 יוקרה, אלגנטיות, בלעדיות ומצוינות עילית", value: "יוקרה מאופקת, אלגנטיות מוקפדת, בלעדיות, דיוק חסר פשרות ומצוינות ברמה הגבוהה ביותר" },
+                { name: "💡 פשטות, נגישות, ידידותיות ושקיפות מלאה", value: "פשטות אינטואיטיבית, שקיפות, יחס אישי חם, נגישות בגובה העיניים וחוויית משתמש נטולת מאמץ" },
+                { name: "⚡ תעוזה, יצירתיות, אנרגיה ודינמיות מהפכנית", value: "תעוזה עסקית, חשיבה מחוץ לקופסה, אנרגיה סוחפת, דינמיות מתמדת וחדשנות משבשת" },
+                { name: "✍️ מותאם אישית (הקלד מלל חופשי בשדה למטה)", value: "custom" }
+              ];
+            } else if (variable.id === "TARGET_AUDIENCE") {
+              presetOptions = [
+                { name: "בחר קהל יעד...", value: "" },
+                { name: "🤝 B2B & B2C: קליניקות, צוותים רפואיים ומטופלים מודרניים", value: "B2B & B2C: קליניקות, צוותים רפואיים ומטופלים מודרניים המחפשים פתרון טכנולוגי נגיש, אמין ופשוט לתפעול" },
+                { name: "👥 לקוחות קצה, משפחות והציבור הרחב", value: "B2C & Everyday Consumers: לקוחות קצה, משפחות ואנשים המחפשים מוצר נגיש, אמין, חם ואינטואיטיבי" },
+                { name: "🚀 יזמים, אנשי טכנולוגיה ומפתחים", value: "Tech Innovators & Entrepreneurs: יזמים, אנשי טכנולוגיה ומובילי חדשנות המעריכים ארכיטקטורה נקייה ועיצוב מתקדם" },
+                { name: "👑 לקוחות פרימיום ועשירון עליון", value: "Affluent & Luxury Consumers: לקוחות פרימיום בעלי ציפיות גבוהות לאסתטיקה מלוטשת, אלגנטיות ויוקרה מאופקת" },
+                { name: "✍️ מותאם אישית (הקלד מלל חופשי בשדה למטה)", value: "custom" }
+              ];
+            }
+          } else {
+            if (variable.id === "TARGET_AUDIENCE") {
+              presetOptions = [
+                { name: "בחר קהל יעד...", value: "" },
+                { name: "📢 אוכלוסייה כללית וקהל רחב (הדרכות כלליות, הרצאות וקידום מודעות)", value: "General Public & Broad Community: Accessible, highly engaging language, relatable analogies, clear visual hierarchy, clear educational structure, and empowering call-to-action." },
+                { name: "🎓 עובדים, חניכים ומשתתפי סדנה / הדרכה (למידה ופיתוח מקצועי)", value: "Trainees, Employees & Workshop Participants: Practical instructional focus, actionable takeaways, step-by-step guidance, clear operational structure, and skill-building emphasis." },
+                { name: "🩺 צוותים קליניים ורופאים (קרדיולוגים, רופאי משפחה, אחיות מוסמכות)", value: "Healthcare & Clinical Staff (Physicians, Specialists, Nurses): Focus on anatomical accuracy, evidence-based data tables, clinical trial metrics, structured protocol workflows, and authoritative professional tone." },
+                { name: "💚 מטופלים, בני משפחותיהם ומתמודדים", value: "Patients & Families: Focus on anxiety reduction, plain language formatting, warm empathetic tone, clear step-by-step visual guidance, and relatable friendly visual metaphors." },
+                { name: "🚀 מנהלים בכירים, משקיעים ודירקטוריון (Execs & Investors)", value: "Executives & Investors: Focus on market ROI, strategic value proposition, scalable product architecture, high-impact key metrics, and strategic launch roadmap." },
+                { name: "✍️ מותאם אישית (הקלד מלל חופשי בשדה למטה)", value: "custom" }
+              ];
+            } else if (variable.id === "DEPTH_LEVEL") {
+              presetOptions = [
+                { name: "בחר רמת פירוט...", value: "" },
+                { name: "⚡ תמציתי וממוקד (נקודות מפתח, מדדים בולטים ומסרים קצרים - להצגה פרונטלית)", value: "High-Level Executive Highlights: Concise, punchy, low-text presentation format designed for live presentation. Limit text to max 15-20 words per card/slide component. Feature giant key metrics (e.g. 85%, 3.5X, $10M+), bold single-sentence takeaways, and powerful visual anchors that the speaker can elaborate on orally." },
+                { name: "📘 פירוט מעמיק ומקיף (הסברים מלאים, דוגמאות מפורטות והקשר רחב - לקריאה עצמאית ולמידה)", value: "Comprehensive Deep Dive: Rich, fully fleshed-out self-contained instructional content designed for asynchronous reading and self-paced study. Provide thorough explanatory text, structured sub-points, detailed real-world examples, comprehensive context, and complete educational takeaways on every slide." },
+                { name: "✍️ מותאם אישית (הקלד מלל חופשי בשדה למטה)", value: "custom" }
+              ];
+            } else if (variable.id === "DESIGN_STYLE") {
+              presetOptions = [
+                { name: "בחר סגנון עיצובי...", value: "" },
+                { name: "🔥 סגנון WOW שיווקי מטורף (High-Impact Visual Drama, Vivid & 3D Floating Assets)", value: "High-Impact Cinematic WOW & 3D Visual Drama: STRICTLY NO PLAIN WHITE SLIDES! Master dark atmospheric backdrops (Dark Obsidian #090d16 / Deep Charcoal) with luminous gradient meshes and subtle depth texturing. Feature photorealistic 3D floating visual elements (isometric icons, floating glass spheres, glowing symbols) embedded into slide backgrounds. Use glassmorphism bento containers, high-contrast visual focal points, bold headline typography (50pt+), and dynamic asymmetrical layouts designed to deliver a jaw-dropping, unforgettable 10x presentation experience." },
+                { name: "👑 יוקרתי, סמכותי ומנהלי (Luxury Executive & Editorial Masterclass)", value: "Luxury Executive & Editorial Masterclass: Ultra-premium publication aesthetic. Rich dark monochromatic or deep slate surfaces accented with metallic foil highlights (brushed gold/bronze/champagne). Elegant serif and clean geometric typography, generous negative space, subtle surface shadows, and magazine-worthy layout composition." },
+                { name: "🚀 טכנולוגי מודרני בנטו גריד (Futuristic Bento Grid & Modern Tech)", value: "Futuristic Bento Grid & Digital Tech: 2026 Bento Grid architecture with sleek rounded containers (border-radius 16px), subtle glass reflection panels, glowing digital indicators, crisp sans-serif typography, UI dashboard visualizers, and streamlined modern tech aesthetic." },
+                { name: "🔬 מדעי, קליני ואקדמי מובנה (Structured Academic & Scientific Rigor)", value: "Structured Academic & Scientific Rigor: High-precision publication aesthetic. Rigid structured grid layout, crisp data callout cards, step-by-step flowchart diagrams, integrated diagram callouts, evidence comparison tables, and WCAG AAA accessibility." },
+                { name: "💚 חם, אמפתי ואורגני (Warm Empathetic & Organic Care)", value: "Warm Empathetic & Organic: Reassuring low-stress visual atmosphere. Soft organic rounded containers, generous negative space, warm comforting illustration style with friendly human features, plain-language formatting, and peaceful visual flow." },
+                { name: "✍️ מותאם אישית (הקלד מלל חופשי בשדה למטה)", value: "custom" }
+              ];
+            } else if (variable.id === "COLOR_PALETTE") {
+              presetOptions = [
+                { name: "בחר פלטת צבעים...", value: "" },
+                { name: "🔥 ניאון זוהר וניגודיות גבוהה (Vivid High-Contrast Neon)", value: "Vivid High-Contrast Neon: Deep obsidian backdrop (#090d16), vibrant neon cyan (#22d3ee), electric purple (#a855f7), and high-contrast glowing accents." },
+                { name: "🩺 כחול עמוק וטורקיז רפואי (Clinical Deep Blue & Medical Teal)", value: "Clinical Deep Blue & Medical Teal: Deep navy backdrop (#0a192f), medical teal (#00cbcb), crisp slate secondary accents, and high-contrast text." },
+                { name: "✨ זהב יוקרתי וכחול לילה (Luxury Gold & Midnight Navy)", value: "Luxury Gold & Midnight Navy: Deep midnight navy backdrop (#080e1e), brushed metallic gold accents (#d4af37), champagne highlight text, and subtle warm glass surfaces." },
+                { name: "🌿 ירוק מרווה וגווני אדמה חמימים (Sage Green & Warm Earth)", value: "Sage Green & Warm Earth: Soft natural linen backdrop (#f7f5f0), sage green (#7a9a85), warm terracotta accents (#c87d55), and soothing organic hues." },
+                { name: "⚡ סגול עמוק וטורקיז זוהר (Deep Violet & Luminous Turquoise)", value: "Deep Violet & Luminous Turquoise: Rich dark violet backdrop (#140c24), luminous turquoise (#00f2fe), soft lavender panels, and high-energy highlights." },
+                { name: "🚨 כחול כהה ואדום קליני להדגשה (Navy Blue & Clinical Alert Red)", value: "Navy Blue & Clinical Alert Red: Authoritative dark navy background (#0f172a), crisp white structural grids, and high-visibility clinical red accents for urgent metrics." },
+                { name: "🖤 מונוכרומטי כהה ואפור פחם (Dark Charcoal Monochromatic & Platinum)", value: "Dark Charcoal Monochromatic & Platinum: Deep charcoal gray backdrop (#121212), platinum white panels, subtle silver borders, and high-contrast slate text." },
+                { name: "✍️ מותאם אישית (הקלד מלל חופשי בשדה למטה)", value: "custom" }
+              ];
+            }
           }
           
           let matched = false;
@@ -647,7 +719,7 @@ document.addEventListener("DOMContentLoaded", () => {
         let inputElement;
         
         // Use textarea for long descriptions, input text for shorter items
-        if (variable.id === "CLINICAL_TOPIC" || variable.id === "TECH_NAME" || variable.id === "CLINICAL_PROTOCOL") {
+        if (variable.id === "CLINICAL_TOPIC" || variable.id === "TECH_NAME" || variable.id === "CLINICAL_PROTOCOL" || variable.id === "VISUAL_ELEMENTS" || variable.id === "BUSINESS_FIELD" || variable.id === "BRAND_VALUES") {
           inputElement = document.createElement("textarea");
           inputElement.rows = 3;
         } else {

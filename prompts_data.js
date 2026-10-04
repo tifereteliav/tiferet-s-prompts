@@ -6,6 +6,300 @@
 
 const PROMPTS_DATA = [
   {
+    id: "ai_logo",
+    title: "מחולל פרומפטים ללוגו ומיתוג מנצח (AI LOGO)",
+    subtitle: "Master AI Logo & Brand Identity Architecture",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M9.53 16.122a3 3 0 00-5.78 1.128 2.25 2.25 0 01-2.4 2.245 4.5 4.5 0 008.4-2.245c0-.399-.078-.78-.22-1.128zm0 0a15.998 15.998 0 003.388-1.62m-5.043-.025a15.994 15.994 0 011.622-3.395m3.42 3.42a15.995 15.995 0 004.764-4.648l3.876-5.814a1.151 1.151 0 00-1.597-1.597L14.146 6.32a15.996 15.996 0 00-4.649 4.763m3.42 3.42a6.776 6.776 0 00-3.42-3.42" /></svg>`,
+    category: "מיתוג, לוגואים וזהות ויזואלית",
+    description: "יצירת לוגואים מקצועיים, חדים ומנצחים עם בינה מלאכותית. מבוסס על מתודולוגיית תכנון מותג, הגדרת סגנונות וצבעים, מניעת קלישאות ויצירת 4 וריאציות עיצוביות שונות.",
+    variables: [
+      {
+        id: "BRAND_NAME",
+        label: "שם המותג / העסק והסלוגן (Brand Name & Slogan)",
+        placeholder: "הזן את שם המותג/עסק והסלוגן אם קיים (למשל: NovaMed - Smart Diagnostics)...",
+        default: "PulseCraft - Smart Digital Health"
+      },
+      {
+        id: "BUSINESS_FIELD",
+        label: "תחום העסק ומה הוא עושה (Industry & What the business does)",
+        placeholder: "תאר מה העסק עושה, המוצר המרכזי או השירות...",
+        default: "פלטפורמת בינה מלאכותית לניטור מדדים רפואיים וחיזוי בריאותי מותאם אישית למטופלים ומרפאות"
+      },
+      {
+        id: "TARGET_AUDIENCE",
+        label: "קהל יעד (Target Audience)",
+        placeholder: "בחר או הקלד את קהל היעד...",
+        default: "B2B & B2C: קליניקות, צוותים רפואיים ומטופלים מודרניים המחפשים פתרון טכנולוגי נגיש, אמין ופשוט לתפעול"
+      },
+      {
+        id: "BRAND_VALUES",
+        label: "ערכי המותג, אישיות והמסר שרוצים לשדר (Values & Tone)",
+        placeholder: "אמינות, חדשנות, חום, מקצועיות, יוקרה, דיוק מדעי...",
+        default: "אמינות קלינית ללא פשרות, חדשנות טכנולוגית פורצת דרך, אופטימיות, חמימות ופשטות שמעניקה שקט נפשי"
+      },
+      {
+        id: "LOGO_STYLE",
+        label: "סגנון וכיוון עיצובי של הלוגו (Logo Style & Aesthetics)",
+        placeholder: "בחר סגנון מועדף...",
+        default: "Minimalist Geometric & Smart Negative Space: סמל גיאומטרי שטוח, מודרני ונקי, עם מטאפורה חכמה וחלל שלילי המשלב בין דופק/גל לבבי לבין מגן ביטחון וצמיחה"
+      },
+      {
+        id: "COLOR_PALETTE",
+        label: "פלטת צבעים והרגש שהם מעבירים (Color Palette & Psychology)",
+        placeholder: "בחר פלטת צבעים...",
+        default: "Clinical Deep Blue & Luminous Cyan: כחול כהה עמוק (#0B192C) המסמל אמינות וסמכות, וטורקיז-ציאן זוהר (#00CBCB) המסמל חדשנות דיגיטלית וחיות"
+      },
+      {
+        id: "VISUAL_ELEMENTS",
+        label: "אלמנטים, סמלים רצויים והימנעות מקלישאות (Visual Elements & Anti-Clichés)",
+        placeholder: "סמלים שרוצים לכלול או להימנע מהם...",
+        default: "צורות גיאומטריות נקיות, גל דופק אלגנטי המשולב בתוך צורת מגן או אות P. להימנע מקלישאות גנריות (ללא סטטוסקופים נדושים, ללא גלובוסים עמוסים, ללא צללים תלת-ממדיים כבדים)"
+      },
+      {
+        id: "AI_PLATFORM",
+        label: "פלטפורמת בינה מלאכותית מיועדת (Target AI Engine)",
+        placeholder: "בחר פלטפורמה...",
+        default: "Midjourney v6 & Ideogram 2.0 (פרומפטים מותאמים לוקטור שטוח, קריאות טיפוגרפית ופרמטרים שליליים)"
+      },
+      {
+        id: "OUTPUT_LANGUAGE",
+        label: "שפת פלט והסברים",
+        placeholder: "עברית עם פרומפטים מותאמים באנגלית...",
+        default: "Hebrew (הסברים אסטרטגיים, ניתוח וצ'קליסט בעברית רהוטה + פרומפטים מקצועיים באנגלית למחוללי התמונות)"
+      }
+    ],
+    template: `You are a World-Class Principal Brand Identity Director, Master Typographer, and Legendary Vector Logo Designer (synthesizing the timeless strategic principles of Paul Rand and Massimo Vignelli with cutting-edge 2026 AI prompt engineering).
+
+Your mission is to analyze the brand inputs below, formulate an airtight brand identity architecture, and generate 4 distinct, production-ready creative logo concepts with ready-to-use AI image generator prompts.
+
+================================================================================
+BRAND PROFILE & DESIGN SPECIFICATIONS
+================================================================================
+- [BRAND NAME & SLOGAN]: "{BRAND_NAME}"
+- [INDUSTRY & CORE BUSINESS]: "{BUSINESS_FIELD}"
+- [TARGET AUDIENCE]: "{TARGET_AUDIENCE}"
+- [CORE VALUES & BRAND PERSONALITY]: "{BRAND_VALUES}"
+- [PREFERRED LOGO STYLE]: "{LOGO_STYLE}"
+- [COLOR PALETTE & PSYCHOLOGY]: "{COLOR_PALETTE}"
+- [VISUAL ELEMENTS & ANTI-CLICHÉ GUIDELINES]: "{VISUAL_ELEMENTS}"
+- [TARGET AI PLATFORM]: "{AI_PLATFORM}"
+- [OUTPUT LANGUAGE]: "{OUTPUT_LANGUAGE}"
+
+================================================================================
+CRITICAL LOGO DESIGN & PROMPT DIRECTIVES (NEVER GENERATE GENERIC LOGOS)
+================================================================================
+1. STRICT SIMPLICITY & FLAT VECTOR AESTHETICS:
+   A great logo is simple, bold, and instantly recognizable. "Less detail = More power". Strictly enforce flat 2D vector styling (vector graphic logo, flat 2d, clean solid lines, isolated on pure white background). NEVER generate photorealistic 3D clutter, muddy textures, heavy drop shadows, bevels, realistic gradients, or messy sketches unless explicitly commanded.
+2. THE 16x16 FAVICON SCALABILITY TEST:
+   The core symbol must be so structurally iconic that it remains perfectly identifiable at 16x16 px in a browser tab, as well as on giant billboard signage and embroidery.
+3. THE SILHOUETTE & MONOCHROME TEST:
+   Every logo concept MUST work flawlessly in 100% solid black on pure white, and pure white on solid black. If a logo relies on color gradients to be understood, it fails.
+4. ANTI-CLICHÉ FILTERING:
+   Strictly avoid generic AI logo clichés (e.g., standard lightbulbs for ideas, generic hands holding plants, interlocking puzzle pieces, generic circular swooshes, or clunky geometric gears). Translate concepts into sophisticated, bespoke visual metaphors.
+5. MODULAR ARCHITECTURE (ICON + WORDMARK):
+   Clearly separate the visual symbol (Icon / Brand Mark) from the typographic company name (Wordmark) so they can function independently across digital apps and print collateral.
+
+================================================================================
+MASTER BLUEPRINT OUTPUT STRUCTURE (GENERATE IN {OUTPUT_LANGUAGE})
+================================================================================
+
+--------------------------------------------------------------------------------
+PART 1: BRAND STRATEGY & IDENTITY ESSENCE
+--------------------------------------------------------------------------------
+- Core Brand Positioning: Summary of how the visual identity sets "{BRAND_NAME}" apart from competitors.
+- Color Psychology Breakdown: Exact primary, secondary, and accent colors with HEX codes and emotional resonance.
+- Typographic Direction: Recommended font pairing (Display / Sans-serif / Serif) matching the brand personality.
+
+--------------------------------------------------------------------------------
+PART 2: FOUR RADICALLY DISTINCT CREATIVE LOGO CONCEPTS & AI PROMPTS
+--------------------------------------------------------------------------------
+Generate 4 radically distinct, professional creative variations:
+- CONCEPT 1: The Modern Minimalist Geometric Mark (Focus on pure geometry, balance, and sleek modern lines)
+- CONCEPT 2: The Smart Metaphor & Clever Negative Space (Ingenious dual-meaning symbol combining two core ideas into one memorable mark)
+- CONCEPT 3: The Premium Monogram / Typographic Combination (Artful lettermark weaving brand initials with an iconic flourish)
+- CONCEPT 4: The Dynamic Modern / Tech Emblem (Forward-looking, fluid or structured emblem symbolizing progress and energy)
+
+For EACH of the 4 Concepts, provide:
+1. Concept Name & Creative Rationale: Explain why this visual metaphor embodies "{BRAND_VALUES}" and appeals to "{TARGET_AUDIENCE}".
+2. Ready-to-Copy AI Prompt (in English): Formatted specifically for "{AI_PLATFORM}". Include aspect ratio (--ar 1:1), vector tags, lighting tags (pure white background, vector flat icon, crisp geometric silhouette), and negative prompt parameters (--no realistic photo, 3d shadows, gradients, mockups, messy textures, watermarks).
+3. Monochrome & Inverted Behavior: Detailed description of how the symbol translates to solid black-and-white and dark mode.
+4. Scalability & Favicon Evaluation: Confirmation of how the mark performs at micro-sizes (16x16 px) and responsive digital breakpoints.
+
+--------------------------------------------------------------------------------
+PART 3: PRE-LAUNCH LOGO AUDIT CHECKLIST (VERIFY BEFORE FINISHING)
+--------------------------------------------------------------------------------
+Provide a structured evaluation table testing all 6 core audit checkpoints from our master framework:
+1. Message & Values Alignment: Does it communicate "{BRAND_VALUES}" instantly?
+2. Multi-Medium Scalability: Does it work from 16px favicon to giant billboards?
+3. Solid Monochrome & Contrast: Does it retain 100% recognition in pure B&W?
+4. Uniqueness & Distinctiveness: Is it free from generic tropes and differentiated from competitors?
+5. Vector & File Readiness: Checklist for SVG export, transparent PNG, and color variations.
+6. Emotional Connection & Longevity: Will this mark feel timeless and build lasting brand equity?
+
+Generate the entire blueprint in {OUTPUT_LANGUAGE}, ensuring the image prompts are written in professional English for optimal AI image generator rendering. Deliver complete, actionable, world-class branding deliverables.`,
+    background: {
+      title: "מדריך מקיף ליצירת לוגו ומיתוג מנצח עם בינה מלאכותית",
+      subtitle: "המדריך המלא: כל מה שחשוב לדעת לפני, תוך כדי ולפני שמסיימים (מתודולוגיית AI LOGO)",
+      introduction: `לוגו מנצח הוא הרבה מעבר לציור יפה – הוא העוגן הוויזואלי של המותג כולו, הרושם הראשוני שהוא משאיר בעולם, והסמל שבונה אמון מיידי אצל הלקוחות וקהל היעד. בעידן הבינה המלאכותית, יש לנו גישה לכוח יצירתי חסר תקדים, אך כדי להגיע לתוצאה ברמת סטודיו מיתוג בינלאומי נדרש שילוב מדויק של טכנולוגיה מתקדמת + חשיבה אסטרטגית + טעם ודיוק אנושי.
+
+מדריך זה מרכז את כל שלבי העבודה, הכללים הקריטיים והעקרונות המקצועיים – מתוך מתודולוגיית "מייצרים LOGO עם בינה מלאכותית: כל מה שחשוב לדעת לפני ותוך כדי", יחד עם עקרונות עיצוב וקטורי מתקדמים, הנדסת פרומפטים מותאמת מחוללים (Midjourney, Ideogram, Recraft, DALL-E) וצ'קליסט מקיף לאישור סופי לפני השקה.`,
+      sections: [
+        {
+          heading: "שלב 1: לפני שמתחילים – 7 הצעדים לתכנון מדויק",
+          content: `<p>לפני שפותחים כל כלי בינה מלאכותית, ההצלחה נשענת על הגדרה מקדימה ברורה:</p>
+          <ol style="margin-right: 1.5rem; line-height: 1.8;">
+            <li><strong>הגדר את המטרה והזהות:</strong> מה העסק שלך עושה? מי קהל היעד? מה הערכים והמסר שתרצה לשדר? לוגו של קליניקה רפואית דורש שקט, ביטחון ודיוק; לוגו של סטארטאפ גיימינג דורש אנרגיה, דינמיות ונועזות.</li>
+            <li><strong>חקור והשראה:</strong> חפש לוגואים שאתה אוהב בתחום ומחוצה לו (ב-Pinterest, Behance, Dribbble). זה יעזור לדייק כיוון ויזואלי ולמנוע דמיון לא רצוי למתחרים.</li>
+            <li><strong>הגדר סגנון וכיוון עיצובי:</strong> מודרני? קלאסי? מינימליסטי? גיאומטרי? צבעוני? בחר סגנון שמתאים לאישיות המותג שלך.</li>
+            <li><strong>בחר פלטפורמה מתאימה:</strong> השתמש בכלים מתקדמים ואמינים בהתאם לצורך: <em>Ideogram 2.0</em> (הטוב בעולם לטיפוגרפיה ואותיות באנגלית), <em>Midjourney v6</em> (אסתטיקה, סמלים מופשטים ותחכום ויזואלי), <em>Recraft AI</em> (יצירת וקטורים נקיים וייצוא SVG מוכן), או <em>ChatGPT / DALL-E 3</em> (סינתזה רעיונית והבנת הנחיות מורכבות).</li>
+            <li><strong>הכן תיאור מדויק (פרומפט):</strong> תיאור ברור ומפורט ככל האפשר הכולל סגנון, צבעים, סמלים, שם המותג, תחום, טון וסוג הקומפוזיציה.</li>
+            <li><strong>החלט על צבעים וטיפוגרפיה מועדפים:</strong> צבעים מעבירים רגש ומסרים פסיכולוגיים עמוקים. בחר פלטת צבעים שמתאימה לערכי המותג (למשל: כחול וטורקיז לאמינות ורפואה, שחור וזהב ליוקרה, ירוק לצמיחה ובריאות).</li>
+            <li><strong>שקלל אפשרויות ורב-גוניות:</strong> ודא שאתה בוחר מספר וריאציות, ובודק כיצד הלוגו עובד בשחור-לבן, על רקע בהיר ועל רקע כהה.</li>
+          </ol>`
+        },
+        {
+          heading: "שלב 2: תוך כדי התהליך – 7 עקרונות הדיוק והליטוש",
+          content: `<p>תוך כדי העבודה מול מחולל התמונות, הקפד על עקרונות מפתח אלו לקבלת תוצר פרימיום:</p>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>עיקרון</th>
+                  <th>מהות הפעולה</th>
+                  <th>יישום בפרומפט וב-AI</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>1. ניסוח פרומפטים מדויקים</strong></td>
+                  <td>היה ספציפי ככל האפשר: סגנון, רגש, יעד, שמות, סמלים והרכיבים.</td>
+                  <td>הגדרת <code>flat vector, clean lines, isolated on white background</code> ללא מילים עמומות.</td>
+                </tr>
+                <tr>
+                  <td><strong>2. יצירת וריאציות רבות</strong></td>
+                  <td>אל תסתפק בתוצאה הראשונה. צור מגוון רחב של אופציות להשוואה.</td>
+                  <td>הרצת 4 קונספטים שונים: גיאומטרי, חלל שלילי, מונוגרם אותיות, ואמבלם מודרני.</td>
+                </tr>
+                <tr>
+                  <td><strong>3. ביצוע ליטושים ושיפורים</strong></td>
+                  <td>שנה פרטים, צבעים, טיפוגרפיה ופרופורציות עד שהלוגו מרגיש מדויק.</td>
+                  <td>שימוש בכלי Inpainting / Vary Region או עריכה וקטורית בתוכנת עיצוב (Illustrator / Figma).</td>
+                </tr>
+                <tr>
+                  <td><strong>4. שמירה על פשטות (Simplicity)</strong></td>
+                  <td>לוגו טוב הוא פשוט, ברור וקל לזיהוי. <em>פחות פרטים = יותר עוצמה</em>.</td>
+                  <td>הסרת פרטים מסיחים, גרדיאנטים כבדים וצלליות מיותרות.</td>
+                </tr>
+                <tr>
+                  <td><strong>5. בדיקת קריאות וזיהוי</strong></td>
+                  <td>האם הלוגו ברור בגדלים שונים? האם הוא עובד ללא טקסט?</td>
+                  <td>מבחן הפביקון (16x16 פיקסלים) ובדיקה כסמל אפליקציה מבודד.</td>
+                </tr>
+                <tr>
+                  <td><strong>6. בדיקת ייחודיות ומקוריות</strong></td>
+                  <td>חפש את הלוגו בגוגל תמונות כדי לוודא שאינו דומה לאחרים.</td>
+                  <td>Reverse Image Search בגוגל ובמאגרי סימני מסחר למניעת דמיון לא מכוון.</td>
+                </tr>
+                <tr>
+                  <td><strong>7. קבלת פידבק אובייקטיבי</strong></td>
+                  <td>שתף אנשים מהימנים וקבל חוות דעת כנה לפני שאתה מסיים.</td>
+                  <td>הצגת הלוגו למשך 3 שניות ושאלת הבוחן: "מה אתה זוכר מהסמל?".</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>`
+        },
+        {
+          heading: "שלב 3: עקרונות המאסטר המקצועיים (שדרוגי עומק מעולם העיצוב)",
+          content: `<p>כדי שהלוגו יעמוד בסטנדרטים הבינלאומיים של שנת 2026, יש להקפיד על 5 עקרונות זהב מקצועיים נוספים:</p>
+          <ul>
+            <li><strong>מבחן ה-Favicon 16x16:</strong> לוגו מקצועי חייב להיות מזוהה לחלוטין גם כשהוא מוקטן לגודל של 16 על 16 פיקסלים בטאב של דפדפן אינטרנט או בפינת מסך הטלפון. אם הפרטים נמרחים והופכים לכתם עכור – הלוגו מורכב מדי.</li>
+            <li><strong>עקרון החלל השלילי (Negative Space Genius):</strong> הלוגואים הגדולים בהיסטוריה (כמו החץ המוסתר ב-FedEx או הטווס של NBC) משלבים משמעות כפולה ומתוחכמת בין הצורה לבין הרווח הלבן סביבה. חלל שלילי מייצר "קליק" מנטלי אצל הצופה והופך את הלוגו לבלתי נשכח.</li>
+            <li><strong>מבחן הצללית והשחור-לבן המוחלט (Silhouetting Test):</strong> אם מסירים מהלוגו את כל הצבעים, הגרדיאנטים והאפקטים והופכים אותו לצללית שחורה על רקע לבן – האם הוא עדיין מוכר ומסרטיבי? אם לא, מדובר באיור ולא בלוגו אמיתי.</li>
+            <li><strong>מניעת קלישאות AI גנריות (Anti-Cliché Filtering):</strong> מודלי בינה מלאכותית נוטים לחזור על תבניות נדושות: נורות לרעיונות, ידיים מחזיקות נבט לבריאות, גלגלי שיניים לטכנולוגיה, פאזלים לחינוך, וספירלות חסרות משמעות. הפרומפט המדויק דורש מטאפורות מקוריות ומסנן במפורש סמלים אלו.</li>
+            <li><strong>הפרדה מודולרית (Icon Mark + Wordmark):</strong> מותג מודרני זקוק למערכת ורסטילית: סמל עצמאי (Brandmark) לשימוש כאייקון אפליקציה או פרופיל רשת, וכיתוב טיפוגרפי עצמאי (Wordmark) לשימוש במסמכים ובכותרות עליונות.</li>
+          </ul>`
+        },
+        {
+          heading: "שלב 4: התאמה לפי מחולל בינה מלאכותית (איזה כלי לבחור ומתי?)",
+          content: `<p>לכל מחולל AI יש יתרונות ייחודיים שחשוב להכיר:</p>
+          <ul>
+            <li><strong>Ideogram 2.0:</strong> הבחירה מספר 1 בעולם כאשר רוצים לשלב אותיות, ראשי תיבות או את שם המותג באנגלית ישירות בתוך הלוגו בדיוק טיפוגרפי פנומנלי.</li>
+            <li><strong>Midjourney v6:</strong> הבחירה המומלצת ביותר ליצירת סמלים מופשטים, מטאפורות מתוחכמות, קווי מתאר אלגנטיים ואסתטיקה עילאית. מומלץ להוסיף תמיד את הפרמטרים <code>--no 3d, realistic photo, shadows, textures, mockups --v 6.0</code>.</li>
+            <li><strong>Recraft AI:</strong> כלי ייעודי למעצבים המסוגל לייצר לוגואים וקטוריים ישירות בפורמט SVG להורדה, עם שליטה מלאה בפלטת צבעים מדויקת ובסגנונות Vector Flat / Line Art.</li>
+            <li><strong>ChatGPT / DALL-E 3:</strong> מצטיין בהבנת נרטיב מורכב, רעיונאות ראשונית, פיצוח בריף מותג ויצירת סקיצות קונספטואליות מהירות.</li>
+          </ul>`
+        },
+        {
+          heading: "שלב 5: דברים שחשוב לזכור – רישוי, קבצים ומותג כולל",
+          content: `<p>דגשים חיוניים להפיכת הלוגו לנכס עסקי בר-קיימא:</p>
+          <ul>
+            <li><strong>זכויות שימוש מסחריות:</strong> בדוק היטב את תנאי הרישיון של פלטפורמת ה-AI שבה השתמשת. ודא שיש לך זכויות שימוש מסחריות מלאות בלוגו הסופי.</li>
+            <li><strong>קבצים ופורמטים חיוניים:</strong> לוגו מקצועי חייב להישמר בפורמט <strong>SVG (וקטורי)</strong> המאפשר הגדלה לאינסוף ללא ירידה באיכות (לשלטי חוצות, רכבים ודפוס), לצד קבצי <strong>PNG באיכות גבוהה עם רקע שקוף</strong> (Transparent Background) לשימוש בדיגיטל. מומלץ להשתמש בתוכנות וקטוריזציה כגון Vectorizer.ai, Adobe Illustrator או Figma.</li>
+            <li><strong>מותג הוא הרבה יותר מלוגו:</strong> הלוגו הוא רק נקודת ההתחלה. הזהות הכוללת כוללת שפה צילומית, טיפוגרפיה, טון דיבור, פלטת צבעים משלימה וחוויית לקוח עקבית.</li>
+            <li><strong>עדיין נדרש שיקול אנושי:</strong> הבינה המלאכותית היא כלי עוצמתי להאצת רעיונות ודיוק, אך החזון, ההחלטות האסטרטגיות, העין הביקורתית והטאץ' הסופי – תמיד שלך!</li>
+          </ul>`
+        },
+        {
+          heading: "שלב 6: צ'קליסט סופי לפני השקה (6 שאלות המפתח)",
+          content: `<p>לפני שאתה סוגר את הלוגו ויוצא לדרך, עבור על הצ'קליסט הסופי מתוך המתודולוגיה:</p>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>שאלת הבדיקה</th>
+                  <th>מדד ההצלחה</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td><strong>האם הלוגו משדר את המסר והערכים של המותג?</strong></td>
+                  <td>הצופה מבין מיד את האופי, המקצועיות והרוח של העסק ללא צורך בהסברים ארוכים.</td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td><strong>האם הוא עובד טוב בכל גודל ובכל מדיום?</strong></td>
+                  <td>נבדק וברור הן בגודל 16x16 פיקסלים בדפדפן ובמובייל, והן בשילוט ענק והדפסה.</td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td><strong>האם הוא עובד טוב בשחור-לבן?</strong></td>
+                  <td>קריא, חד ועוצמתי גם בגרסת סילואט מונוכרומטית מלאה ללא שום צבעים או גרדיאנטים.</td>
+                </tr>
+                <tr>
+                  <td>4</td>
+                  <td><strong>האם הוא "ייחודי" ולא דומה לאחרים?</strong></td>
+                  <td>עבר בדיקת Reverse Image Search בגוגל תמונות ונקי מקלישאות ומדמיון למתחרים.</td>
+                </tr>
+                <tr>
+                  <td>5</td>
+                  <td><strong>האם יש לך את כל הקבצים הנכונים?</strong></td>
+                  <td>קובץ SVG וקטורי פתוח, PNG שקוף ברזולוציה גבוהה, גרסאות בהיר/כהה ופביקון.</td>
+                </tr>
+                <tr>
+                  <td>6</td>
+                  <td><strong>האם אתה מרגיש חיבור וביטחון בלוגו?</strong></td>
+                  <td>אתה גאה להציג את הלוגו על גבי כרטיסי ביקור, אתר, מוצרים ומצגות רשמיות.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div style="margin-top: 1.25rem; padding: 1rem; border-radius: 8px; background: rgba(0, 203, 203, 0.08); border: 1px solid rgba(0, 203, 203, 0.2);">
+            <p style="font-weight: 600; color: var(--primary-teal); margin-bottom: 0.25rem;">💡 לזכור תמיד:</p>
+            <p style="margin: 0; font-size: 0.95rem;">לוגו מנצח = שילוב של טכנולוגיה מתקדמת + חשיבה אסטרטגית + טעם ודיוק אנושי. לוגו טוב פותח דלתות, מותג חזק יוצר אימפקט!</p>
+          </div>`
+        }
+      ],
+      sources: [
+        { name: "Paul Rand - Design, Form, and Chaos", url: "https://www.paulrand.design" },
+        { name: "Massimo Vignelli - The Vignelli Canon", url: "https://www.vignelli.com/canon.pdf" },
+        { name: "Ideogram & Midjourney Vector Prompting Guide 2026", url: "https://ideogram.ai" }
+      ]
+    }
+  },
+  {
     id: "presentation",
     title: "מחולל פרומפטים למצגות WOW – הדרכה, שיווק ופרזנטציות",
     subtitle: "Universal High-Impact Presentation Design Prompt",
