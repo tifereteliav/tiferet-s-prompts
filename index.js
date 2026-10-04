@@ -550,7 +550,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const isLogoPrompt = (promptId === "ai_logo");
         const hasPreset = (
-          (isLogoPrompt && ["LOGO_STYLE", "COLOR_PALETTE", "AI_PLATFORM", "BUSINESS_FIELD", "BRAND_VALUES", "TARGET_AUDIENCE"].includes(variable.id)) ||
+          (isLogoPrompt && ["LOGO_STYLE", "COLOR_PALETTE", "BUSINESS_FIELD", "BRAND_VALUES", "VISUAL_ELEMENTS"].includes(variable.id)) ||
           (!isLogoPrompt && ["COLOR_PALETTE", "TARGET_AUDIENCE", "DESIGN_STYLE", "DEPTH_LEVEL"].includes(variable.id))
         );
 
@@ -584,15 +584,17 @@ document.addEventListener("DOMContentLoaded", () => {
                 { name: "🚨 כחול נייבי כהה ואדום נועז (נוכחות חדה, סמכות ועוצמה)", value: "Navy Blue & Bold Accent Red: כחול כהה סמכותי (#0F172A), לבן נקי, ואדום בוהק (#EF4444) להדגשה חדה" },
                 { name: "✍️ מותאם אישית (הקלד מלל חופשי בשדה למטה)", value: "custom" }
               ];
-            } else if (variable.id === "AI_PLATFORM") {
+            } else if (variable.id === "VISUAL_ELEMENTS") {
               presetOptions = [
-                { name: "בחר פלטפורמת AI...", value: "" },
-                { name: "🎯 Ideogram 2.0 (המומלץ ביותר לטיפוגרפיה, אותיות מדויקות וטקסט באנגלית)", value: "Ideogram 2.0 (Optimized for perfect text typography, vector illustration style, pure white background)" },
-                { name: "🎨 Midjourney v6 (אסתטיקה עילאית, סמלים מופשטים ותחכום ויזואלי)", value: "Midjourney v6 (--ar 1:1 --no 3d, realistic photo, shadows, textures, mockups --v 6.0)" },
-                { name: "📐 Recraft AI (מומחה לעיצוב וקטורי נקי וייצוא קבצי SVG מוכנים)", value: "Recraft AI (Vector Flat / Line Art mode, clean scalable vector geometry, pure white background)" },
-                { name: "🧠 ChatGPT / DALL-E 3 (הבנת הקשר מעולה וסינתזה רעיונית של בריף מותג)", value: "ChatGPT / DALL-E 3 (Vector graphic logo, isolated on pure white background, minimal flat aesthetics)" },
-                { name: "⚡ Flux.1 / Canva AI (עיצוב מהיר, גמיש ונקי)", value: "Flux.1 / Canva AI (Clean 2D vector logo mark, centered, high contrast)" },
-                { name: "✍️ מותאם אישית (הקלד מלל חופשי בשדה למטה)", value: "custom" }
+                { name: "בחר קטגוריית סמלים ואלמנטים ויזואליים...", value: "" },
+                { name: "🩺 רפואה, בריאות וחיים (Health, Care & Medical) - ללא קלישאות נדושות", value: "רפואה, בריאות וחיים: גל דופק אלגנטי, צורת מגן צמיחה, מבנה תא/מולקולה מודרני, או צללית לב מינימליסטית (ללא קלישאות גנריות, ללא סטטוסקופים נדושים וללא צללים כבדים)" },
+                { name: "🚀 טכנולוגיה, דאטה וחדשנות (Tech, Data & Digital Innovation)", value: "טכנולוגיה, דאטה וחדשנות: צמתים מחוברים, קו זרימה דיגיטלי, סמל אינסוף גיאומטרי, פיקסל/קובייה מודרנית (קווים נקיים, מינימליסטיים וסילואט מובהק)" },
+                { name: "🌿 צמיחה, טבע וקיימות (Nature, Growth & Organic Harmony)", value: "צמיחה, טבע וקיימות: ניצן/עלה עדין, גל מים זורם, שמש מינימליסטית או קווים אורגניים רכים בהרמוניה גיאומטרית נקייה" },
+                { name: "💎 יוקרה, איכות עילית ובלעדיות (Luxury, Prestige & Fine Craft)", value: "יוקרה ואיכות עילית: קריסטל גיאומטרי, חיתוך יהלום שטוח, כתר מינימליסטי מעודן או אלמנט אדריכלי מאופק ומלוטש" },
+                { name: "📐 צורות גיאומטריות טהורות ומופשטות (Abstract & Pure Geometry)", value: "צורות גיאומטריות מופשטות: מעגלים שזורים, חיתוך זוויתי מדויק, משולשים יציבים והרמוניה אופטית נקייה ללא סמלים פיגורטיביים" },
+                { name: "🔤 מונוגרם אותיות בלבד ללא סמל פיגורטיבי (Monogram / Letters Only)", value: "מונוגרם אותיות בלבד: שזירה טיפוגרפית של ראשי התיבות של המותג בקווי פרימיום מדויקים ללא שום סמל או איור נלווה" },
+                { name: "💼 עסקים, פיננסים וניהול אסטרטגי (Business, Finance & Strategic Growth)", value: "עסקים, פיננסים וצמיחה: עמודת צמיחה מינימליסטית, עוגן יציבות, מבנה מגן מודרני או חץ משולב בחלל שלילי מתוחכם" },
+                { name: "✍️ אחר / התאמה אישית (הקלד אלמנטים חופשיים בשדה למטה)", value: "custom" }
               ];
             } else if (variable.id === "BUSINESS_FIELD") {
               presetOptions = [
@@ -612,15 +614,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 { name: "👑 יוקרה, אלגנטיות, בלעדיות ומצוינות עילית", value: "יוקרה מאופקת, אלגנטיות מוקפדת, בלעדיות, דיוק חסר פשרות ומצוינות ברמה הגבוהה ביותר" },
                 { name: "💡 פשטות, נגישות, ידידותיות ושקיפות מלאה", value: "פשטות אינטואיטיבית, שקיפות, יחס אישי חם, נגישות בגובה העיניים וחוויית משתמש נטולת מאמץ" },
                 { name: "⚡ תעוזה, יצירתיות, אנרגיה ודינמיות מהפכנית", value: "תעוזה עסקית, חשיבה מחוץ לקופסה, אנרגיה סוחפת, דינמיות מתמדת וחדשנות משבשת" },
-                { name: "✍️ מותאם אישית (הקלד מלל חופשי בשדה למטה)", value: "custom" }
-              ];
-            } else if (variable.id === "TARGET_AUDIENCE") {
-              presetOptions = [
-                { name: "בחר קהל יעד...", value: "" },
-                { name: "🤝 B2B & B2C: קליניקות, צוותים רפואיים ומטופלים מודרניים", value: "B2B & B2C: קליניקות, צוותים רפואיים ומטופלים מודרניים המחפשים פתרון טכנולוגי נגיש, אמין ופשוט לתפעול" },
-                { name: "👥 לקוחות קצה, משפחות והציבור הרחב", value: "B2C & Everyday Consumers: לקוחות קצה, משפחות ואנשים המחפשים מוצר נגיש, אמין, חם ואינטואיטיבי" },
-                { name: "🚀 יזמים, אנשי טכנולוגיה ומפתחים", value: "Tech Innovators & Entrepreneurs: יזמים, אנשי טכנולוגיה ומובילי חדשנות המעריכים ארכיטקטורה נקייה ועיצוב מתקדם" },
-                { name: "👑 לקוחות פרימיום ועשירון עליון", value: "Affluent & Luxury Consumers: לקוחות פרימיום בעלי ציפיות גבוהות לאסתטיקה מלוטשת, אלגנטיות ויוקרה מאופקת" },
                 { name: "✍️ מותאם אישית (הקלד מלל חופשי בשדה למטה)", value: "custom" }
               ];
             }
