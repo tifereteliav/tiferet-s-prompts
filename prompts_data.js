@@ -6,12 +6,12 @@
 
 const PROMPTS_DATA = [
   {
-    id: "ai_logo",
-    title: "מחולל פרומפטים ללוגו ומיתוג מנצח (AI LOGO)",
-    subtitle: "Master Brand Strategy & The Ultimate Ideal Logo Blueprint",
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M9.53 16.122a3 3 0 00-5.78 1.128 2.25 2.25 0 01-2.4 2.245 4.5 4.5 0 008.4-2.245c0-.399-.078-.78-.22-1.128zm0 0a15.998 15.998 0 003.388-1.62m-5.043-.025a15.994 15.994 0 011.622-3.395m3.42 3.42a15.995 15.995 0 004.764-4.648l3.876-5.814a1.151 1.151 0 00-1.597-1.597L14.146 6.32a15.996 15.996 0 00-4.649 4.763m3.42 3.42a6.776 6.776 0 00-3.42-3.42" /></svg>`,
+    id: "ai_logo_strategy",
+    title: "מחולל פרומפטים לתוכנית אב למיתוג וזהות",
+    subtitle: "Master Brand Strategy & Visual Identity Blueprint",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" /></svg>`,
     category: "מיתוג, לוגואים וזהות ויזואלית",
-    description: "יצירת תוכנית אב למיתוג ופיצוח הלוגו האחד והאידיאלי ביותר למותג שלך. כולל הגדרת סגנונות וצבעים, מניעת קלישאות ופרומפט תמונה מדויק מוכן להעתקה.",
+    description: "יצירת פרומפט מקיף לתוכנית אב אסטרטגית למיתוג: ניתוח זהות, פסיכולוגיית צבעים, טיפוגרפיה, ופיצוח הלוגו האידיאלי ביותר למותג שלך.",
     variables: [
       {
         id: "BRAND_NAME",
@@ -124,8 +124,8 @@ A structured evaluation table confirming all 6 key quality gates:
 
 Generate the entire Master Brand Strategy in {OUTPUT_LANGUAGE}, with the ready-to-copy AI image prompt written in crystal-clear, professional English for optimal generator fidelity.`,
     background: {
-      title: "מדריך מקיף ליצירת לוגו ומיתוג מנצח עם בינה מלאכותית",
-      subtitle: "המדריך המלא: כל מה שחשוב לדעת לפני, תוך כדי ולפני שמסיימים (מתודולוגיית AI LOGO)",
+      title: "מדריך מקיף ליצירת תוכנית אב למיתוג וזהות ויזואלית",
+      subtitle: "המדריך המלא: כל מה שחשוב לדעת לפני, תוך כדי ולפני שמסיימים (מתודולוגיית Brand Identity)",
       introduction: `לוגו מנצח הוא הרבה מעבר לציור יפה – הוא העוגן הוויזואלי של המותג כולו, הרושם הראשוני שהוא משאיר בעולם, והסמל שבונה אמון מיידי. לוגו גדול אינו מנסה לרצות פלח שוק צר או משתנה, אלא מייצג את ה-DNA העמוק, הערכים והאישיות של המותג עצמו – באופן על-זמני שמדבר בעוצמה לכל מי שפוגש בו.
 
 בעידן הבינה המלאכותית, היכולת ליצור תוכנית אב למיתוג ולזקק את הלוגו האחד והאידיאלי ביותר נשענת על שילוב מנצח של טכנולוגיה מתקדמת + חשיבה אסטרטגית + טעם ודיוק אנושי.
@@ -272,6 +272,116 @@ Generate the entire Master Brand Strategy in {OUTPUT_LANGUAGE}, with the ready-t
       sources: [
         { name: "Paul Rand - Design, Form, and Chaos", url: "https://www.paulrand.design" },
         { name: "Massimo Vignelli - The Vignelli Canon", url: "https://www.vignelli.com/canon.pdf" }
+      ]
+    }
+  },
+  {
+    id: "ai_logo_direct",
+    title: "מחולל פרומפטים ישיר ליצירת לוגו (Direct Logo)",
+    subtitle: "Production-Ready Universal AI Image Prompt for Logos",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9" /></svg>`,
+    category: "מיתוג, לוגואים וזהות ויזואלית",
+    description: "מחולל פרומפטים ממוקד ומוכן להעתקה ישירה למחוללי תמונות (Midjourney, Ideogram, ChatGPT, Flux). ללא תוכניות אב ארוכות – פרומפט תמונה מדויק, שטוח ונקי בלחיצת כפתור.",
+    variables: [
+      {
+        id: "BRAND_NAME",
+        label: "שם המותג / העסק והסלוגן (Brand Name & Slogan)",
+        placeholder: "הזן את שם המותג/עסק והסלוגן אם קיים (למשל: NovaMed - Smart Diagnostics)...",
+        default: "PulseCraft - Smart Digital Health"
+      },
+      {
+        id: "BUSINESS_FIELD",
+        label: "תחום העסק ומה הוא עושה (Industry & What the business does)",
+        placeholder: "תאר מה העסק עושה, המוצר המרכזי או השירות...",
+        default: "פלטפורמת בינה מלאכותית לניטור מדדים רפואיים וחיזוי בריאותי מותאם אישית למטופלים ומרפאות"
+      },
+      {
+        id: "BRAND_VALUES",
+        label: "ערכי המותג, אישיות והמסר שרוצים לשדר (Values & Personality)",
+        placeholder: "אמינות, חדשנות, חום, מקצועיות, יוקרה, דיוק מדעי...",
+        default: "אמינות קלינית ללא פשרות, חדשנות טכנולוגית פורצת דרך, אופטימיות, חמימות ופשטות שמעניקה שקט נפשי"
+      },
+      {
+        id: "LOGO_STYLE",
+        label: "סגנון וכיוון עיצובי של הלוגו (Logo Style & Aesthetics)",
+        placeholder: "בחר סגנון מועדף...",
+        default: "Minimalist Geometric & Smart Negative Space: סמל גיאומטרי שטוח, מודרני ונקי, עם מטאפורה חכמה וחלל שלילי המשלב בין דופק/גל לבבי לבין מגן ביטחון וצמיחה"
+      },
+      {
+        id: "COLOR_PALETTE",
+        label: "פלטת צבעים והרגש שהם מעבירים (Color Palette & Psychology)",
+        placeholder: "בחר פלטת צבעים...",
+        default: "Clinical Deep Blue & Luminous Cyan: כחול כהה עמוק (#0B192C) המסמל אמינות וסמכות, וטורקיז-ציאן זוהר (#00CBCB) המסמל חדשנות דיגיטלית וחיות"
+      },
+      {
+        id: "VISUAL_ELEMENTS",
+        label: "קטגוריית סמלים ואלמנטים ויזואליים (Visual Metaphor & Symbols)",
+        placeholder: "בחר קטגוריה או הקלד אלמנטים מותאמים אישית...",
+        default: "רפואה, בריאות וחיים: גל דופק אלגנטי המשולב בצורת מגן צמיחה (ללא קלישאות גנריות, ללא סטטוסקופים נדושים וללא צללים כבדים)"
+      }
+    ],
+    template: `A world-class minimalist flat 2D vector logo mark for the brand "{BRAND_NAME}", representing: {BUSINESS_FIELD}.
+
+================================================================================
+PRIMARY MASTER IMAGE GENERATION PROMPT (READY TO PASTE INTO ANY AI ENGINE)
+================================================================================
+A masterclass flat 2D vector graphic logo mark for "{BRAND_NAME}".
+Visual Style: {LOGO_STYLE}, iconic geometry, perfect optical balance, crisp solid lines, high aesthetic refinement.
+Core Metaphor & Symbols: {VISUAL_ELEMENTS}.
+Brand Personality & Tone: Embodying {BRAND_VALUES}.
+Color Palette: {COLOR_PALETTE}, flat solid colors with bold contrast, premium modern execution.
+Background & Staging: Strictly isolated on a pure seamless white background (#FFFFFF), perfectly centered, generous negative breathing space, clean vector SVG graphic style.
+Scalability Directive: High-contrast iconic silhouette, perfectly legible at 16x16 px micro-favicon size as well as giant architectural signage.
+
+NEGATIVE PARAMETERS & EXCLUSIONS (STRICT):
+--no realistic photograph, 3d render, shadows, drop shadow, bevel, emboss, complex gradients, mockups, paper texture, realistic human faces, blurry edges, noisy background, clutter, watermark, signature, multiple logos in one frame --ar 1:1
+
+================================================================================
+ADDITIONAL READY-TO-USE ASSET VARIATIONS
+================================================================================
+1. DARK MODE INVERTED VARIATION:
+A minimalist flat 2D vector logo mark for "{BRAND_NAME}" ({LOGO_STYLE}, {VISUAL_ELEMENTS}), isolated on a deep obsidian black background (#0B0F19), rendered with luminous high-contrast white and accent lines, pure digital vector aesthetic.
+
+2. PURE MONOCHROME SILHOUETTE (BLACK & WHITE):
+Solid black vector silhouette logo mark of {VISUAL_ELEMENTS} for "{BRAND_NAME}", 100% solid flat black (#000000) on pure white background (#FFFFFF), zero shades of gray, iconic graphic identity, maximum optical clarity.`,
+    background: {
+      title: "מדריך מהיר להנדסת פרומפטים ישירים ללוגואים",
+      subtitle: "איך להוציא לוגו מלוטש, שטוח ונקי ממחוללי תמונות ב-AI בלי לקבל איורים עמוסים",
+      introduction: `כאשר מייצרים לוגו ישירות במחולל תמונות (כגון Midjourney, Ideogram, ChatGPT/DALL-E, Recraft או Flux), האתגר הגדול ביותר הוא למנוע מה-AI לייצר "ציור עמוס", צללים תלת-ממדיים או רקעים מסיחים במקום לוגו וקטורי נקי ופונקציונלי.
+
+פרומפט זה בנוי במבנה הנדסי מדויק המבטיח קבלת סמל שטוח, צרוב על רקע לבן, בעל סילואט אייקוני ומוכן להפיכה לוקטור (SVG).`,
+      sections: [
+        {
+          heading: "חלק 1: מילות מפתח קריטיות לקבלת לוגו שטוח ונקי (Flat Vector)",
+          content: `<p>מחוללי תמונות זקוקים להוראות חד-משמעיות כדי לייצר לוגו במקום יצירת אמנות:</p>
+          <ul>
+            <li><strong>flat 2D vector graphic logo mark:</strong> מגדיר באופן מובהק שהתוצר הוא סמל גרפי דו-ממדי ולא תמונה צילומית.</li>
+            <li><strong>isolated on pure white background:</strong> מבטיח שהלוגו יישב לבדו על רקע לבן חלק, ומאפשר צריבה וקטוריזציה קלה ומהירה.</li>
+            <li><strong>clean solid lines, iconic geometry:</strong> שומר על קווים חדים ומונע עיוותים וכתמים מיותרים.</li>
+            <li><strong>--no 3d, realistic photo, shadows, complex gradients:</strong> חוסם מראש אלמנטים תלת-ממדיים שמקשים על שימוש מקצועי בלוגו.</li>
+          </ul>`
+        },
+        {
+          heading: "חלק 2: מבחן ה-16x16 והשחור-לבן",
+          content: `<p>לוגו אמיתי נמדד בשני מבחנים עיקריים:</p>
+          <ul>
+            <li><strong>מבחן הפביקון (16x16 px):</strong> האם הצורה ברורה גם כשהיא מכווצת לאייקון זעיר בטאב של דפדפן? אם הסמל מכיל יותר מדי פרטים קטנים, הוא יימרח.</li>
+            <li><strong>מבחן השחור-לבן:</strong> השתמש בפרומפט הווריאציה המונוכרומטית המצורף כדי לבדוק שהלוגו עובד ב-100% שחור מלא על לבן. אם הוא תלוי בגרדיאנטים – הוא אינו יציב.</li>
+          </ul>`
+        },
+        {
+          heading: "חלק 3: מעבר מ-AI לקובץ וקטורי מקצועי (SVG)",
+          content: `<p>לאחר שבחרתם את התוצאה המועדפת במחולל התמונות, בצעו את הצעדים הבאים להפיכתו לנכס מותג:</p>
+          <ol style="margin-right: 1.5rem; line-height: 1.8;">
+            <li>הורידו את התמונה ברזולוציה המקסימלית.</li>
+            <li>המירו את התמונה לוקטור באמצעות <strong>Vectorizer.ai</strong> או כלי ה-Image Trace ב-Adobe Illustrator.</li>
+            <li>שמרו קובץ <strong>SVG</strong> (גמיש לכל גודל ללא ירידה באיכות) לצד קבצי <strong>PNG שקופים</strong>.</li>
+          </ol>`
+        }
+      ],
+      sources: [
+        { name: "Midjourney Vector Aesthetics Guide", url: "https://midjourney.com" },
+        { name: "Vectorizer AI - Raster to Vector Conversion", url: "https://vectorizer.ai" }
       ]
     }
   },

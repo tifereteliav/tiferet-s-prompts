@@ -548,7 +548,7 @@ document.addEventListener("DOMContentLoaded", () => {
         
         const currentValue = userVariables[promptId][variable.id] || "";
 
-        const isLogoPrompt = (promptId === "ai_logo");
+        const isLogoPrompt = (promptId === "ai_logo" || promptId === "ai_logo_strategy" || promptId === "ai_logo_direct");
         const hasPreset = (
           (isLogoPrompt && ["LOGO_STYLE", "COLOR_PALETTE", "BUSINESS_FIELD", "BRAND_VALUES", "VISUAL_ELEMENTS"].includes(variable.id)) ||
           (!isLogoPrompt && ["COLOR_PALETTE", "TARGET_AUDIENCE", "DESIGN_STYLE", "DEPTH_LEVEL"].includes(variable.id))
