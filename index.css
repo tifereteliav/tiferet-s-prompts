@@ -13,7 +13,7 @@
   
   --text-main: #0f172a;
   --text-muted: #64748b;
-  --text-dim: #94a3b8;
+  --text-dim: #64748b; /* a11y: was #94a3b8 (2.6:1) – now ≥4.5:1 on white */
   
   /* Primary Brand Tones from Logo */
   --primary-azure: #299ae8;        /* Azure/Cyan Electric Blue (DNA / Left of Logo) */
@@ -30,9 +30,9 @@
   --primary-teal-light: #e0f2fe;
   --accent-purple: #683993;
 
-  /* Signature 135deg Gradient from Logo */
-  --brand-gradient: linear-gradient(135deg, #299ae8 0%, #683993 100%);
-  --brand-gradient-hover: linear-gradient(135deg, #2087ce 0%, #582e7f 100%);
+  /* Signature 135deg Gradient from Logo (a11y: starts at darker azure so white text passes 4.5:1) */
+  --brand-gradient: linear-gradient(135deg, #1b73b5 0%, #683993 100%);
+  --brand-gradient-hover: linear-gradient(135deg, #18669f 0%, #582e7f 100%);
   --brand-gradient-soft: linear-gradient(135deg, rgba(41, 154, 232, 0.08) 0%, rgba(104, 57, 147, 0.08) 100%);
   --brand-border-gradient: linear-gradient(135deg, rgba(41, 154, 232, 0.4) 0%, rgba(104, 57, 147, 0.4) 100%);
 
@@ -476,7 +476,8 @@ header {
   margin-bottom: 1.5rem;
 }
 
-.var-input-group label {
+.var-input-group label,
+.var-input-group .var-group-label {
   display: block;
   font-size: 0.9rem;
   color: #334155;
@@ -684,13 +685,16 @@ header {
   border-left: 1px solid var(--panel-border);
   box-shadow: -10px 0 40px rgba(15, 23, 42, 0.15);
   z-index: 1001;
-  transition: right var(--transition-medium);
+  visibility: hidden; /* a11y: keep off-screen drawer out of Tab order */
+  transition: right var(--transition-medium), visibility 0s linear 0.4s;
   display: flex;
   flex-direction: column;
 }
 
 .drawer.open {
   right: 0;
+  visibility: visible;
+  transition: right var(--transition-medium), visibility 0s;
 }
 
 .drawer-header {
@@ -1522,7 +1526,7 @@ body.workspace-active .site-footer {
 }
 
 .social-link-btn.whatsapp {
-  color: #25d366;
+  color: #128c4a;
   border-color: rgba(37, 211, 102, 0.3);
 }
 .social-link-btn.whatsapp:hover {
@@ -1565,7 +1569,7 @@ body.workspace-active .site-footer {
   align-items: center;
   justify-content: center;
   gap: 0.75rem;
-  background: #25d366;
+  background: #0f7a3d; /* a11y: darker WhatsApp green – white text ≈5:1 (was #25d366 ≈2:1) */
   color: #ffffff;
   font-weight: 700;
   font-size: 1.15rem;
@@ -1635,4 +1639,461 @@ body.workspace-active .site-footer {
     padding: 0.9rem 1.75rem;
     font-size: 1rem;
   }
+}
+
+/* ==========================================================================
+   ACCESSIBILITY LAYER (IS 5568 / WCAG 2.0 AA)
+   ========================================================================== */
+
+/* Screen-reader-only utility */
+.sr-only {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Skip link – hidden until focused */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  right: 1rem;
+  z-index: 5000;
+  background: #0f172a;
+  color: #ffffff;
+  padding: 0.75rem 1.25rem;
+  border-radius: 10px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: top 0.15s ease;
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
+/* Visible keyboard focus indicator for every interactive element */
+a:focus-visible,
+button:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+input:focus-visible,
+[tabindex]:focus-visible,
+[role="button"]:focus-visible {
+  outline: 3px solid #683993 !important;
+  outline-offset: 3px !important;
+  box-shadow: 0 0 0 6px rgba(255, 255, 255, 0.9) !important;
+}
+
+/* Headings that receive programmatic focus shouldn't show a heavy ring on mouse use */
+[tabindex="-1"]:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Remove-command control rendered as a keyboard-accessible button */
+.selected-cmd-tag .remove-cmd {
+  background: transparent;
+  border: none;
+  color: inherit;
+  font: inherit;
+  padding: 0 0.15rem;
+  line-height: 1;
+}
+
+/* Footer accessibility links */
+.footer-a11y-links {
+  margin-top: 1.75rem;
+  display: flex;
+  justify-content: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+  font-size: 0.95rem;
+}
+
+.footer-a11y-links a,
+.footer-a11y-links button {
+  color: var(--primary-azure-dark);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: inherit;
+}
+
+.footer-a11y-links a:hover,
+.footer-a11y-links button:hover {
+  color: var(--primary-violet);
+}
+
+/* Respect OS-level "reduce motion" preference */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ---------- Accessibility toolbar ---------- */
+.a11y-toggle {
+  position: fixed;
+  bottom: 1.25rem;
+  right: 1.25rem;
+  z-index: 3000;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 3px solid #ffffff;
+  background: #1b4fa0;
+  color: #ffffff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 20px rgba(15, 23, 42, 0.3);
+}
+
+.a11y-toggle svg {
+  width: 30px;
+  height: 30px;
+}
+
+.a11y-toggle:hover {
+  background: #163f80;
+}
+
+.a11y-panel {
+  position: fixed;
+  bottom: 5.5rem;
+  right: 1.25rem;
+  z-index: 3001;
+  width: 320px;
+  max-width: calc(100vw - 2.5rem);
+  max-height: calc(100vh - 7rem);
+  overflow-y: auto;
+  background: #ffffff;
+  color: #0f172a;
+  border: 2px solid #1b4fa0;
+  border-radius: 16px;
+  box-shadow: 0 20px 50px rgba(15, 23, 42, 0.3);
+  padding: 1.25rem;
+  font-family: Arial, 'Rubik', sans-serif;
+  font-size: 16px; /* fixed so the panel stays usable at any text scale */
+  line-height: 1.5;
+  text-align: right;
+}
+
+.a11y-panel[hidden] {
+  display: none;
+}
+
+.a11y-panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.a11y-panel-header h2 {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.a11y-close {
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+  font-size: 20px;
+  line-height: 1;
+  color: #0f172a;
+}
+
+.a11y-font-row {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+  background: #f1f5f9;
+  border-radius: 10px;
+  padding: 0.5rem;
+}
+
+.a11y-font-row output {
+  font-weight: 700;
+  min-width: 3.5em;
+  text-align: center;
+}
+
+.a11y-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+}
+
+.a11y-btn {
+  background: #f8fafc;
+  border: 2px solid #cbd5e1;
+  border-radius: 10px;
+  padding: 0.65rem 0.5rem;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  color: #0f172a;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  text-align: center;
+}
+
+.a11y-btn:hover {
+  border-color: #1b4fa0;
+}
+
+.a11y-btn[aria-pressed="true"] {
+  background: #1b4fa0;
+  border-color: #1b4fa0;
+  color: #ffffff;
+}
+
+.a11y-btn .a11y-ico {
+  font-size: 20px;
+  line-height: 1;
+}
+
+.a11y-footer-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid #e2e8f0;
+}
+
+.a11y-footer-row a {
+  color: #1b4fa0;
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+.a11y-reset {
+  background: #ffffff;
+  border: 2px solid #b91c1c;
+  color: #b91c1c;
+  border-radius: 8px;
+  padding: 0.4rem 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 14px;
+}
+
+/* ---------- User-selectable display modes (applied on <html>) ---------- */
+
+/* High contrast */
+html.a11y-contrast {
+  --text-muted: #0f172a;
+  --text-dim: #0f172a;
+  --panel-border: #0f172a;
+  --primary-azure: #0b4f8a;
+  --primary-azure-dark: #0b3d6b;
+  --primary-violet: #4e2671;
+}
+
+html.a11y-contrast body {
+  background: #ffffff !important;
+  background-image: none !important;
+  color: #000000 !important;
+}
+
+html.a11y-contrast .bento-card,
+html.a11y-contrast .footer-contact-panel,
+html.a11y-contrast .command-chip,
+html.a11y-contrast .mode-btn,
+html.a11y-contrast .ar-btn,
+html.a11y-contrast .btn-secondary,
+html.a11y-contrast .var-input-group input,
+html.a11y-contrast .var-input-group textarea,
+html.a11y-contrast .var-input-group select,
+html.a11y-contrast .steps-count-select {
+  border: 2px solid #000000 !important;
+  box-shadow: none !important;
+  background-color: #ffffff !important;
+  color: #000000 !important;
+}
+
+html.a11y-contrast .mode-btn.active,
+html.a11y-contrast .ar-btn.active,
+html.a11y-contrast .command-chip.selected {
+  background: #000000 !important;
+  color: #ffff00 !important;
+}
+
+html.a11y-contrast .mode-btn.active *,
+html.a11y-contrast .ar-btn.active *,
+html.a11y-contrast .command-chip.selected * {
+  color: #ffff00 !important;
+}
+
+html.a11y-contrast .logo-section h1,
+html.a11y-contrast .logo-section h1 span {
+  background: none !important;
+  -webkit-text-fill-color: #000000 !important;
+  color: #000000 !important;
+}
+
+html.a11y-contrast a {
+  text-decoration: underline !important;
+}
+
+/* Monochrome (grayscale) */
+html.a11y-grayscale body > *:not(.a11y-toggle):not(.a11y-panel) {
+  filter: grayscale(100%);
+}
+
+/* Highlight links & buttons */
+html.a11y-links a,
+html.a11y-links button,
+html.a11y-links [role="button"] {
+  outline: 2px dashed #b45309 !important;
+  outline-offset: 2px;
+}
+
+html.a11y-links a {
+  text-decoration: underline !important;
+  text-underline-offset: 3px;
+}
+
+/* Readable font */
+html.a11y-readable-font body,
+html.a11y-readable-font body *:not(pre):not(code):not(.command-code):not(.ar-icon) {
+  font-family: Arial, 'Segoe UI', sans-serif !important;
+}
+
+/* Increased text spacing (WCAG 1.4.12 values) */
+html.a11y-spacing p,
+html.a11y-spacing li,
+html.a11y-spacing label,
+html.a11y-spacing .command-desc,
+html.a11y-spacing .prompt-card-title {
+  line-height: 1.9 !important;
+  letter-spacing: 0.12em !important;
+  word-spacing: 0.16em !important;
+}
+
+/* Stop animations */
+html.a11y-no-motion *,
+html.a11y-no-motion *::before,
+html.a11y-no-motion *::after {
+  animation: none !important;
+  transition: none !important;
+  scroll-behavior: auto !important;
+}
+
+html.a11y-no-motion .workspace-container.active {
+  opacity: 1;
+  transform: none;
+}
+
+/* Big cursor */
+html.a11y-big-cursor,
+html.a11y-big-cursor * {
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 24 24'%3E%3Cpath d='M4 2l16 10-7 1.5L16.5 21l-3 1.5-3.5-7.5L4 20z' fill='%23000' stroke='%23fff' stroke-width='1.2'/%3E%3C/svg%3E") 4 2, auto !important;
+}
+
+@media (max-width: 640px) {
+  .a11y-toggle {
+    width: 50px;
+    height: 50px;
+    bottom: 1rem;
+    right: 1rem;
+  }
+  .a11y-panel {
+    right: 0.75rem;
+    bottom: 4.75rem;
+  }
+}
+
+/* ---------- Accessibility statement page ---------- */
+.statement-page {
+  max-width: 900px;
+  margin: 0 auto 4rem auto;
+  padding: 0 1.5rem;
+}
+
+.statement-page .bento-card {
+  padding: 2.5rem;
+}
+
+.statement-page h1 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  color: var(--text-main);
+}
+
+.statement-page h2 {
+  font-size: 1.3rem;
+  color: var(--primary-violet);
+  margin: 2rem 0 0.75rem 0;
+  border-right: 4px solid var(--primary-azure-dark);
+  padding-right: 0.75rem;
+}
+
+.statement-page p,
+.statement-page li {
+  font-size: 1.02rem;
+  color: #1e293b;
+  line-height: 1.8;
+}
+
+.statement-page ul {
+  margin-right: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.statement-page a {
+  color: var(--primary-azure-dark);
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.statement-contact {
+  background: var(--brand-gradient-soft);
+  border: 1px solid rgba(41, 154, 232, 0.3);
+  border-radius: 14px;
+  padding: 1.25rem 1.5rem;
+  margin-top: 0.75rem;
+}
+
+.statement-contact dl {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.4rem 1rem;
+}
+
+.statement-contact dt {
+  font-weight: 700;
+}
+
+.statement-meta {
+  color: var(--text-muted);
+  font-size: 0.95rem;
 }

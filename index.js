@@ -166,6 +166,11 @@ document.addEventListener("DOMContentLoaded", () => {
       userVariables[prompt.id]["SELECTED_COMMANDS"] = [];
       userVariables[prompt.id]["ASPECT_RATIO"] = "16:9";
     }
+
+    // Custom initialization for infographic (optional /mindmapimage command)
+    if (prompt.id === "infographic") {
+      userVariables[prompt.id]["ADD_MINDMAP"] = false;
+    }
   });
 
   // Render Prompt Cards (Minimalist elegant cards)
@@ -449,7 +454,7 @@ document.addEventListener("DOMContentLoaded", () => {
           tag.className = "selected-cmd-tag";
           tag.innerHTML = `
             ${cmdCode}
-            <span class="remove-cmd" title="הסר פקודה">&times;</span>
+            <button type="button" class="remove-cmd" title="הסר פקודה" aria-label="הסרת הפקודה ${cmdCode}">&times;</button>
           `;
           tag.querySelector(".remove-cmd").addEventListener("click", (e) => {
             e.stopPropagation();
@@ -1111,6 +1116,38 @@ document.addEventListener("DOMContentLoaded", () => {
         inputGroup.appendChild(inputElement);
         variablesForm.appendChild(inputGroup);
       });
+
+      // Infographic: optional /mindmapimage slash command toggle
+      if (promptId === "infographic") {
+        const mindmapGroup = document.createElement("div");
+        mindmapGroup.className = "var-input-group";
+        const isOn = !!userVariables[promptId]["ADD_MINDMAP"];
+        mindmapGroup.innerHTML = `
+          <span class="var-group-label" id="label-ADD_MINDMAP">הוספת הפקודה <bdi dir="ltr">/mindmapimage</bdi> לפרומפט</span>
+          <div class="mode-toggle-group cols-2" role="group" aria-labelledby="label-ADD_MINDMAP">
+            <button type="button" class="mode-btn ${isOn ? 'active' : ''}" data-mindmap="on" aria-pressed="${isOn}">
+              🧠 כן, הוסף <bdi dir="ltr">/mindmapimage</bdi>
+            </button>
+            <button type="button" class="mode-btn ${!isOn ? 'active' : ''}" data-mindmap="off" aria-pressed="${!isOn}">
+              ללא הפקודה
+            </button>
+          </div>
+        `;
+        variablesForm.appendChild(mindmapGroup);
+
+        mindmapGroup.querySelectorAll(".mode-btn").forEach(btn => {
+          btn.addEventListener("click", () => {
+            mindmapGroup.querySelectorAll(".mode-btn").forEach(b => {
+              b.classList.remove("active");
+              b.setAttribute("aria-pressed", "false");
+            });
+            btn.classList.add("active");
+            btn.setAttribute("aria-pressed", "true");
+            userVariables[promptId]["ADD_MINDMAP"] = btn.dataset.mindmap === "on";
+            updateCodePreview();
+          });
+        });
+      }
     }
 
     // Update the live system prompt preview
@@ -1413,6 +1450,12 @@ document.addEventListener("DOMContentLoaded", () => {
         // Highlighted HTML preview replacement
         htmlPreviewText = htmlPreviewText.replaceAll(`{${v.id}}`, `<mark>${escapedValue}</mark>`);
       });
+
+      // Infographic: prepend optional /mindmapimage slash command
+      if (activePromptId === "infographic" && userVariables["infographic"]["ADD_MINDMAP"]) {
+        finalPromptText = `/mindmapimage\n\n${finalPromptText}`;
+        htmlPreviewText = `<mark>/mindmapimage</mark>\n\n${htmlPreviewText}`;
+      }
     }
 
     // Write to DOM preview
